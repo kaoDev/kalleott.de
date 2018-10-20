@@ -1,0 +1,135 @@
+---
+title: From code to UI - Introduction to React.JS
+date: '2018-04-24T06:53:03.284Z'
+course: Project WebApp
+---
+
+to use react we need two packages from npm,
+[react](https://www.npmjs.com/package/react) itself and
+[react-dom](https://www.npmjs.com/package/react-dom). React
+takes care of managing a virtual dom representation and is
+highly optimized to handle state updates and changes in the
+virtual dom tree following the state change. The second part
+"react-dom" is responsible for bringing the virtual
+representation of the dom to the browser and also provides
+wrapped APIs for browser based stuff like event-handlers on
+elements.
+
+Because every new beginning starts with a hello-world, here
+it is in react:
+
+```jsx
+ReactDOM.render(<h1>Hello, world!</h1>, document.getElementById('root'))
+```
+
+As you can see there is some html-like syntax mixed right
+into the JavaScript-Code, this
+[language extension is called JSX](https://reactjs.org/docs/glossary.html#jsx).
+This extended syntax enables you to write shorter and more
+readable code, but it must be transpiled to real JavaScript
+before it can be executed in a browser.
+
+The hello-world as transpiled code looks like this:
+
+```jsx
+ReactDOM.render(React.createElement('h1', null, 'Hello, world!'), document.getElementById('root'))
+```
+
+So every JSX-Tag gets replaced with a call to
+`React.createElement(tag, props, children)`. That's already
+a nice to have feature, but JSX starts to shine when you
+define your own UI components and can use them as new
+JSX-tags. Components can either be classes extending the
+React.Component class, or simple functions returning valid
+JSX elements. There is only one convention based rule, the
+name of the Component either class or function must start
+with a capital letter, because all JSX-tags starting with a
+lowercase letter are interpreted as native browser elements.
+Now a hello-world with a self defined component:
+
+```jsx
+const HelloWorld = () => <h1>Hello, world!</h1>
+ReactDOM.render(<HelloWorld />, document.getElementById('rooot'))
+```
+
+-->
+
+```js
+var HelloWorld = function HelloWorld() {
+  return React.createElement('h1', null, 'Hello, world!')
+}
+ReactDOM.render(React.createElement(HelloWorld, null), document.getElementById('root'))
+```
+
+For a better understanding of the JSX syntax and its
+corresponding JavaScript code the
+[babel REPL](https://babeljs.io/repl/#?babili=false&browsers=&build=&builtIns=false&code_lz=MYewdgzgLgBAEgUwDZJAdRAJyQExgXhgAoBKAgPhgB4ALARnMRRABoYB3LXAQioHp65ANwAoAEoIAhsCgARAPIBZAHSYEYHAkxERMak1QZsePuRa6YOEMACuAW3VRlAcwRQAokgQOwUAEIAngCSOEQARJggIFBhJOYkQkA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&lineWrap=true&presets=react%2Cstage-2%2Cenv&prettier=false&targets=&version=6.26.0&envVersion=1.6.2)
+is a great tool tp play with.
+
+The `HelloWorld` component didn't have any parameters but as
+part as you can see in the `React.createElement`, there is
+second parameter `null`. If you want to provide some
+information to a component you can define and use the
+properties like this:
+
+```jsx
+const HelloName = ({ name }) => <h1>Hello, {name}!</h1>
+ReactDOM.render(<HelloName name={'Peter'} />, document.getElementById('root'))
+```
+
+-->
+
+```js
+var HelloName = function HelloName(props) {
+  return React.createElement('h1', null, 'Hello, ', props.name, '!')
+}
+ReactDOM.render(React.createElement(HelloName, { name: 'Peter' }), document.getElementById('root'))
+```
+
+The same component defined as a Component-class looks like
+this:
+
+```jsx
+class HelloName extends React.Component {
+  render() {
+    const { name } = this.props
+    return <h1>Hello, {name}!</h1>
+  }
+}
+ReactDOM.render(<HelloName name={'Peter'} />, document.getElementById('root'))
+```
+
+But Component-classes are only necessary if you have to
+manage some state inside of the component, and even this can
+be done with components providing state-management
+functions.
+
+The last important bit of information about the JSX syntax
+is the `children` property. With `children` you get access
+to the information given to you between the opening and
+closing tag of your component. So you could redefine the
+`HelloName` component like this:
+
+```jsx
+const HelloName = ({ children }) => <h1>Hello, {children}!</h1>
+ReactDOM.render(<HelloName>Peter</HelloName>, document.getElementById('root'))
+// behaves the same as
+ReactDOM.render(<HelloName children={'Peter'} />, document.getElementById('root'))
+```
+
+But with children you provide other JSX-elements so you
+could also write:
+
+<component-playground
+complex="true" sample="HelloName.js" ></component-playground>
+
+So that's it. Now you know the most important things about
+JSX and can start to use react.
+
+### Tasks
+
+- work through the very fine
+  [react tutorial](https://reactjs.org/tutorial/tutorial.html)
+- when finished with the tic-tac-toe game change the css
+  rules to use flex-box and check if the react-layout code
+  can be simplified
