@@ -1,0 +1,8 @@
+{
+  "name": "kalleott.de",
+  "alias": "kalleott.de",
+  "static": {
+    "public": "public",
+    "cleanUrls": true
+  }
+}
