@@ -34,7 +34,7 @@ const description = (
 
 const IndexPage: React.SFC<Props> = ({ data: { allMarkdownRemark } }) => (
   <BlogOverview
-    title="kaos's Blog"
+    title="kao's Blog"
     description={description}
     lessons={
       allMarkdownRemark
