@@ -4,5 +4,6 @@
   "static": {
     "public": "public",
     "cleanUrls": true
-  }
+  },
+  "engine": "^10.11.0"
 }
