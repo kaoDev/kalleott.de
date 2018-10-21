@@ -4,7 +4,7 @@ import { Link, GatsbyLinkProps } from 'gatsby'
 
 import { heights, dimensions, colors } from '../styles/variables'
 import { Container } from './Container'
-import { px } from '../styles/utils'
+import { px, textShadow } from '../styles/utils'
 
 const StyledHeader = styled.header({
   height: `${heights.header}px`,
@@ -37,25 +37,21 @@ const NavLinkLabel = styled.div({
   alignItems: 'center',
 })
 
+const activeNavClass = css({})
 const StyledLink = styled(Link)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  textDecoration: 'none',
-  textShadow: `-2px 2px 0px ${colors.accent}`,
+  transition: 'text-decoration-color 0s',
   ['&:hover, &:focus']: {
-    textDecoration: 'none',
     [`${NavLinkLabel}`]: {
-      textShadow: `-2px 2px 0px ${colors.accent2}`,
+      textShadow: textShadow(2, colors.accent),
     },
   },
   height: '100%',
-  minWidth: px(100),
-})
-
-const activeNavClass = css({
-  [`${NavLinkLabel}`]: {
-    textShadow: `-2px 2px 0px ${colors.accent}`,
+  marginRight: px(dimensions.containerPadding),
+  [`&.${activeNavClass}`]: {
+    textDecorationColor: colors.accent,
   },
 })
 
@@ -86,8 +82,7 @@ export const Header: React.SFC<HeaderProps> = () => (
       <nav>
         <LinkList>
           <NavLink to="/">KO</NavLink>
-          <NavLink to="/project-webapp">Project WebApp</NavLink>
-          <NavLink to="/iot">IoT</NavLink>
+          <NavLink to="/courses">Courses</NavLink>
         </LinkList>
       </nav>
     </HeaderInner>

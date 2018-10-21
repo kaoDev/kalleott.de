@@ -1,6 +1,7 @@
 import { injectGlobal } from 'emotion'
 import { dimensions, fonts, colors, breakpoints } from './variables'
 import { px } from './utils'
+import { transparentize } from 'polished'
 
 import BigJohnRegular from '../assets/fonts/BigJohnPRO-Regular.otf'
 import BigJohnBold from '../assets/fonts/BigJohnPRO-Bold.otf'
@@ -10,18 +11,24 @@ import BigJohnLight from '../assets/fonts/BigJohnPRO-Light.otf'
 injectGlobal`
   @font-face {
     font-family: 'Big John Pro';
-  src: url('${BigJohnRegular}') format('opentype');
-    font-weight: normal;
+    src: url('${BigJohnRegular}') format('opentype');
+    font-display: auto;
+    src: local('Big John PRO Regular');
+    font-weight: 400;
   }
   @font-face {
     font-family: 'Big John Pro';
     src: url('${BigJohnBold}') format('opentype');
+    font-display: auto;
+    src: local('Big John PRO Bold');
     font-weight: bold;
   }
   @font-face {
     font-family: 'Big John Pro';
     src: url('${BigJohnLight}') format('opentype');
-    font-weight: lighter;
+    font-display: auto;
+    src: local('Big John PRO Light');
+    font-weight: 100;
   }
 
   *,
@@ -46,15 +53,20 @@ injectGlobal`
     -ms-text-size-adjust: 100%;
   }
 
+  ::selection {
+    background: ${colors.accent2};
+  }
+
   a {
     color: ${colors.dark};
-    text-shadow: -1px 1px 0px ${colors.accent};
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: ${transparentize(0.7, colors.accent)};
+    transition: text-decoration-color 0.2s ease-in-out;
 
     &:hover,
     &:focus {
       color: ${colors.dark};
-      text-shadow: -1px 1px 0px ${colors.accent2};
+      text-decoration-color: ${transparentize(0, colors.accent)};
     }
   }
 

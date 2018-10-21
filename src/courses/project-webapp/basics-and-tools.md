@@ -4,8 +4,6 @@ date: '2018-04-10T09:42:03.284Z'
 course: Project WebApp
 ---
 
-## The basis to work with
-
 The first thing you have to know before you can develop a
 successful web application is the platform you are running
 on. The "Browser". Browsers are build to render HTML, a
@@ -57,7 +55,8 @@ function toggleColor() {
 }
 
 var toggleText = document.createElement('div')
-toggleText.textContent = 'By pressing the button you can change the color of this text'
+toggleText.textContent =
+  'By pressing the button you can change the color of this text'
 toggleText.id = 'toggle-target'
 toggleText.style.color = 'black'
 document.querySelector('#sample1').appendChild(toggleText)

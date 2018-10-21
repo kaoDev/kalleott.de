@@ -8,6 +8,7 @@ import { Page } from '../components/Page'
 import { IndexLayout } from '../layouts'
 import { Link } from '../components/Link'
 import { CodeView } from '../components/CodeView'
+import { SiteTitle } from '../components/SiteTitle'
 
 interface PageTemplateProps {
   data: {
@@ -44,8 +45,8 @@ const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => (
   <IndexLayout>
     <Page>
       <Container>
-        <h1>{data.markdownRemark.frontmatter.title}</h1>
-        <div>{renderAst(data.markdownRemark.htmlAst)}</div>
+        <SiteTitle>{data.markdownRemark.frontmatter.title}</SiteTitle>
+        {renderAst(data.markdownRemark.htmlAst)}
       </Container>
     </Page>
   </IndexLayout>

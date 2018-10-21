@@ -15,3 +15,4 @@ declare module '*.module.css' {
 }
 
 declare module '*.otf'
+declare module '*.ttf'

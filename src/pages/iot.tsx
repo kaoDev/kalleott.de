@@ -1,7 +1,11 @@
 import { graphql } from 'gatsby'
 import * as React from 'react'
-import { CourseOverview, MarkdownData } from '../components/CourseOverview'
-import { Link } from '../components/Link'
+import {
+  BlogOverview,
+  mapMarkdownToSessionData,
+  MarkdownData,
+} from '../components/BlogOverview'
+import { courseData } from '../courses/iot'
 
 interface Props {
   data: {
@@ -11,21 +15,15 @@ interface Props {
   }
 }
 
-const description = (
-  <>
-    This course emerged in the context of{' '}
-    <Link to="https://opencampus.sh">opencampus.sh</Link> and will be held in
-    the winter of 2018/2019
-  </>
-)
-
 const PageTemplate: React.SFC<Props> = ({ data: { allMarkdownRemark } }) => {
   return (
-    <CourseOverview
-      title="Internet of Things"
-      description={description}
+    <BlogOverview
+      title={courseData.title}
+      description={courseData.excerpt}
       lessons={
-        allMarkdownRemark ? allMarkdownRemark.edges.map(e => e.node) : []
+        allMarkdownRemark
+          ? allMarkdownRemark.edges.map(e => mapMarkdownToSessionData(e.node))
+          : []
       }
     />
   )
