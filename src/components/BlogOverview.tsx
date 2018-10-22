@@ -78,7 +78,7 @@ export const BlogOverview: React.SFC<Props> = ({
                 <ArticleLink key={markdownData.id} to={markdownData.slug}>
                   <article>
                     <h4>{markdownData.title}</h4>
-                    <p>{markdownData.excerpt}</p>
+                    <div>{markdownData.excerpt}</div>
                   </article>
                 </ArticleLink>
               )
