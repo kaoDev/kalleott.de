@@ -26,9 +26,7 @@ const description = (
       courses on web-development.
     </p>
     <p>You can find and contact me on the following platforms:</p>
-    <p>
-      <SocialLinks />
-    </p>
+    <SocialLinks />
   </>
 )
 
