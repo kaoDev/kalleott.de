@@ -57,6 +57,10 @@ const ArticleLink = styled(Link)({
   },
 })
 
+const DescriptionWrapper = styled.div({
+  paddingBottom: px(dimensions.base * 5),
+})
+
 export const BlogOverview: React.SFC<Props> = ({
   lessons,
   title,
@@ -67,7 +71,7 @@ export const BlogOverview: React.SFC<Props> = ({
       <Page>
         <Container>
           <SiteTitle>{title}</SiteTitle>
-          <p>{description}</p>
+          <DescriptionWrapper>{description}</DescriptionWrapper>
           <ArticlesGrid>
             {lessons.map(markdownData => {
               return (
