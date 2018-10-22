@@ -1,8 +1,10 @@
+import React from 'react'
 import styled from 'react-emotion'
 import { dimensions, widths, colors } from '../styles/variables'
 import { px } from '../styles/utils'
+import { Menu } from './Menu'
 
-export const Page = styled.div({
+const PageWrapper = styled.div({
   display: 'block',
   flex: 1,
   position: 'relative',
@@ -14,3 +16,10 @@ export const Page = styled.div({
   overflow: 'hidden',
   background: colors.light,
 })
+
+export const Page: React.SFC = props => (
+  <PageWrapper>
+    <Menu />
+    {props.children}
+  </PageWrapper>
+)

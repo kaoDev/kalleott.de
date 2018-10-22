@@ -1,5 +1,6 @@
 import styled from 'react-emotion'
-import { heights } from '../styles/variables'
+import { px } from '../styles/utils'
+import { dimensions } from '../styles/variables'
 
 export const LayoutMain = styled.main({
   display: 'flex',
@@ -7,5 +8,4 @@ export const LayoutMain = styled.main({
   flex: 1,
   width: '100%',
   alignItems: 'center',
-  paddingTop: `${heights.header}px`,
 })
