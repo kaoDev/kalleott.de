@@ -48,7 +48,7 @@ injectGlobal`
     width: 100%;
     font-family: ${fonts.sansSerif};
     color: ${colors.dark};
-    background-color: ${colors.light};
+    background-color: ${colors.lightPale};
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
   }
