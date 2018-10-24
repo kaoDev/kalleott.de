@@ -47,16 +47,6 @@ const links = [
     platform: 'GitHub',
   },
   {
-    url: 'https://facebook.com/kalleott',
-    icon: facebook,
-    platform: 'Facebook',
-  },
-  {
-    url: 'https://www.instagram.com/ottkalle/',
-    icon: instagram,
-    platform: 'Instagram',
-  },
-  {
     url: 'https://stackoverflow.com/users/4613881/kalle',
     icon: stackoverflow,
     platform: 'stack overflow',
