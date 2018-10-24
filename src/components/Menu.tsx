@@ -1,7 +1,12 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
 import { px, textShadow } from '../styles/utils'
-import { dimensions, colors } from '../styles/variables'
+import {
+  dimensions,
+  colors,
+  titleTiltDegree,
+  widths,
+} from '../styles/variables'
 import { Link } from './Link'
 import { courseData as webCourse } from '../courses/project-webapp'
 import { courseData as iotCourse } from '../courses/iot'
@@ -49,11 +54,10 @@ const MenuList = styled.ul({
   top: px(dimensions.base * -3),
   left: px(dimensions.base * -10),
   padding: px(dimensions.base * 9),
-  paddingTop: px(dimensions.base * 12),
   background: colors.dark,
   listStyleType: 'none',
   transformOrigin: '0% 0%',
-  transform: `rotate(-7deg) translate(-100%, 0)`,
+  transform: `rotate(${titleTiltDegree}deg) translate(-100%, 0)`,
   transition: 'transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)',
 })
 
@@ -74,7 +78,7 @@ const MenuWrapper = styled.div({
     transform: 'rotate(-45deg) translate(0, -1px)',
   },
   [`${HiddenInput}:checked ~ ${MenuList}`]: {
-    transform: 'rotate(-7deg) translate(0%, 0)',
+    transform: `rotate(${titleTiltDegree}deg) translate(0%, 0)`,
   },
 })
 
@@ -153,6 +157,9 @@ export class Menu extends React.Component<{}, State> {
   toggleVisible = () => {
     this.setState(state => ({ visible: !state.visible }))
   }
+  hideMenu = () => {
+    this.setState({ visible: false })
+  }
 
   render() {
     const { visible } = this.state
@@ -172,7 +179,7 @@ export class Menu extends React.Component<{}, State> {
 
           <MenuList id="menu">
             {links.map(({ label, isSub, slug }) => (
-              <NavLink to={slug} key={slug} sub={isSub}>
+              <NavLink onClick={this.hideMenu} to={slug} key={slug} sub={isSub}>
                 {label}
               </NavLink>
             ))}

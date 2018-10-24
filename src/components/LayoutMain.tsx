@@ -1,6 +1,4 @@
 import styled from 'react-emotion'
-import { px } from '../styles/utils'
-import { dimensions } from '../styles/variables'
 
 export const LayoutMain = styled.main({
   display: 'flex',

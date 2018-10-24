@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { colors, dimensions } from '../styles/variables'
+import { colors, dimensions, titleTiltDegree } from '../styles/variables'
 import { textShadow, px } from '../styles/utils'
 
 const SiteTitleText = styled.h1({
@@ -18,14 +18,12 @@ const SiteTitleText = styled.h1({
 })
 
 const OuterWrapper = styled.div({
-  marginBottom: px(dimensions.base * 6),
-  marginTop: px(dimensions.base * 4),
+  marginBottom: px(dimensions.base * 5),
   width: '200%',
   alignSelf: 'center',
-  minHeight: px(dimensions.base * 20),
 })
 const TiltedWrapper = styled.div({
-  transform: 'rotate(-7deg)',
+  transform: `rotate(${titleTiltDegree}deg)`,
   background: colors.accent,
   display: 'flex',
   justifyContent: 'center',

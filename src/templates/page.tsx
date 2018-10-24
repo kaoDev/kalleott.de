@@ -4,7 +4,6 @@ import * as React from 'react'
 import rehypeReact from 'rehype-react'
 import { ComponentPlayGround } from '../components/ComponentPlayGround'
 import { Container } from '../components/Container'
-import { Page } from '../components/Page'
 import { IndexLayout } from '../layouts'
 import { Link } from '../components/Link'
 import { CodeView } from '../components/CodeView'
@@ -43,12 +42,10 @@ const renderAst = new rehypeReact({
 
 const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => (
   <IndexLayout>
-    <Page>
-      <Container>
-        <SiteTitle>{data.markdownRemark.frontmatter.title}</SiteTitle>
-        {renderAst(data.markdownRemark.htmlAst)}
-      </Container>
-    </Page>
+    <Container>
+      <SiteTitle>{data.markdownRemark.frontmatter.title}</SiteTitle>
+      {renderAst(data.markdownRemark.htmlAst)}
+    </Container>
   </IndexLayout>
 )
 

@@ -68,24 +68,22 @@ export const BlogOverview: React.SFC<Props> = ({
 }) => {
   return (
     <IndexLayout>
-      <Page>
-        <Container>
-          <SiteTitle>{title}</SiteTitle>
-          <DescriptionWrapper>{description}</DescriptionWrapper>
-          <ArticlesGrid>
-            {lessons.map(markdownData => {
-              return (
-                <ArticleLink key={markdownData.id} to={markdownData.slug}>
-                  <article>
-                    <h4>{markdownData.title}</h4>
-                    <div>{markdownData.excerpt}</div>
-                  </article>
-                </ArticleLink>
-              )
-            })}
-          </ArticlesGrid>
-        </Container>
-      </Page>
+      <Container>
+        <SiteTitle>{title}</SiteTitle>
+        <DescriptionWrapper>{description}</DescriptionWrapper>
+        <ArticlesGrid>
+          {lessons.map(markdownData => {
+            return (
+              <ArticleLink key={markdownData.id} to={markdownData.slug}>
+                <article>
+                  <h4>{markdownData.title}</h4>
+                  <div>{markdownData.excerpt}</div>
+                </article>
+              </ArticleLink>
+            )
+          })}
+        </ArticlesGrid>
+      </Container>
     </IndexLayout>
   )
 }

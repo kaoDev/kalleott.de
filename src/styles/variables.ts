@@ -3,6 +3,8 @@
 // https://coolors.co/050609-d3d4d9-b10f2e-1b264f-4b88a2
 import colors from './colors.json'
 
+export const titleTiltDegree = -5
+
 export { colors }
 export const fonts = {
   sansSerif: '"Big John Pro", sans-serif',

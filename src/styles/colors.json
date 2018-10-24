@@ -1,8 +1,6 @@
 {
   "dark": "#0a111b",
-  "light": "#f8f6d8",
-  "lightPale": "#f4f3dc",
-  "accent": "#de4b43",
-  "accent2": "#50b6ab",
-  "linkColor": "#f63b34"
+  "light": "#f1f0ec",
+  "lightPale": "#fafafa",
+  "accent": "#f63b34"
 }
