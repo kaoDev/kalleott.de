@@ -83,6 +83,7 @@ const SessionHint = styled.div({
 })
 
 const SessionArticle = styled.article({
+  position: 'relative',
   [`:hover ${SessionHint}`]: {
     opacity: 1,
   },
