@@ -15,6 +15,8 @@ const SiteTitleText = styled.h1({
   padding: '6px 8px 16px',
   borderBottom: '2px solid',
   borderTop: '2px solid',
+  display: 'flex',
+  justifyContent: 'center',
 })
 
 const OuterWrapper = styled.div({
@@ -22,7 +24,9 @@ const OuterWrapper = styled.div({
   width: '200%',
   alignSelf: 'center',
 })
+
 const TiltedWrapper = styled.div({
+  position: 'relative',
   transform: `rotate(${titleTiltDegree}deg)`,
   background: colors.accent,
   display: 'flex',
