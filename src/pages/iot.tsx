@@ -20,6 +20,7 @@ const PageTemplate: React.SFC<Props> = ({ data: { allMarkdownRemark } }) => {
     <BlogOverview
       title={courseData.title}
       description={courseData.excerpt}
+      hint={courseData.hint}
       lessons={
         allMarkdownRemark
           ? allMarkdownRemark.edges.map(e => mapMarkdownToSessionData(e.node))

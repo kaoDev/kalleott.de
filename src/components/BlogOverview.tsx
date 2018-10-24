@@ -1,6 +1,5 @@
 import React from 'react'
 import { IndexLayout } from '../layouts'
-import { Page } from './Page'
 import { Container } from './Container'
 import { Link } from '@reach/router'
 import { SiteTitle } from './SiteTitle'
@@ -12,6 +11,7 @@ export interface SessionData {
   id: string
   title: string
   excerpt: React.ReactNode
+  hint?: React.ReactNode
   slug: string
 }
 
@@ -37,6 +37,7 @@ interface Props {
   lessons: SessionData[]
   title: React.ReactNode
   description: React.ReactNode
+  hint?: React.ReactNode
 }
 
 const ArticlesGrid = styled.div({
@@ -57,6 +58,36 @@ const ArticleLink = styled(Link)({
   },
 })
 
+const Hint = styled.div({
+  background: colors.accent,
+  color: colors.light,
+  position: 'absolute',
+  bottom: px(dimensions.base),
+  textShadow: 'none',
+  fontSize: px(dimensions.base * 2),
+  padding: `0 ${px(dimensions.base * 0.5)}`,
+})
+
+const SessionHint = styled.div({
+  background: colors.accent,
+  color: colors.light,
+  position: 'absolute',
+  top: px(dimensions.base * 0.5),
+  right: px(dimensions.base * -2),
+  transform: `rotate(-15deg)`,
+  textShadow: 'none',
+  fontSize: px(dimensions.base * 2),
+  padding: `0 ${px(dimensions.base * 0.5)}`,
+  transition: 'opacity 0.1s ease-in-out',
+  opacity: 0,
+})
+
+const SessionArticle = styled.article({
+  [`:hover ${SessionHint}`]: {
+    opacity: 1,
+  },
+})
+
 const DescriptionWrapper = styled.div({
   paddingBottom: px(dimensions.base * 5),
 })
@@ -65,20 +96,27 @@ export const BlogOverview: React.SFC<Props> = ({
   lessons,
   title,
   description,
+  hint,
 }) => {
   return (
     <IndexLayout>
       <Container>
-        <SiteTitle>{title}</SiteTitle>
+        <SiteTitle>
+          {title}
+          {hint && <Hint>{hint}</Hint>}
+        </SiteTitle>
         <DescriptionWrapper>{description}</DescriptionWrapper>
         <ArticlesGrid>
-          {lessons.map(markdownData => {
+          {lessons.map(lesson => {
             return (
-              <ArticleLink key={markdownData.id} to={markdownData.slug}>
-                <article>
-                  <h4>{markdownData.title}</h4>
-                  <div>{markdownData.excerpt}</div>
-                </article>
+              <ArticleLink key={lesson.id} to={lesson.slug}>
+                <SessionArticle>
+                  <h4>
+                    {lesson.title}
+                    {lesson.hint && <SessionHint>{lesson.hint}</SessionHint>}
+                  </h4>
+                  <div>{lesson.excerpt}</div>
+                </SessionArticle>
               </ArticleLink>
             )
           })}
