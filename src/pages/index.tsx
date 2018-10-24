@@ -43,22 +43,30 @@ const IndexPage: React.SFC<Props> = ({ data: { allMarkdownRemark } }) => (
 )
 
 export const query = graphql`
-  query {
-    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date
-            course
-          }
-          excerpt
-          fields {
-            slug
-          }
+  fragment MarkdownInfo on MarkdownRemarkConnection {
+    edges {
+      node {
+        id
+        frontmatter {
+          title
+          date
+          course
+          draft
+        }
+        excerpt
+        fields {
+          slug
         }
       }
+    }
+  }
+
+  query {
+    allMarkdownRemark(
+      filter: { frontmatter: { draft: { ne: true } } }
+      sort: { fields: frontmatter___date, order: DESC }
+    ) {
+      ...MarkdownInfo
     }
   }
 `

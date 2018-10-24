@@ -35,23 +35,15 @@ export default PageTemplate
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { frontmatter: { course: { eq: "Internet of Things" } } }
-      sort: { fields: frontmatter___date, order: ASC }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date
-            course
-          }
-          excerpt
-          fields {
-            slug
-          }
+      filter: {
+        frontmatter: {
+          course: { eq: "Internet of Things" }
+          draft: { ne: true }
         }
       }
+      sort: { fields: frontmatter___date, order: ASC }
+    ) {
+      ...MarkdownInfo
     }
   }
 `

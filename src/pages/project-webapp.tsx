@@ -34,23 +34,12 @@ export default PageTemplate
 export const query = graphql`
   query {
     allMarkdownRemark(
-      filter: { frontmatter: { course: { eq: "Project WebApp" } } }
+      filter: {
+        frontmatter: { course: { eq: "Project WebApp" }, draft: { ne: true } }
+      }
       sort: { fields: frontmatter___date, order: ASC }
     ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            date
-            course
-          }
-          excerpt
-          fields {
-            slug
-          }
-        }
-      }
+      ...MarkdownInfo
     }
   }
 `
