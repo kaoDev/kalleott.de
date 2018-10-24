@@ -1,17 +1,11 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
-import { px, textShadow } from '../styles/utils'
-import {
-  dimensions,
-  colors,
-  titleTiltDegree,
-  widths,
-} from '../styles/variables'
+import { px } from '../styles/utils'
+import { dimensions, colors, titleTiltDegree } from '../styles/variables'
 import { Link } from './Link'
 import { courseData as webCourse } from '../courses/project-webapp'
 import { courseData as iotCourse } from '../courses/iot'
 import { GatsbyLinkProps } from 'gatsby'
-import { link } from 'fs'
 
 const HiddenInput = styled.input({
   display: 'block',
@@ -22,7 +16,7 @@ const HiddenInput = styled.input({
   left: px(-5),
   cursor: 'pointer',
   opacity: 0,
-  zIndex: 2,
+  zIndex: 20,
   '-webkit-touch-callout': 'none',
 })
 
@@ -33,7 +27,7 @@ const BurgerMenuStripe = styled.div({
   position: 'relative',
   background: colors.accent,
   borderRadius: px(3),
-  zIndex: 1,
+  zIndex: 10,
   transformOrigin: `${px(4)} ${px(0)}`,
   transition: [
     'transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0)',
@@ -63,7 +57,7 @@ const MenuList = styled.ul({
 
 const MenuWrapper = styled.div({
   position: 'relative',
-  zIndex: 1,
+  zIndex: 10,
   userSelect: 'none',
   [`${HiddenInput}:checked ~ ${BurgerMenuStripe}`]: {
     opacity: 1,
@@ -122,6 +116,22 @@ const NavLink = ({
   </StyledLink>
 )
 
+const BackgroundClickMenuHider = styled.div<{ active: boolean }>(
+  {
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    opacity: 0,
+    background: colors.dark,
+  },
+  ({ active }) => ({
+    zIndex: active ? 1 : -10,
+    opacity: 0.05,
+  })
+)
+
 const links = [
   {
     label: 'Home',
@@ -166,6 +176,7 @@ export class Menu extends React.Component<{}, State> {
 
     return (
       <nav role="navigation">
+        <BackgroundClickMenuHider active={visible} onClick={this.hideMenu} />
         <MenuWrapper>
           <HiddenInput
             onChange={this.toggleVisible}
