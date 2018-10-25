@@ -1,34 +1,21 @@
 import React from 'react'
-// @ts-ignore
-import isRelativeUrl from 'is-relative-url'
-// @ts-ignore
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 import GatsbyLink, { GatsbyLinkProps } from 'gatsby-link'
+import ReactGA from 'react-ga'
+import { isRelative } from '../utils/url'
+type Props = GatsbyLinkProps<any>
 
-type Props =
-  | GatsbyLinkProps<any>
-  | React.AnchorHTMLAttributes<HTMLAnchorElement>
-
-// @ts-ignore
-const isGatsbyLink = (p: Props): p is GatsbyLinkProps<any> => !!p.to
-
-export const Link = (props: Props) => {
-  if (isGatsbyLink(props)) {
-    return isRelativeUrl(props.to) ? (
-      // @ts-ignore
-      <GatsbyLink {...props} />
-    ) : (
-      <OutboundLink
-        target="_blank"
-        rel="noopener noreferrer"
-        href={props.to}
-        {...props}
-      />
-    )
-  }
-  return isRelativeUrl(props.href) ? (
-    <GatsbyLink to={props.href || ''}>{props.children}</GatsbyLink>
+export const Link = ({ ref, onClick, unselectable, ...props }: Props) => {
+  return isRelative(props.to) ? (
+    <GatsbyLink onClick={onClick} unselectable={unselectable} {...props} />
   ) : (
-    <OutboundLink target="_blank" rel="noopener noreferrer" {...props} />
+    <ReactGA.OutboundLink
+      target="_blank"
+      rel="noopener noreferrer"
+      eventLabel={props.to}
+      // @ts-ignore
+      onClick={onClick}
+      unselectable={unselectable ? 'on' : undefined}
+      {...props}
+    />
   )
 }

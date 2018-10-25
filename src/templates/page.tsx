@@ -36,7 +36,13 @@ const renderAst = new rehypeReact({
   components: {
     'component-playground': ComponentPlayGround,
     code: CodeView,
-    a: Link,
+    a: ({
+      href,
+      unselectable,
+      ...props
+    }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+      <Link unselectable={unselectable === 'on'} to={href || ''} {...props} />
+    ),
   },
 }).Compiler
 

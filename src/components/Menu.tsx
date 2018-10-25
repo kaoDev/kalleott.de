@@ -6,6 +6,7 @@ import { Link } from './Link'
 import { courseData as webCourse } from '../courses/project-webapp'
 import { courseData as iotCourse } from '../courses/iot'
 import { GatsbyLinkProps } from 'gatsby'
+import { transparentize } from 'polished'
 
 const HiddenInput = styled.input({
   display: 'block',
@@ -76,12 +77,10 @@ const MenuWrapper = styled.div({
   },
 })
 
-const activeNavClass = css({})
-
 const MenuItem = styled.li({
   paddingTop: px(dimensions.base),
-  color: colors.light,
   fontSize: px(dimensions.base * 4),
+  color: colors.light,
 })
 
 const MenuSubItem = styled.li({
@@ -96,8 +95,12 @@ const StyledLink = styled(Link)({
   transition: 'text-decoration-color 0s',
   height: '100%',
   marginRight: px(dimensions.containerPadding),
-  [`&${activeNavClass}`]: {
-    textDecorationColor: colors.accent,
+  color: colors.light,
+  [`&:hover, &:focus, &.active`]: {
+    [`${MenuItem}, ${MenuSubItem}`]: {
+      color: colors.accent,
+      textDecorationColor: transparentize(0, colors.accent),
+    },
   },
 })
 
@@ -107,7 +110,7 @@ const NavLink = ({
   sub,
   ...props
 }: GatsbyLinkProps<any> & { sub: boolean }) => (
-  <StyledLink activeClassName={activeNavClass} {...props}>
+  <StyledLink activeClassName="active" {...props}>
     {sub ? (
       <MenuSubItem>{props.children}</MenuSubItem>
     ) : (

@@ -1,10 +1,8 @@
 import { graphql, StaticQuery } from 'gatsby'
 import * as React from 'react'
 import Helmet from 'react-helmet'
-import { LayoutMain } from '../components/LayoutMain'
 import { LayoutRoot } from '../components/LayoutRoot'
 import '../styles/normalize'
-import { Page } from '../components/Page'
 
 type StaticQueryProps = {
   site: {
