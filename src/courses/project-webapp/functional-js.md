@@ -241,7 +241,7 @@ const fibonacci = num => {
 
 Here is a codesandbox with tests to work on this in the
 browser:
-[![Edit Fibonacci](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/jlkz27yyk5)
+[Edit Fibonacci](https://codesandbox.io/s/jlkz27yyk5)
 
 [solution](https://codesandbox.io/s/j4ql17vzp5)
 
@@ -315,12 +315,14 @@ of Tatooine:
 ```js
 const tatooineResidents = people
   .filter(person => {
-    return planets.some(planet => planet.id === person.homeworld && planet.name === 'Tatooine')
+    return planets.some(
+      planet => planet.id === person.homeworld && planet.name === 'Tatooine'
+    )
   })
   .map(person => person.name)
 ```
 
-[![Edit Star Wars API - data transform exercises](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pwvxzw025j)
+[Edit Star Wars API - data transform exercises](https://codesandbox.io/s/pwvxzw025j)
 
 ### Tasks:
 
