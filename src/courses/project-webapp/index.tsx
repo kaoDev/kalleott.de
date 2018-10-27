@@ -5,7 +5,7 @@ export const courseData = {
   title: 'Project WebApp',
   excerpt: (
     <>
-      <p>In this course you will realise your own web application.</p>
+      <p>In this course you will realize your own web application.</p>
       <p>
         It starts with the foundations like the necessary tooling needed for
         coding. And then over the different sessions a react.js based chat-app

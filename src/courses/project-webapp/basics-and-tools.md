@@ -9,8 +9,8 @@ successful web application is the platform you are running
 on. The "Browser". Browsers are build to render HTML, a
 xml-like language to describe a layout and information.
 
-This image shows a very basic example of html code, which
-shows a simple hello world message
+This image shows a very basic example of HTML code, which
+shows a simple hello world message:
 
 ![basic html](./html-hello-world.png)
 

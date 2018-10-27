@@ -54,7 +54,7 @@ The real power of rxjs lies in its operators which can
 transform the data coming from an observable and build a new
 observable providing the transformed data. The most
 important one is the map-operator, which returns a new value
-for each value passing through. In general it can be seen as
+for each value passing through. In general, it can be seen as
 a stream of information passing through a pipe with all
 sorts of valves/filters/transformers... and so the function
 to work with the operators has the fitting name `pipe`. A
@@ -155,7 +155,7 @@ direct `.unsubscribe()` call on the subscription object, or
 use the `takeUntil(someObservable)` operator. The
 `subscribe` call should be in the `componentDidMount` react
 lifecycle method, and end of the subscription should be in
-the `componentWillUnmount` lifecycle method. more
+the `componentWillUnmount` lifecycle method. More
 information about the react-component lifecycle can be found
 [here](https://reactjs.org/docs/react-component.html#the-component-lifecycle).
 
@@ -170,7 +170,7 @@ export class App extends React.Component {
   unMounted = new Subject()
 
   // react lifecycle method called when this
-  // component got mounted into the dom
+  // component got mounted into the DOM
   componentDidMount() {
     stateObservable
       .pipe(
@@ -183,7 +183,7 @@ export class App extends React.Component {
   }
 
   // react lifecycle method called when this
-  // component will be removed from the dom
+  // component will be removed from the DOM
   componentWillUnmount() {
     this.unMounted.next()
   }

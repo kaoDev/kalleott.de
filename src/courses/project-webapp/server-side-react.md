@@ -6,7 +6,7 @@ course: Project WebApp
 
 If you dig a bit deeper into the react-dom package you will
 find a sub folder called server and there is a function
-`renderToString`. As the name suggests it will return a html
+`renderToString`. As the name suggests it will return an HTML
 string instead of creating DOM-elements in the browser, this
 string can then be sent as a result of a client request.
 
@@ -28,7 +28,7 @@ server.listen(3000)
 
 This server sends an `h1` tag with the text "Hello world!"
 as a response to each request. A real world application
-would collect some data from a database or other sources an
+would collect some data from a database or other sources and
 inject it as props into the react app to populate the
 generated markup with relevant content. A little more
 complex but still very basic example to play with can be
@@ -51,10 +51,10 @@ Another way to create a website is working with the
 [JAMstack](https://jamstack.org/). JAM stands for
 JavaScript, APIs and Markup. That means split you project
 into a server that has an API but doesn't render any UI and
-a frontend consisting of html files linking to script files.
+a frontend consisting of HTML files linking to script files.
 So everything not dynamic (depending on API calls) can be
 pre-rendered to static files which can be distributed to the
-users via an CDN. One of the goto solutions for generating
+users via an CDN. One of the go-to solutions for generating
 static files from a react project is
 [Gatsby](https://www.gatsbyjs.org/). Like next.js it
 provides many useful abstractions to handle many of the
@@ -77,7 +77,7 @@ One of the easiest hosting solutions for a gatsby page is
 git repository containing the code of the page and on every
 push to master a new build is created and published. With
 [netlify cms](https://www.netlifycms.org/) there even exists
-a cms solution with an user friendly interface to write
+a CMS solution with an user friendly interface to write
 content.
 
 ### Taks

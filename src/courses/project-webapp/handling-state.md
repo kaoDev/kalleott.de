@@ -35,7 +35,7 @@ changes are made by creating new objects and dispatching
 them as state updates. For objects this means, whenever a
 property of an object changes you create a new object. And
 Whenever elements of an array change, you create a new
-array. Sticking to this rules makes it very easy to
+array. Sticking to these rules makes it very easy to
 determine if a component should update because only the
 references of the objects must be compared.
 
@@ -43,13 +43,13 @@ Even more important:
 
 ### <center>There Must Only Be One Single Source Of Truth</center>
 
-Don't create multiple local states manageing the same data,
+Don't create multiple local states managing the same data,
 whenever the state of a component is needed somewhere else
 leverage it up to the parent component until every component
 depending on this state is located under the state-holder in
 the component tree.
 
-This allows you derive multiple different interpretations of
+This allows you to derive multiple different interpretations of
 a single state and whenever this state gets an updated,
 every derivation is calculated with the new state.
 
@@ -60,7 +60,7 @@ when the state gets a little more complex and state updates
 can come from many different parts of the application it is
 useful to build a more consistent way to update single parts
 of the state. One powerful but simple tool is the
-[redux-pattern](https://redux.js.org/). With redux you
+[redux-pattern](https://redux.js.org/). With redux, you
 dispatch actions instead of calling `setState` directly with
 the updated values. Those actions are then digested by
 functions called `reducers` which create the new state.
