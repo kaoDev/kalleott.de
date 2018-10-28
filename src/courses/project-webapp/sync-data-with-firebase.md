@@ -8,7 +8,7 @@ Till now the chat app is quite boring, because you can only
 talk to yourself. But for synchronization of the message
 history with other computers you need some external service
 to store the data and send notifications about changes.
-Firebase delivers an all inclusive solution with a realtime
+Firebase delivers an all-inclusive solution with a realtime
 database capable of syncing datasets to all connected
 clients.
 
@@ -29,12 +29,12 @@ of simplicity select "start in **test mode**" but be aware
 to change the permissions as soon you go public with your
 app
 ([rules documentation](https://firebase.google.com/docs/database/security/)).
-Additionally to the database the chat needs some kind of
+Additionally, to the database the chat needs some kind of
 authentication to match messages to users. For the example
 anonymous authentication is enough to enable it select
-"Authentication" in the firebase app console. Unter the
+"Authentication" in the firebase app console. Under the
 "SIGN-IN METHOD" tab you can select the Anonymous provider
-and set it to enabled.
+and set it to "enabled".
 
 That's it. Everything else is defined in the app code.
 
@@ -80,8 +80,8 @@ query-functions like `limitToLast(numberOfEntries)` or
 `orderByChild(childKey)`. When the query is fine you can use
 different functions to execute it, `once(event_type)` for is
 single time data-fetch, `on(event_type, callback)` for
-continuos updates, `set(data)` to update/create the data at
-the specified ref-adress, `push(data)` to create a new entry
+continuous updates, `set(data)` to update/create the data at
+the specified ref-address, `push(data)` to create a new entry
 in this collection.
 
 The functions to read and write userData are then defined as
@@ -128,7 +128,7 @@ export async function getOrCreateAnonymousUser() {
 
 To observe changing data is a little more complicated.
 Besides providing the callback to handle update you have to
-provide some teardown logic. Like registerd event listeners
+provide some teardown logic. Like registered event listeners
 you can remove a callback by calling
 `.off(event_type, callback)` on the data-ref.
 

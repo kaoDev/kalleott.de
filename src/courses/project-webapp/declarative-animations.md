@@ -12,14 +12,14 @@ animations are expensive, so don't do too much and whenever
 possible you should use hardware accelerated key-frame
 animations or transitions. But sometimes the animations get
 a little more complex and are difficult to handle with pure
-css and style rules. Then it's time to take some animations
+CSS and style rules. Then it's time to take some animation
 library to help.
 
 One of the large goals of react is to describe as much of
 the app in a declarative way, for styling the
 styled-components workflow is working really good and
 [react-pose](https://popmotion.io/pose/api/posegroup/) has a
-similar api to animate components. Instead of styles you
+similar API to animate components. Instead of styles you
 define different "poses" the component can have and define
 how the transitions of values between the poses should work.
 
@@ -86,8 +86,9 @@ a working result could look like this:
 
 `video: https://youtu.be/I2GP172Ov88`
 
-As a basis you can use
+You can use
 [this repository](https://github.com/kaoDev/cards-menu-concept)
+as a basis.
 
 ## Tasks
 

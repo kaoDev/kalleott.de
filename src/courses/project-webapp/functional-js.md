@@ -4,8 +4,8 @@ date: '2018-04-17T06:53:03.284Z'
 course: Project WebApp
 ---
 
-as the name "functional programming" suggests, this lesson
-has a heavy focus on functions. In JavaScript you can
+As the name "functional programming" suggests, this lesson
+has a heavy focus on functions. In JavaScript, you can
 describe a function in several ways:
 
 - with the `function` keyword:
@@ -50,7 +50,7 @@ Arrow functions have some benefits over the classical
 function/method declaration.
 
 1.  the `this` context gets set at the time of definition
-2.  it's a little bit shorter to write (with only one
+2.  it's a bit shorter to write (with only one
     parameter you can even omit the parentheses)
 
 #### A short excursion on why `this` is weird in JS:
@@ -82,7 +82,7 @@ To solve this, like always, you have several possible ways
 to go.
 
 1.  Avoid this-context by using direct access to the owning
-    object **(BAD)**
+    object **(BAD)**:
 
 ```js
 var person = {
@@ -118,7 +118,7 @@ greet.call({ name: 'Peter' }) // -> 'Hello Lotte'
 greet.call({ noPerson: 500 }) // -> 'Hello Lotte'
 ```
 
-3.  Go functional and use an independent greeting function
+3.  Go functional and use an independent greeting function:
 
 ```js
 const greet = name => 'Hello ' + name
@@ -302,7 +302,7 @@ But because normally you don't develop just for the matter
 of programming, here is a reason why you should care about
 all this: It is a powerful tool to handle and transform
 data. So it is very useful if you are working in any field
-were you have some larger datasets. In this course we will
+where you have some larger datasets. In this course we will
 use it to transform data into UI.
 
 But first some exercises. As a training data set you can use

@@ -4,14 +4,14 @@ date: '2018-04-24T06:53:03.284Z'
 course: Project WebApp
 ---
 
-to use react we need two packages from npm,
+To use react we need two packages from npm,
 [react](https://www.npmjs.com/package/react) itself and
 [react-dom](https://www.npmjs.com/package/react-dom). React
-takes care of managing a virtual dom representation and is
+takes care of managing a virtual DOM representation and is
 highly optimized to handle state updates and changes in the
-virtual dom tree following the state change. The second part
+virtual DOM tree following the state change. The second part
 "react-dom" is responsible for bringing the virtual
-representation of the dom to the browser and also provides
+representation of the DOM to the browser and also provides
 wrapped APIs for browser based stuff like event-handlers on
 elements.
 
@@ -22,7 +22,7 @@ it is in react:
 ReactDOM.render(<h1>Hello, world!</h1>, document.getElementById('root'))
 ```
 
-As you can see there is some html-like syntax mixed right
+As you can see there is some HTML-like syntax mixed right
 into the JavaScript-Code, this
 [language extension is called JSX](https://reactjs.org/docs/glossary.html#jsx).
 This extended syntax enables you to write shorter and more
@@ -123,7 +123,7 @@ could also write:
 <component-playground
 complex="true" sample="HelloName.js" ></component-playground>
 
-So that's it. Now you know the most important things about
+So that's it, now you know the most important things about
 JSX and can start to use react.
 
 ### Tasks

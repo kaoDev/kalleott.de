@@ -5,15 +5,15 @@ course: Project WebApp
 ---
 
 The classic approach to styling in the browser is creating a
-css file and provide it with a `<link />` tag. The tutorial
-from last session also worked with an external css file, but
+CSS file and provide it with a `<link />` tag. The tutorial
+from last session also worked with an external CSS file, but
 linked it by adding a JS `import` statement. The benefits of
 this way are an easy separation of concerns and the already
-known workflow of styling html elements.
+known workflow of styling HTML elements.
 
 But the separation of concerns also leads to another path.
 In react an application is separated into components, but
-the workflow of defining global style-classes is quiet
+the workflow of defining global style-classes is quite
 contrary. So why not rethink it?
 
 [Christiano Rastelli](https://twitter.com/areaweb) made this
@@ -23,16 +23,16 @@ boundaries in a component oriented application architecture.
 ![separation of concerns](./separation-of-concerns.jpg)
 
 By separating the architecture in this way, a component
-becomes responsible for its behavior (JS), layout (html) and
-design (css). All these concerns should only be influenced
+becomes responsible for its behavior (JS), layout (HTML) and
+design (CSS). All these concerns should only be influenced
 by the component itself.
 
-One viable solution is to use normal css rules with unique
+One viable solution is to use normal CSS rules with unique
 style rules for every component. For very small projects
 this approach is well suited but as soon as a project
 becomes a bit larger and the component count rises it gets
-harder and harder to name the css rules in its global
-namespace. To eliminate this downside of css the simplest
+harder and harder to name the CSS rules in its global
+namespace. To eliminate this downside of CSS the simplest
 solution is to just use inline styling.
 
 ```jsx
@@ -63,7 +63,7 @@ information about the element type and styling. Those are
 very well suited as the basic building blocks of any web
 app. To work with, the styled component lib provides a
 [tagged template literals](https://www.styled-components.com/docs/advanced#tagged-template-literals)
-factory for each html base element.
+factory for each HTML base element.
 
 ```jsx
 import styled from 'styled-components'
@@ -97,14 +97,14 @@ const Title = styled.h1`
 ```
 
 This string based generation of styles has the benefit of
-common syntax, if you know css. But in comparison to writing
+common syntax, if you know CSS. But in comparison to writing
 simple objects it can get cumbersome if you are working with
 many variables.
 
 Like always in the JavaScript world, if there is a problem,
 there will be a lib. For this case
 [glamorous 💄](https://github.com/paypal/glamorous)
-delivers. It has an api quiet similar to styled-components
+delivers. It has an API quite similar to styled-components
 but instead of working with template-strings you define the
 styles like the react inline styles as objects. For more
 complex scenarios the component generator function can take
