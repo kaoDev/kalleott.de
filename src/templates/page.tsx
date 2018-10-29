@@ -8,6 +8,16 @@ import { IndexLayout } from '../layouts'
 import { Link } from '../components/Link'
 import { CodeView } from '../components/CodeView'
 import { SiteTitle } from '../components/SiteTitle'
+import styled from 'react-emotion'
+import { colors, dimensions } from '../styles/variables'
+import { px } from '../styles/utils'
+import { format } from 'date-fns'
+
+const PublishDate = styled.div({
+  color: colors.dark,
+  fontSize: px(dimensions.fontSize.small),
+  textAlign: 'right',
+})
 
 interface PageTemplateProps {
   data: {
@@ -23,9 +33,9 @@ interface PageTemplateProps {
     }
     markdownRemark: {
       htmlAst: object
-      excerpt: string
       frontmatter: {
         title: string
+        date: string
       }
     }
   }
@@ -41,7 +51,11 @@ const renderAst = new rehypeReact({
       unselectable,
       ...props
     }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-      <Link unselectable={unselectable === 'on'} to={href || ''} {...props} />
+      <Link
+        unselectable={unselectable === 'on' || undefined}
+        to={href || ''}
+        {...props}
+      />
     ),
   },
 }).Compiler
@@ -50,6 +64,9 @@ const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => (
   <IndexLayout>
     <Container>
       <SiteTitle>{data.markdownRemark.frontmatter.title}</SiteTitle>
+      <PublishDate>
+        {format(data.markdownRemark.frontmatter.date, 'DD-MM-YYYY')}
+      </PublishDate>
       {renderAst(data.markdownRemark.htmlAst)}
     </Container>
   </IndexLayout>
@@ -71,9 +88,9 @@ export const query = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       htmlAst
-      excerpt
       frontmatter {
         title
+        date
       }
     }
   }

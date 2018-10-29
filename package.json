@@ -28,6 +28,7 @@
     "babel-plugin-styled-components": "^1.8.0",
     "buble": "0.19.6",
     "classnames": "^2.2.6",
+    "date-fns": "^1.29.0",
     "emotion": "^9.2.12",
     "emotion-server": "^9.2.12",
     "gatsby": "^2.0.31",
