@@ -6,6 +6,7 @@ import { SiteTitle } from './SiteTitle'
 import styled from 'react-emotion'
 import { dimensions, colors } from '../styles/variables'
 import { px } from '../styles/utils'
+import { format } from 'date-fns'
 
 export interface SessionData {
   id: string
@@ -13,12 +14,14 @@ export interface SessionData {
   excerpt: React.ReactNode
   hint?: React.ReactNode
   slug: string
+  date?: string
 }
 
 export interface MarkdownData {
   id: string
   frontmatter: {
     title: string
+    date: string
   }
   excerpt: string
   fields: {
@@ -31,6 +34,7 @@ export const mapMarkdownToSessionData = (data: MarkdownData) => ({
   title: data.frontmatter.title,
   excerpt: data.excerpt,
   slug: data.fields.slug,
+  date: data.frontmatter.date,
 })
 
 interface Props {
@@ -93,6 +97,12 @@ const DescriptionWrapper = styled.div({
   paddingBottom: px(dimensions.base * 5),
 })
 
+const PublishDate = styled.div({
+  color: colors.dark,
+  fontSize: px(dimensions.fontSize.small),
+  textAlign: 'right',
+})
+
 export const BlogOverview: React.SFC<Props> = ({
   lessons,
   title,
@@ -116,6 +126,11 @@ export const BlogOverview: React.SFC<Props> = ({
                     {lesson.title}
                     {lesson.hint && <SessionHint>{lesson.hint}</SessionHint>}
                   </h4>
+                  {lesson.date && (
+                    <PublishDate>
+                      {format(lesson.date, 'DD-MM-YYYY')}
+                    </PublishDate>
+                  )}
                   <div>{lesson.excerpt}</div>
                 </SessionArticle>
               </ArticleLink>

@@ -29,6 +29,7 @@ export const widths = {
 export const dimensions = {
   base: 8,
   fontSize: {
+    small: 12,
     regular: 16,
     large: 18,
   },
