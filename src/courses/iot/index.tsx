@@ -22,6 +22,6 @@ export const courseData = {
       </p>
     </>
   ),
-  hint: 'Coming Soon!',
+  hint: 'In the making!',
   slug: '/iot',
 }
