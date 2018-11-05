@@ -1,0 +1,12 @@
+{
+  "name": "blinky",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "onoff": "^3.2.2",
+    "sleep-promise": "^8.0.1"
+  }
+}
