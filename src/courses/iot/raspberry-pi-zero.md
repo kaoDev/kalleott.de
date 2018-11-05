@@ -216,6 +216,6 @@ run the program with the command `npm start`.
 
 - Prepare a SD card with raspian so that the Raspberry Pi connects to your WiFi
 - connect to the Pi via ssh and install node
-- connect a LED and let it blink with JavaScript
+- connect an LED and let it blink with JavaScript
 - extend the program to blink X times
 - alter the blinky program to use a random rhythm
