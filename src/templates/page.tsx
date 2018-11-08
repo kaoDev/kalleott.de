@@ -12,6 +12,7 @@ import styled from 'react-emotion'
 import { colors, dimensions } from '../styles/variables'
 import { px } from '../styles/utils'
 import { format } from 'date-fns'
+import Helmet from 'react-helmet'
 
 const PublishDate = styled.div({
   color: colors.dark,
@@ -25,6 +26,7 @@ interface PageTemplateProps {
       siteMetadata: {
         title: string
         description: string
+        siteUrl: string
         author: {
           name: string
           url: string
@@ -33,9 +35,13 @@ interface PageTemplateProps {
     }
     markdownRemark: {
       htmlAst: object
+      excerpt: string
       frontmatter: {
         title: string
         date: string
+      }
+      fields: {
+        slug: string
       }
     }
   }
@@ -62,6 +68,25 @@ const renderAst = new rehypeReact({
 
 const PageTemplate: React.SFC<PageTemplateProps> = ({ data }) => (
   <IndexLayout>
+    <Helmet
+      title={data.markdownRemark.frontmatter.title}
+      meta={[
+        {
+          name: 'description',
+          content: data.markdownRemark.excerpt,
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          name: 'twitter:image',
+          content: `${data.site.siteMetadata.siteUrl}${
+            data.markdownRemark.fields.slug
+          }twitter-card.jpg`,
+        },
+      ]}
+    />
     <Container>
       <SiteTitle>{data.markdownRemark.frontmatter.title}</SiteTitle>
       <PublishDate>
@@ -80,6 +105,7 @@ export const query = graphql`
       siteMetadata {
         title
         description
+        siteUrl
         author {
           name
           url
@@ -88,6 +114,10 @@ export const query = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       htmlAst
+      excerpt
+      fields {
+        slug
+      }
       frontmatter {
         title
         date
