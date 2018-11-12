@@ -25,14 +25,14 @@ module.exports = ({ markdownNode }, options) => {
     ) + '...'
 
   post.excerpt = summary
-  const output = path.join(
-    './public',
-    markdownNode.fields.slug,
-    'twitter-card.jpg'
-  )
+  const outputDir = path.join('./public', markdownNode.fields.slug)
+  const output = path.join(outputDir, 'twitter-card.jpg')
 
   createSvgCard(post.title, post.date)
     .then(buffer => {
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true })
+      }
       fs.writeFileSync(output, buffer)
     })
     .then(() => console.log('Generated Twitter Card:', output))

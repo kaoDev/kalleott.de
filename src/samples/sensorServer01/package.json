@@ -1,0 +1,11 @@
+{
+  "name": "sensorServer01",
+  "main": "index.js",
+  "scripts": {
+    "start": "micro"
+  },
+  "dependencies": {
+    "micro": "^9.3.3",
+    "ip": "^1.1.5"
+  }
+}
