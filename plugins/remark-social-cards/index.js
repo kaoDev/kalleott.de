@@ -3,6 +3,13 @@ const { format } = require('date-fns')
 const svg2img = require('svg2img')
 const fs = require('fs')
 
+function createDirRecursively(dir) {
+  if (!fs.existsSync(dir)) {
+    createDirRecursively(path.join(dir, '..'))
+    fs.mkdirSync(dir)
+  }
+}
+
 const createSvgCard = (title, date) => {
   return new Promise((resolve, reject) => {
     svg2img(svgString(title, 'Kalle Ott', date), function(error, buffer) {
@@ -31,7 +38,7 @@ module.exports = ({ markdownNode }, options) => {
   createSvgCard(post.title, post.date)
     .then(buffer => {
       if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir, { recursive: true })
+        createDirRecursively(outputDir)
       }
       fs.writeFileSync(output, buffer)
     })
