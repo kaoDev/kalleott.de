@@ -14,7 +14,7 @@ A simple setup would look like this, the sensor is connected with its data pin
 to the GPIO pin 4 and an error led is connected to the GPIO pin 23, it shall
 blink when there is an error.
 
-![dth sensor setup](./dth11-setup.jpg)
+![dth sensor setup](./schematic-reading-sensor-dht11.svg)
 
 To address the sensor from node there is another dependency which has to be
 installed. The [`node-dht-sensor`](https://github.com/momenso/node-dht-sensor)
