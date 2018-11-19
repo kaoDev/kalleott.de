@@ -1,0 +1,10 @@
+{
+  "name": "mqtt-server",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "mqtt": "^2.18.8",
+    "micro": "^9.3.3",
+    "ip": "^1.1.5"
+  }
+}

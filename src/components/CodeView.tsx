@@ -27,7 +27,7 @@ export const CodeView: React.SFC<{
 
   const code =
     sample.length > 0
-      ? require(`!raw-loader!../samples/${sample}`)
+      ? require(`!raw-loader!../../samples/${sample}`)
       : noInline
         ? complex
         : children[0]
