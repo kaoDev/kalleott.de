@@ -1,0 +1,7 @@
+{
+  "name": "raspi-scanner",
+  "version": "1.0.0",
+  "dependencies": {
+    "libnmap": "^0.4.16"
+  }
+}

@@ -140,6 +140,10 @@ async function scanAll() {
     { matched: [], unmatched: [] }
   )
   console.clear()
+  console.log(
+    'Scanresult: ',
+    new Date().toLocaleTimeString('de', { hour12: false })
+  )
   if (results.matched.length > 0) {
     console.log('###################')
     console.log('Matched Raspberry Pis:')
@@ -164,4 +168,6 @@ async function scanAll() {
   }
 }
 
-scanAll()
+setInterval(() => {
+  scanAll()
+}, 5000)
