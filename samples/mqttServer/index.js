@@ -32,6 +32,9 @@ client.on('connect', () => {
 client.on('message', (topic, message) => {
   if (topic.includes('sensors/dht11')) {
     const [temperature, humidity] = Uint8Array.from(message)
+
+    const data = readData();
+
     data.push({
       date: new Date().toISOString(),
       topic,
