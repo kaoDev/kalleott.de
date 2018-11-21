@@ -61,9 +61,13 @@ So a minimal message would look like this: `1100 0000 0000 0000` (disconnect).
 For numeric data the benefits are easy to see, but also text based data can be
 sent easily because the message body has no specified format.
 
-Besides this obvious advantages there is of course also the extreme drawback of
-a binary format that's not human readable, so debugging is more complicated and
-custom binary formats almost always mean more work to support them.
+Besides this obvious advantages there is of course also the drawback of a binary
+format that's not human readable, so debugging is more complicated and custom
+binary formats almost always mean more work to support them. The decision what
+protocol is best for your use case can most times be made depending on the
+scale. That's why in industrial scale scenarios where potentially millions of
+messages come together in minutes or seconds the used protocols are always
+optimized for small message footprints.
 
 ## Publish and subscribe
 
