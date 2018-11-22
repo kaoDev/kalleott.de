@@ -116,3 +116,4 @@ $RECYCLE.BIN/
 *.lnk
 
 /devices.json
+wpa_supplicant.conf
