@@ -1,5 +1,5 @@
 const { promisify } = require('util')
-const { json, send } = require('micro')
+const { send } = require('micro')
 const ip = require('ip')
 const fs = require('fs')
 const mqtt = require('mqtt')
@@ -9,11 +9,11 @@ const mqtt = require('mqtt')
  * @type {import("mqtt").Client}
  */
 const client = mqtt.connect(
-  '$MQTT_INSTANCE_ADDRESS$',
+  process.env.MQTT_SERVICE,
   {
-    port: $MQTT_INSTANCE_SSL_PORT$,
-    username: '$MQTT_INSTANCE_USER_NAME$',
-    password: '$MQTT_INSTANCE_PASSWORD$',
+    port: process.env.MQTT_PORT,
+    username: process.env.MQTT_USER,
+    password: process.env.MQTT_PASSWORD,
   }
 )
 
@@ -91,18 +91,5 @@ console.log('running at ', `http://${ip.address()}:${process.env.PORT || 3000}`)
 module.exports = async function handleRequest(req, res) {
   const data = await readData()
 
-  if (req.method === 'GET') {
-    send(res, 200, data)
-  } else if (req.method === 'POST') {
-    const sensorData = await json(req)
-
-    data.push({
-      date: new Date().toISOString(),
-      payload: sensorData,
-    })
-
-    await writeData(data)
-
-    send(res, 200)
-  }
+  send(res, 200, data)
 }
