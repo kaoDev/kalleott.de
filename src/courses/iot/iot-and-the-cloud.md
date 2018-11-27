@@ -187,4 +187,4 @@ git push heroku master
 - replace any account information in your code with environment variables
 - prepare your mqtt-server project folder for git and heroku
 - create a new heroku app
-- run you application on heroku
+- run your application on heroku
