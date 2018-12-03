@@ -142,7 +142,8 @@ async function scanAll() {
   console.clear()
   console.log(
     'Scanresult: ',
-    new Date().toLocaleTimeString('de', { hour12: false })
+    new Date().toLocaleTimeString('de', { hour12: false }),
+    networkMasks.map(mask => mask.adapterName).join(', ')
   )
   if (results.matched.length > 0) {
     console.log('###################')

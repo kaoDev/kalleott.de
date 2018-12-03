@@ -49,13 +49,20 @@ const dhtSensor = {
 /**
  * connect to the mqtt broker to publish data
  */
+
+let mqttData = {}
+try {
+  mqttData = require('./secrets.json')
+} catch (e) {
+  console.warn('no mqtt service data found')
+}
+
 const client = mqtt.connect(
-  '$MQTT_INSTANCE_PASSWORD$',
+  process.env.MQTT_SERVICE || mqttData.url,
   {
-    port: $MQTT_INSTANCE_SSL_PORT$,
-    protocol: 'mqtts',
-    username: '$MQTT_INSTANCE_USER_NAME$',
-    password: '$MQTT_INSTANCE_PASSWORD$',
+    port: process.env.MQTT_PORT || mqttData.port,
+    username: process.env.MQTT_USER || mqttData.user,
+    password: process.env.MQTT_PASSWORD || mqttData.password,
   }
 )
 
