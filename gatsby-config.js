@@ -124,9 +124,7 @@ module.exports = {
         icon: `src/assets/images/KO.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `offline`,
-    },
+    `gatsby-plugin-offline`,
     'gatsby-plugin-catch-links',
     'gatsby-transformer-json',
     {
