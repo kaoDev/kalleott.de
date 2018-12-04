@@ -87,17 +87,17 @@ The rebuild process takes some time (especially on the Raspberry Pi) so I have
 prepared a zipped `node_modules` folder with the installed and rebuild
 dependencies for node `v10.14.1` and `v11.1.0`
 
-##### [node_modules-node10-grpc-armv6.tar.gz](https://github.com/kaoDev/kalleott.de/raw/master/samples/firebase-device/node_modules-node10-grpc-armv6.tar.gz)
+##### [node_modules-node10-grpc-armv6.tar.gz](https://github.com/kaoDev/kalleott.de/raw/prebuilt_archives/samples/firebase-device/node_modules-node10-grpc-armv6.tar.gz)
 
 ```bash
-curl -o node_modules-node10-grpc-armv6.tar.gz https://github.com/kaoDev/kalleott.de/raw/master/samples/firebase-device/node_modules-node10-grpc-armv6.tar.gz
+curl -o node_modules-node10-grpc-armv6.tar.gz https://github.com/kaoDev/kalleott.de/raw/prebuilt_archives/samples/firebase-device/node_modules-node10-grpc-armv6.tar.gz
 tar -zvxf node_modules-node10-grpc-armv6.tar.gz -C ./
 ```
 
-##### [node_modules-node11-grpc-armv6.tar.gz](https://github.com/kaoDev/kalleott.de/raw/master/samples/firebase-device/node_modules-node11-grpc-armv6.tar.gz)
+##### [node_modules-node11-grpc-armv6.tar.gz](https://github.com/kaoDev/kalleott.de/raw/prebuilt_archives/samples/firebase-device/node_modules-node11-grpc-armv6.tar.gz)
 
 ```bash
-curl -o node_modules-node11-grpc-armv6.tar.gz https://github.com/kaoDev/kalleott.de/raw/master/samples/firebase-device/node_modules-node11-grpc-armv6.tar.gz
+curl -o node_modules-node11-grpc-armv6.tar.gz https://github.com/kaoDev/kalleott.de/raw/prebuilt_archives/samples/firebase-device/node_modules-node11-grpc-armv6.tar.gz
 tar -zvxf node_modules-node11-grpc-armv6.tar.gz -C ./
 ```
 
