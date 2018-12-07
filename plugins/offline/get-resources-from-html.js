@@ -1,4 +1,3 @@
-// @ts-check
 const cheerio = require(`cheerio`)
 const path = require(`path`)
 const fs = require(`fs`)
@@ -36,7 +35,8 @@ module.exports = htmlPath => {
     style[data-href]
   `).each((_, elem) => {
     const $elem = $(elem)
-    const url = $elem.attr(`src`) || $elem.attr(`href`) || $elem.attr(`data-href`)
+    const url =
+      $elem.attr(`src`) || $elem.attr(`href`) || $elem.attr(`data-href`)
 
     // Don't cache XML files, or external resources (beginning with // or http)
     const blackListRegex = /(\.xml$|^\/\/|^http)/
