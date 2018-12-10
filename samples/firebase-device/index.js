@@ -44,7 +44,7 @@ async function writeData(temperature, humidity, name) {
 }
 
 const args = yargs.options({
-  interval: { alias: 'i', default: 5000 },
+  interval: { alias: 'i', default: 900000 }, // 15 minutes
   verbose: { alias: 'v', default: false, boolean: true },
 }).argv
 
