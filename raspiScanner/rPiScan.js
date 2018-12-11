@@ -171,4 +171,4 @@ async function scanAll() {
 
 setInterval(() => {
   scanAll()
-}, 5000)
+}, 10000)
