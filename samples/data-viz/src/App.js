@@ -70,7 +70,6 @@ class App extends Component {
           type="number"
           domain={['dataMin - 1000', 'dataMax + 1000']}
           tickFormatter={val => {
-            console.log(val)
             if (Math.abs(val) < Infinity) {
               return format(new Date(val * 1000), 'hh:mm - DD.MM')
             }
