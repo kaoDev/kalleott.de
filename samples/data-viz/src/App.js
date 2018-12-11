@@ -3,11 +3,12 @@ import './App.css'
 import app from 'firebase/app'
 import 'firebase/firestore'
 import { LineChart, XAxis, YAxis, Line, Legend } from 'recharts'
+import { format } from 'date-fns'
 
 const config = {
   apiKey: 'AIzaSyBvRhAYjqwvMYG9P4h0CgM3fg_TMYpqwDM',
   databaseURL: 'https://iot-2018-65259.firebaseio.com',
-  projectId: 'iot-2018-65259'
+  projectId: 'iot-2018-65259',
 }
 
 const firebaseApp = app.initializeApp(config)
@@ -19,7 +20,7 @@ firestore.settings(settings)
 function subscribeToSensorData(onUpdate) {
   return firestore
     .collection('sensorData') // choose the collection of your data
-    .orderBy('date', 'asc') // order the saved documents by date ascending
+    .orderBy('date', 'desc') // order the saved documents by date ascending
     .limit(40) // only take the last 500 entries
     .onSnapshot(snapshotData => {
       onUpdate(
@@ -30,7 +31,7 @@ function subscribeToSensorData(onUpdate) {
 
           return {
             ...data,
-            date: new Date(data.date.seconds * 1000).toUTCString()
+            date: data.date.seconds,
           }
         })
       )
@@ -63,7 +64,18 @@ class App extends Component {
   render() {
     return (
       <LineChart width={500} height={300} data={this.state.sensorData}>
-        <XAxis name="date" dataKey="date" />
+        <XAxis
+          name="date"
+          dataKey="date"
+          type="number"
+          domain={['dataMin - 1000', 'dataMax + 1000']}
+          tickFormatter={val => {
+            console.log(val)
+            if (Math.abs(val) < Infinity) {
+              return format(new Date(val * 1000), 'hh:mm - DD.MM')
+            }
+          }}
+        />
         <YAxis
           orientation="left"
           type="number"

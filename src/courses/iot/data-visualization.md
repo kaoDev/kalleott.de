@@ -97,7 +97,7 @@ firestore API:
 function subscribeToSensorData(onUpdate) {
   return firestore
     .collection('sensorData') // choose the collection of your data
-    .orderBy('date', 'asc') // order the saved documents by date ascending
+    .orderBy('date', 'desc') // order the saved documents by date descending
     .limit(40) // only take the last 40 entries
     .onSnapshot(snapshotData => {
       onUpdate(
