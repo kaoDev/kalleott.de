@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const sensorLib = require('node-dht-sensor')
 const Gpio = require('onoff').Gpio
 const sleep = require('sleep-promise')
