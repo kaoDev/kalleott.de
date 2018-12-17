@@ -22,7 +22,7 @@ db.settings({
   timestampsInSnapshots: true,
 })
 
-const SENSOR_DATA_COLLECTION_NAME = 'sensorData'
+const DHT_SENSOR_DATA_COLLECTION_NAME = 'sensorData'
 
 /**
  * takes the sensor values for temperature and humidity and the name
@@ -32,9 +32,9 @@ const SENSOR_DATA_COLLECTION_NAME = 'sensorData'
  * @param {number} humidity
  * @param {string} name
  */
-async function writeData(temperature, humidity, name) {
+async function writeDHTData(temperature, humidity, name) {
   try {
-    await db.collection(SENSOR_DATA_COLLECTION_NAME).add({
+    await db.collection(DHT_SENSOR_DATA_COLLECTION_NAME).add({
       temperature,
       humidity,
       name,
@@ -46,13 +46,14 @@ async function writeData(temperature, humidity, name) {
 }
 
 const args = yargs.options({
-  interval: { alias: 'i', default: 900000 }, // 15 minutes
+  interval: { alias: 'i', default: 300000 }, // 5 minutes
   verbose: { alias: 'v', default: false, boolean: true },
 }).argv
 
 console.log(`starting reading of sensor data with interval: ${args.interval}`)
 
 const errorLed = new Gpio(23, 'out')
+const greenLed = new Gpio(24, 'out')
 
 // local state holding variable used to indicate some kind of error
 let deviceHasError = false
@@ -76,23 +77,31 @@ async function errorBlink() {
  * type can be 11 or 22, it depends on the device
  * the number of the gpio pin connected to the data pin of the sensor
  */
-const dhtSensor = {
+const dht11Sensor = {
   type: 11,
-  pin: 4,
-  name: "Kalle's DHT11",
+  pin: 22,
+  name: 'DHT11',
+}
+const dht22Sensor = {
+  type: 22,
+  pin: 27,
+  name: 'DHT22',
 }
 
 /**
  * function which reads the sensor values and sends them to the server
  * after waiting for the specified interval time it calls itself to run again
  */
-function readSensor() {
+function readSensor(sensor) {
   sensorLib.read(
-    dhtSensor.type,
-    dhtSensor.pin,
+    sensor.type,
+    sensor.pin,
     async (error, temperature, humidity) => {
       if (error) {
-        console.error('some error ocurred on reading the dht sensor', error)
+        console.error(
+          `some error ocurred on reading the ${sensor.name} sensor`,
+          error
+        )
         if (!deviceHasError) {
           deviceHasError = true
           errorBlink()
@@ -101,18 +110,83 @@ function readSensor() {
         deviceHasError = false
 
         if (args.verbose) {
-          console.log('temp:', temperature + '°C', 'humidity: ', humidity + '%')
+          console.log(
+            'dht sensor reading:',
+            sensor.name,
+            'temp:',
+            temperature + '°C',
+            'humidity: ',
+            humidity + '%'
+          )
         }
 
-        writeData(temperature, humidity, dhtSensor.name)
+        writeDHTData(temperature, humidity, sensor.name)
         // wait for the given interval
       }
-      await sleep(args.interval)
+      if (deviceHasError) {
+        // if the sensor has an error try to get a value faster than the normal interval
+        await sleep(1000)
+      } else {
+        await sleep(args.interval)
+      }
       // start over
-      readSensor()
+      readSensor(sensor)
     }
   )
 }
 
 // kick of the sensor reading
-readSensor()
+readSensor(dht11Sensor)
+readSensor(dht22Sensor)
+
+// read soil data and save it to firebase
+const mcpadc = require('mcp-spi-adc')
+
+const SOIL_MOISTURE_DATA_COLLECTION_NAME = 'soilMoistureData'
+
+/**
+ * takes the soil moisture value and the sensor-name and sends it to firebase
+ *
+ * @param {number} rawValue value between 0 and 1023
+ * @param {number} humidity value between 0 and 1
+ * @param {string} name name of the sensor
+ */
+async function writeSoilData(rawValue, value, name) {
+  try {
+    await db.collection(SOIL_MOISTURE_DATA_COLLECTION_NAME).add({
+      rawValue,
+      value,
+      name,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+  } catch (e) {
+    console.error('error writing to firestore', e)
+  }
+}
+
+const soilSensors = [
+  {
+    name: 'soil-0',
+    pin: 0,
+  },
+]
+
+soilSensors.forEach(({ name, pin }) => {
+  const soilSensor = mcpadc.open(pin, err => {
+    if (err) {
+      console.error('error on initializing spi', err)
+      throw err
+    }
+    setInterval(() => {
+      soilSensor.read((err, reading) => {
+        if (err) throw err
+
+        writeSoilData(reading.rawValue, reading.value, name)
+
+        if (args.verbose) {
+          console.log('soil sensor value', name, reading)
+        }
+      })
+    }, args.interval)
+  })
+})

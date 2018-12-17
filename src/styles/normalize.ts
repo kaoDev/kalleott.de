@@ -55,6 +55,7 @@ injectGlobal`
 
   ::selection {
     background: ${colors.accent};
+    color: ${colors.light};
   }
 
   a {
