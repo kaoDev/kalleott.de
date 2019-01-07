@@ -169,3 +169,6 @@ create a slider UI to change the value stored in the firestore
 - protect the firestore data access to authenticated users only, or your account
 - extend the data visualization app with authentication
 - implement a component to control the `dryReferenceValue`
+
+For a sample implementation you can look at:
+[github.com/kaoDev/kalleott.de/tree/master/samples/greenhouse](https://github.com/kaoDev/kalleott.de/tree/master/samples/greenhouse)
