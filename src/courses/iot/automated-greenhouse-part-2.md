@@ -2,7 +2,7 @@
 title: Building an automated greenhouse Pt. II
 date: '2019-01-07T16:47:41.307Z'
 course: Internet of Things
-tags: firebase functions, firebase auth
+tags: firebase, firebase auth, react
 draft: false
 ---
 
