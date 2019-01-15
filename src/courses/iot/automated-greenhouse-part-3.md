@@ -86,7 +86,7 @@ value for dry soil.
 - login with the firebase tools
   - `firebase login`
 - connect to an existing firebase project
-  - `firebase use`
+  - `firebase use --add`
 - change firebase API keys and URLs to use your own project
 
 This application uses an gmail account to send emails to listed users in the
