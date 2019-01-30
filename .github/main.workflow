@@ -3,19 +3,19 @@ workflow "New workflow" {
   resolves = ["Publish"]
 }
 
-action "yarn install" {
-  uses = "./actions/yarn"
+action "install" {
+  uses = "borales/actions-yarn@master"
   args = "install"
 }
 
 action "test" {
-  uses = "./actions/yarn"
-  needs = ["yarn install"]
+  uses = "borales/actions-yarn@master"
+  needs = ["install"]
   args = "test"
 }
 
 action "build" {
-  uses = "./actions/yarn"
+  uses = "borales/actions-yarn@master"
   needs = ["test"]
   args = "build"
 }
