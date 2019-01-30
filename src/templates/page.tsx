@@ -57,11 +57,7 @@ const renderAst = new rehypeReact({
       unselectable,
       ...props
     }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-      <Link
-        unselectable={unselectable === 'on' || undefined}
-        to={href || ''}
-        {...props}
-      />
+      <Link unselectable={unselectable} to={href || ''} {...props} />
     ),
   },
 }).Compiler

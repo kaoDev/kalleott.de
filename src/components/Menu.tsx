@@ -1,12 +1,12 @@
-import React from 'react'
-import styled, { css } from 'react-emotion'
-import { px } from '../styles/utils'
-import { dimensions, colors, titleTiltDegree } from '../styles/variables'
-import { Link } from './Link'
-import { courseData as webCourse } from '../courses/project-webapp'
-import { courseData as iotCourse } from '../courses/iot'
 import { GatsbyLinkProps } from 'gatsby'
 import { transparentize } from 'polished'
+import React from 'react'
+import styled from 'react-emotion'
+import { courseData as iotCourse } from '../courses/iot'
+import { courseData as webCourse } from '../courses/project-webapp'
+import { px } from '../styles/utils'
+import { colors, dimensions, titleTiltDegree } from '../styles/variables'
+import { Link } from './Link'
 
 const HiddenInput = styled.input({
   display: 'block',

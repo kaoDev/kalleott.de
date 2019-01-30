@@ -17,7 +17,7 @@ const PageWrapper = styled.div({
   background: colors.light,
 })
 
-export const Page: React.SFC = props => (
+export const Page: React.FC = props => (
   <PageWrapper>
     <Menu />
     {props.children}

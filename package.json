@@ -72,17 +72,17 @@
     "react-toastify": "^4.5.2",
     "rehype-react": "^3.1.0",
     "svg2img": "^0.5.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.4"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.7",
-    "@types/node": "^10.12.18",
-    "@types/react": "^16.7.18",
+    "@types/node": "^10.12.19",
+    "@types/react": "^16.7.22",
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.8",
-    "prettier": "^1.15.3",
+    "prettier": "^1.16.1",
     "rimraf": "^2.6.3",
-    "tslint": "^5.12.0",
+    "tslint": "^5.12.1",
     "tslint-config-blvd": "^1.2.1",
     "tslint-config-prettier": "^1.17.0",
     "tslint-plugin-prettier": "^2.0.1"

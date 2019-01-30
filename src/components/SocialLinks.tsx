@@ -1,16 +1,13 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { dimensions } from '../styles/variables'
-import { px } from '../styles/utils'
-import { Link } from './Link'
-
-import twitterSocial from '../assets/social-icons/twitter.svg'
-import facebook from '../assets/social-icons/facebook.svg'
-import linkedin from '../assets/social-icons/linkedin.svg'
-import instagram from '../assets/social-icons/instagram.svg'
-import xing from '../assets/social-icons/xing.svg'
-import stackoverflow from '../assets/social-icons/stackoverflow.svg'
 import github from '../assets/social-icons/github.svg'
+import linkedin from '../assets/social-icons/linkedin.svg'
+import stackoverflow from '../assets/social-icons/stackoverflow.svg'
+import twitterSocial from '../assets/social-icons/twitter.svg'
+import xing from '../assets/social-icons/xing.svg'
+import { px } from '../styles/utils'
+import { dimensions } from '../styles/variables'
+import { Link } from './Link'
 
 const SocialIcon = styled.img({
   borderRadius: '50%',
