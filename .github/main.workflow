@@ -7,7 +7,6 @@ workflow "Publish on push" {
 
 action "install" {
   uses = "borales/actions-yarn@master"
-  needs = ["master"]
   args = "install"
 }
 
@@ -17,24 +16,21 @@ action "test" {
   args = "test"
 }
 
+action "master" {
+  uses = "actions/bin/filter@c6471707d308175c57dfe91963406ef205837dbd"
+  needs = ["test"]
+  args = "branch master"
+}
+
 action "build" {
   uses = "borales/actions-yarn@master"
-  needs = ["test"]
+  needs = ["master"]
   args = "build"
 }
 
 action "Publish" {
-  uses = "netlify/actions/build@master"
+  uses = "netlify/actions/cli@master"
   needs = ["build"]
   secrets = ["GITHUB_TOKEN", "NETLIFY_SITE_ID"]
-  env = {
-    NETLIFY_BASE = "./"
-    NETLIFY_CMD = "npm build"
-    NETLIFY_DIR = "public"
-  }
-}
-
-action "master" {
-  uses = "actions/bin/filter@c6471707d308175c57dfe91963406ef205837dbd"
-  args = "branch master"
+  args = "deploy --dir=public"
 }
