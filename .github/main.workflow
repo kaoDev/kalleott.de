@@ -27,6 +27,11 @@ action "Publish" {
   uses = "netlify/actions/build@master"
   needs = ["build"]
   secrets = ["GITHUB_TOKEN", "NETLIFY_SITE_ID"]
+  env = {
+    NETLIFY_BASE = "./"
+    NETLIFY_CMD = "npm build"
+    NETLIFY_DIR = "public"
+  }
 }
 
 action "master" {
