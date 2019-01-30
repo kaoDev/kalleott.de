@@ -1,4 +1,4 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { LiveProvider, LiveEditor } from 'react-live'
 import styled from 'react-emotion'
 
@@ -29,8 +29,8 @@ export const CodeView: React.SFC<{
     sample.length > 0
       ? require(`!raw-loader!../../samples/${sample}`)
       : noInline
-        ? complex
-        : children[0]
+      ? complex
+      : children[0]
 
   return (
     <LiveProvider mountStylesheet={false} code={code} noInline={noInline}>
