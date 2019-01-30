@@ -1,0 +1,41 @@
+cache:
+  paths:
+    - node_modules/
+    - public/
+
+stages:
+  - install
+  - test
+  - build
+
+install:
+  image: node
+  stage: install
+  script:
+    - yarn install
+
+test:
+  image: node
+  stage: test
+  script:
+    - yarn test
+
+build:
+  image: node
+  stage: build
+  script:
+    - yarn build
+  only:
+    - master
+
+publish:
+  image: node
+  stage: build
+  variables:
+    NETLIFY_AUTH_TOKEN: SECRET_STORED_ON_GITLAB
+    NETLIFY_SITE_ID: SECRET_STORED_ON_GITLAB
+  script:
+    - yarn global add netlify-cli
+    - netlify deploy --dir=public
+  only:
+    - master
