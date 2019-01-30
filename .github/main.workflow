@@ -31,6 +31,6 @@ action "build" {
 action "Publish" {
   uses = "netlify/actions/cli@master"
   needs = ["build"]
-  secrets = ["GITHUB_TOKEN", "NETLIFY_SITE_ID"]
+  secrets = ["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]
   args = "deploy --dir=public"
 }
