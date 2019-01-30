@@ -1,4 +1,4 @@
-workflow "New workflow" {
+workflow "Publish on push" {
   on = "push"
   resolves = [
     "Publish",
