@@ -20,8 +20,8 @@ const description = (
   <>
     <p>
       Hi I'm Kalle, a software developer from Kiel working for{' '}
-      <Link to="https://cap3.de">Cap3</Link>. Besides my day-job I like to spread
-      my knowledge and so I started to work with{' '}
+      <Link to="https://cap3.de">Cap3</Link>. Besides my day-job I like to
+      spread my knowledge and so I started to work with{' '}
       <Link to="https://opencampus.sh">opencampus.sh</Link> to offer free
       courses on web-development.
     </p>

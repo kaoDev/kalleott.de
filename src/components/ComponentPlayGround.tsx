@@ -18,8 +18,8 @@ export const ComponentPlayGround = ({
     sample.length > 0
       ? require(`!raw-loader!../../samples/${sample}`)
       : noInline
-        ? complex
-        : raw
+      ? complex
+      : raw
 
   return (
     <LiveProvider mountStylesheet={false} code={code} noInline={noInline}>
