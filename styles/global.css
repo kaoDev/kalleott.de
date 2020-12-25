@@ -1,0 +1,69 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 18px;
+  --color-accent-light: #008165;
+  --color-accent-dark: #009488;
+  --color-bg-light: #eff0ef;
+  --color-bg-light-shade: #c9d4d4;
+  --color-bg-dark-shade: #8a8d8f;
+  --color-bg-dark: #25282c;
+
+  --color-accent: var(--color-accent-dark);
+  --color-bg: var(--color-bg-dark);
+  --color-text: var(--color-bg-light);
+  --color-text-shade: var(--color-bg-light-shade);
+
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    --color-accent: var(--color-accent-dark);
+    --color-bg: var(--color-bg-dark);
+    --color-text: var(--color-bg-light);
+    --color-text-shade: var(--color-bg-light-shade);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    --color-accent: var(--color-accent-light);
+    --color-bg: var(--color-bg-light);
+    --color-text: var(--color-bg-dark);
+    --color-text-shade: var(--color-bg-dark-shade);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 0.7em;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 7ch 7ch;
+}
