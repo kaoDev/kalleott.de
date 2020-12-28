@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 const name = "Kalle Ott";
-export const siteTitle = "Next.js Sample Website";
+export const siteTitle = "Kalle's blog";
 
 const googleAnalyticsId = "G-68ZJLC7EYE";
 const googleAnalyticsInitScript = `window.dataLayer = window.dataLayer || [];
