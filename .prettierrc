@@ -1,14 +1,6 @@
 {
+  "trailingComma": "all",
   "tabWidth": 2,
-  "useTabs": false,
   "proseWrap": "always",
-  "printWidth": 80,
-  "overrides": [
-    {
-      "files": "*.md",
-      "options": {
-        "printWidth": 50
-      }
-    }
-  ]
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

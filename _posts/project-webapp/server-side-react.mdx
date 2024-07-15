@@ -1,0 +1,77 @@
+---
+title: Project WebApp — React on the server and the JAMstack
+date: "2018-06-05T06:53:03.284Z"
+course: Project WebApp
+coverImage: /images/project-webapp/server-side-react.webp
+---
+
+If you dig a bit deeper into the react-dom package you will find a sub folder
+called server and there is a function `renderToString`. As the name suggests it
+will return an HTML string instead of creating DOM-elements in the browser, this
+string can then be sent as a result of a client request.
+
+The hello-world example with [micro](https://github.com/zeit/micro) and
+[babel-node](https://new.babeljs.io/docs/en/next/babel-node.html):
+
+```jsx
+import micro from "micro";
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+
+const server = micro(async (req, res) => {
+  return ReactDOMServer.renderToString(<h1>Hello world!</h1>);
+});
+
+server.listen(3000);
+```
+
+This server sends an `h1` tag with the text "Hello world!" as a response to each
+request. A real world application would collect some data from a database or
+other sources and inject it as props into the react app to populate the
+generated markup with relevant content. A little more complex but still very
+basic example to play with can be cloned from
+[here](https://github.com/kaoDev/react-minimal-ssr).
+
+But because there are many pitfalls like state management, content compression,
+routing and many many other complicate problems when rendering a webapp on the
+server you should take some libraries for help.
+
+One simple and powerful framework is [next.js](https://nextjs.org/). It runs as
+a node server and allows you to have complex logic on the server and interactive
+react features at the same time. Here is a nice
+[video by Guillermo Rauch](https://www.youtube.com/watch?v=evaMpdSiZKk)
+presenting the framework on React Conf 2017.
+
+Another way to create a website is working with the
+[JAMstack](https://jamstack.org/). JAM stands for JavaScript, APIs and Markup.
+That means split you project into a server that has an API but doesn't render
+any UI and a frontend consisting of HTML files linking to script files. So
+everything not dynamic (depending on API calls) can be pre-rendered to static
+files which can be distributed to the users via an CDN. One of the go-to
+solutions for generating static files from a react project is
+[Gatsby](https://www.gatsbyjs.org/). Like next.js it provides many useful
+abstractions to handle many of the common pitfalls. It has also a growing
+collection of [plugins](https://www.gatsbyjs.org/plugins/) and
+[starters](https://www.gatsbyjs.org/docs/gatsby-starters/) which provide even
+more magic.
+
+As a first example to play with I can provide this page itself it is based on
+the [gatsby-starter-blog](https://github.com/gatsbyjs/gatsby-starter-blog) and
+the code is [hosted on github](https://github.com/kaoDev/project-webapp). As
+it's data-source to generate pages for each blog post it uses markdown files,
+which are read on build time and then provided to the react components through a
+graphql API.
+
+One of the easiest hosting solutions for a gatsby page is
+[netlify](https://www.netlify.com/). You just connect your git repository
+containing the code of the page and on every push to master a new build is
+created and published. With [netlify cms](https://www.netlifycms.org/) there
+even exists a CMS solution with an user friendly interface to write content.
+
+### Taks
+
+- Choose a [gatsby starter](https://www.gatsbyjs.org/docs/gatsby-starters/) and
+  start your own static site
+- publish the site on
+  [GitHub](https://github.com)/[GitLab](https://gitlab.com/)/[BitBucket](https://bitbucket.com)
+  and then to [netlify](https://www.netlify.com/)

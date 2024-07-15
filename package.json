@@ -1,26 +1,40 @@
 {
-  "name": "my-app",
+  "name": "kalleott.de",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "date-fns": "^2.11.1",
-    "gray-matter": "^4.0.2",
-    "next": "^10.0.0",
-    "prismjs": "^1.22.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "remark": "^12.0.0",
-    "remark-html": "^12.0.0"
+    "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
+    "@next/mdx": "15.0.0-canary.64",
+    "bright": "^0.8.5",
+    "classnames": "^2.5.1",
+    "date-fns": "^3.6.0",
+    "geist": "^1.3.1",
+    "glob": "^10.4.2",
+    "gray-matter": "^4.0.3",
+    "image-size": "^1.1.1",
+    "next": "15.0.0-canary.64",
+    "next-mdx-remote": "^5.0.0",
+    "react": "19.0.0-rc-f994737d14-20240522",
+    "react-dom": "19.0.0-rc-f994737d14-20240522"
   },
   "devDependencies": {
-    "@types/node": "^14.14.16",
-    "@types/prismjs": "^1.16.2",
-    "@types/react": "^17.0.0",
-    "typescript": "^4.1.3"
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.0-canary.64",
+    "postcss": "^8",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
