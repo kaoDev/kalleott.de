@@ -1,30 +1,58 @@
 import { Post } from "@/interfaces/post";
-import fs from "fs";
-import { glob, globSync, globStream, globStreamSync, Glob } from "glob";
+import { globSync } from "glob";
 import matter from "gray-matter";
-import { join } from "path";
+import path from "path";
+import fs from "node:fs/promises";
 
-const postsDirectory = join(process.cwd(), "_posts");
+const postsDirectory = path.join(process.cwd(), "_posts");
 
-export function getPostSlugs() {
-  return globSync("**/*.mdx", { cwd: postsDirectory });
+function getPostSlugs() {
+  return globSync(["**/*.mdx", "**/*.md"], { cwd: postsDirectory });
 }
 
-export function getPostBySlug(slug: string) {
-  const realSlug = slug.replace(/\.mdx$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.mdx`);
+export async function getPostBySlug(slug: string) {
+  const webSlug = slug.replace(/\.mdx?$/gim, "");
 
-  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const possiblePaths = [
+    path.join(postsDirectory, `${webSlug}.mdx`),
+    path.join(postsDirectory, `${webSlug}.md`),
+  ];
+
+  let blogPath: string | undefined;
+
+  for (const filePath of possiblePaths) {
+    try {
+      const fileStat = await fs.stat(filePath);
+      if (fileStat.isFile()) {
+        blogPath = filePath;
+        break;
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  if (!blogPath) {
+    throw new Error(`Post not found for slug: ${slug}`);
+  }
+
+  const fileContents = await fs.readFile(blogPath, "utf8");
+
   const { data, content } = matter(fileContents);
 
-  return { ...data, slug: realSlug, content } as Post;
+  return { ...data, slug: webSlug, content } as Post;
 }
 
-export function getAllPosts(): Post[] {
+export async function getAllPosts(): Promise<Post[]> {
   const slugs = getPostSlugs();
-  const posts = slugs
-    .map((slug) => getPostBySlug(slug))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+
+  const posts: Post[] = [];
+
+  for (const slug of slugs) {
+    posts.push(await getPostBySlug(slug));
+  }
+
+  posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+
   return posts;
 }

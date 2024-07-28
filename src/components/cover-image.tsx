@@ -29,7 +29,7 @@ async function CoverImage({ title, src, slug, small }: Props) {
     <Image
       src={src}
       alt={`Cover Image for ${title}`}
-      className={cn("blog-cover-image w-full shadow-sm", {
+      className={cn("blog-cover-image w-full rounded-xl shadow-sm", {
         "transition-shadow duration-200 hover:shadow-lg": slug,
       })}
       width={width}

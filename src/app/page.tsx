@@ -1,14 +1,15 @@
 import { HeroPost } from "@/app/_components/hero-post";
 import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
-import Container from "@/components/container";
+import { Container } from "@/components/container";
+import { SubscribeToUpdatesForm } from "@/components/subscribe-to-updates-form";
 import { Post } from "@/interfaces/post";
 import { getAllPosts } from "@/lib/api";
 import { differenceInMonths } from "date-fns";
-import Link from "next/link";
+import { HotSauceIntro } from "./_components/hot-sauce-intro";
 
-export default function Index() {
-  const allPosts = getAllPosts();
+export default async function Index() {
+  const allPosts = await getAllPosts();
 
   const currentData = new Date();
 
@@ -32,15 +33,7 @@ export default function Index() {
     <main>
       <Container>
         <Intro />
-        <section className="my-16">
-          <p className="text-lg md:text-2xl">
-            A side project of me is cooking hot sauces,{" "}
-            <Link className="hover:underline" href="/hotsauces">
-              check it out here
-            </Link>
-            !
-          </p>
-        </section>
+        <HotSauceIntro />
         <h2
           id="blog"
           className="mb-8 text-6xl font-bold leading-tight tracking-tighter md:text-7xl"
@@ -69,6 +62,7 @@ export default function Index() {
             posts={writingsFromThePast}
           />
         )}
+        <SubscribeToUpdatesForm />
       </Container>
     </main>
   );

@@ -16,6 +16,15 @@ const nextConfig = {
   },
   reactStrictMode: true,
   transpilePackages: ["geist"],
+  experimental: {
+    serverActions: {
+      allowedOrigins: [
+        "*.kalleott.de",
+        "localhost:3000",
+        "https://qwxglf7h-3000.euw.devtunnels.ms",
+      ],
+    },
+  },
 };
 
 const configWithMdx = withMDX(nextConfig);
