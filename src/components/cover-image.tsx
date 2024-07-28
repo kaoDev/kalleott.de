@@ -37,10 +37,11 @@ async function CoverImage({ title, src, slug, small }: Props) {
       priority={!small}
       placeholder={blurDataURL}
       blurDataURL={blurDataURL}
+      quality={70}
       sizes={
         small
-          ? "(max-width: 768px) 100vw, (max-width: 1368px) 50vw, 684px"
-          : "(max-width: 1500px) 100vw, 1500px"
+          ? "(max-width: 768px) 100vw, (max-width: 1368px) 50vw, 616px"
+          : "(max-width: 1368px) 100vw, 1368px"
       }
     />
   );

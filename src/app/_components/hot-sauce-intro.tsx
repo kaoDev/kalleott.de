@@ -16,9 +16,10 @@ export function HotSauceIntro() {
         </p>
         <Image
           src={chiliCorner}
+          priority
           alt={`AI generated image for the term "Kalle's Chili Corner"`}
-          className="blog-cover-image mx-auto my-12 w-2/4 rounded-xl shadow-sm transition-shadow duration-200 hover:shadow-lg"
-          sizes={"(max-width: 1500px) 100vw, 1500px"}
+          className="blog-cover-image mx-auto my-12 w-full rounded-xl shadow-sm transition-shadow duration-200 hover:shadow-lg md:w-2/4"
+          sizes={"(max-width: 768px) 100vw, 680px"}
         />
       </Link>
     </section>
