@@ -123,7 +123,7 @@ function sendSubscriptionEmail(email: string, firstName: string) {
   const subject = "Thanks for subscribing!";
 
   const emailToken = encryptEmail(email);
-  const unsubscribeUrl = `https://www.kalleott.de/emails/unsubscribe/${emailToken}`;
+  const unsubscribeUrl = `https://kalleott.de/emails/unsubscribe/${emailToken}`;
 
   const emailReactElement = (
     <WelcomeEmailTemplate
