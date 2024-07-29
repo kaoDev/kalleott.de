@@ -33,19 +33,19 @@ export default async function ChiliCorner() {
             I started giving away bottles to friends and family, if you are
             interested in trying some, let me know!
           </p>
+          <p>
+            If you don’t want to miss the next batch of hot sauce, leave your
+            email below.
+          </p>
+          <div className="mb-20">
+            <SubscribeToUpdatesFormWithoutText />
+          </div>
 
           <div className="mb-32">
             {sauces.map((sauce) => (
               <Sauce key={sauce.name} recipe={sauce} />
             ))}
           </div>
-          <h2 className="text-3xl font-bold">Stay in touch</h2>
-          <p>
-            You can also leave your email below if you want to receive updates.
-            I will occasionally send out emails when I cook a new batch of hot
-            sauce or if I have a new blog post to share.
-          </p>
-          <SubscribeToUpdatesFormWithoutText />
         </Prose>
       </article>
     </NestedPage>
