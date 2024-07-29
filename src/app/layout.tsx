@@ -45,9 +45,11 @@ export default function RootLayout({
           GeistSans.variable,
           GeistMono.variable,
           GeistSans.className,
+          "flex min-h-dvh flex-col",
         )}
       >
         {children}
+        <div className="flex-1" />
         <Footer />
       </body>
     </html>

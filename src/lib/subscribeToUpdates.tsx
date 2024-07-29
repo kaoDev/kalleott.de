@@ -1,6 +1,8 @@
 import { Resend } from "resend";
 import z from "zod";
+import { render } from "@react-email/render";
 import { WelcomeEmailTemplate } from "../email/templates/welcome";
+import { encryptEmail } from "./emailToken";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -24,11 +26,7 @@ export async function subscribeToUpdates(
 ): Promise<State> {
   "use server";
 
-  console.log("SUBSCRIBE", { email, firstName });
-
   const emailParseResult = z.string().email().safeParse(email);
-
-  console.log("emailParseResult", emailParseResult);
 
   if (!emailParseResult.success) {
     return {
@@ -36,8 +34,6 @@ export async function subscribeToUpdates(
       message: null,
     };
   }
-
-  console.log("Creating contact", { email, firstName, audienceId });
 
   const existingContacts = await resend.contacts.list({ audienceId });
 
@@ -48,8 +44,8 @@ export async function subscribeToUpdates(
   if (existingContact != null) {
     return await updateExistingContact(
       existingContact.id,
+      existingContact.email,
       firstName,
-      existingContact.unsubscribed,
     );
   }
 
@@ -58,8 +54,8 @@ export async function subscribeToUpdates(
 
 async function updateExistingContact(
   id: string,
+  email: string,
   firstName: string,
-  wasUnsubscribed: boolean,
 ): Promise<State> {
   const updateResult = await resend.contacts.update({
     audienceId,
@@ -68,21 +64,18 @@ async function updateExistingContact(
     unsubscribed: false,
   });
 
-  console.log("updateResult", updateResult);
-
   if (updateResult.error) {
-    console.log("Error updating contact", updateResult.error);
     return {
       error: "Something went wrong, please try again later",
       message: null,
     };
   }
 
+  sendSubscriptionEmail(email, firstName);
+
   return {
     error: null,
-    message: wasUnsubscribed
-      ? "Welcome back!"
-      : "You were already subscribed, but welcome again!",
+    message: randomGreeting(firstName),
   };
 }
 
@@ -94,38 +87,61 @@ async function addNewContact(email: string, firstName: string): Promise<State> {
     unsubscribed: false,
   });
 
-  console.log("contactResult", contactResult);
-
   if (contactResult.error) {
-    console.log("Error creating contact", contactResult.error);
     return {
       error: "Could not add contact to audience",
       message: null,
     };
   }
 
-  const { error } = await resend.emails.send({
-    from: emailSender,
-    to: email,
-    subject: "Hello world",
-    react: WelcomeEmailTemplate({ firstName }),
-    text: "Hello world",
-    headers: {
-      "List-Unsubscribe":
-        "<https://qwxglf7h-3000.euw.devtunnels.ms/api/unsubscribe>",
-    },
-  });
-
-  if (error) {
-    console.log("Error sending welcome email", error);
-    return {
-      error: "Could not send welcome email",
-      message: null,
-    };
-  }
+  sendSubscriptionEmail(email, firstName);
 
   return {
     error: null,
-    message: "Welcome!",
+    message: randomGreeting(firstName),
   };
+}
+
+function randomGreeting(name: string) {
+  const greetings = [
+    `Hello ${name}!`,
+    `Hi ${name}!`,
+    `Hey ${name}!`,
+    `Welcome ${name}!`,
+  ];
+
+  const thanksForSubscribing = [
+    "Thanks for subscribing!",
+    "Thanks for joining!",
+    "Thanks for signing up!",
+  ];
+
+  return `${greetings[Math.floor(Math.random() * greetings.length)]} ${thanksForSubscribing[Math.floor(Math.random() * thanksForSubscribing.length)]}`;
+}
+
+function sendSubscriptionEmail(email: string, firstName: string) {
+  const subject = "Thanks for subscribing!";
+
+  const emailToken = encryptEmail(email);
+  const unsubscribeUrl = `https://www.kalleott.de/emails/unsubscribe/${emailToken}`;
+
+  const emailReactElement = (
+    <WelcomeEmailTemplate
+      unsubscribeUrl={unsubscribeUrl}
+      firstName={firstName}
+    />
+  );
+
+  return resend.emails.send({
+    from: emailSender,
+    to: email,
+    subject,
+    html: render(emailReactElement),
+    text: render(emailReactElement, {
+      plainText: true,
+    }),
+    headers: {
+      "List-Unsubscribe": unsubscribeUrl,
+    },
+  });
 }
