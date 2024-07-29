@@ -23,6 +23,7 @@ export async function Sauce({ recipe }: Sauce.Props) {
   return (
     <Prose>
       <h2 className="text-3xl font-bold">{recipe.name}</h2>
+      <p>{recipe.tagline}</p>
 
       <Image
         src={recipe.image}
