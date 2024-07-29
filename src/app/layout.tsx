@@ -5,6 +5,7 @@ import cn from "classnames";
 import "./globals.css";
 import { Footer } from "@/components/footer";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Kalle's Blog",
@@ -53,6 +54,7 @@ export default function RootLayout({
         <div className="flex-1" />
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
