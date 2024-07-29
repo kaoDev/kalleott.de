@@ -20,6 +20,7 @@ export default async function ChiliCorner() {
             alt={`AI generated image for the term "Kalle's Chili Corner"`}
             className="blog-cover-image w-full shadow-sm"
             sizes="(max-width: 1500px) 100vw, 1500px"
+            priority
           />
         </div>
         <Prose>
