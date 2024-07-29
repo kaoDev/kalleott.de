@@ -4,6 +4,7 @@ import { GeistMono } from "geist/font/mono";
 import cn from "classnames";
 import "./globals.css";
 import { Footer } from "@/components/footer";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Kalle's Blog",
@@ -51,6 +52,7 @@ export default function RootLayout({
         {children}
         <div className="flex-1" />
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
