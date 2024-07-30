@@ -57,12 +57,15 @@ async function updateExistingContact(
   email: string,
   firstName: string,
 ): Promise<State> {
+  console.log("Updating existing contact");
   const updateResult = await resend.contacts.update({
     audienceId,
     id,
     firstName,
     unsubscribed: false,
   });
+
+  console.log("Update result", updateResult);
 
   if (updateResult.error) {
     return {
@@ -71,7 +74,9 @@ async function updateExistingContact(
     };
   }
 
-  sendSubscriptionEmail(email, firstName);
+  const welcomeEmailSendResult = await sendSubscriptionEmail(email, firstName);
+
+  console.log("Welcome email send result", welcomeEmailSendResult);
 
   return {
     error: null,
@@ -80,12 +85,15 @@ async function updateExistingContact(
 }
 
 async function addNewContact(email: string, firstName: string): Promise<State> {
+  console.log("Adding new contact");
   const contactResult = await resend.contacts.create({
     audienceId,
     email,
     firstName,
     unsubscribed: false,
   });
+
+  console.log("Contact result", contactResult);
 
   if (contactResult.error) {
     return {
@@ -94,7 +102,9 @@ async function addNewContact(email: string, firstName: string): Promise<State> {
     };
   }
 
-  sendSubscriptionEmail(email, firstName);
+  const welcomeEmailSendResult = await sendSubscriptionEmail(email, firstName);
+
+  console.log("Welcome email send result", welcomeEmailSendResult);
 
   return {
     error: null,
@@ -120,6 +130,7 @@ function randomGreeting(name: string) {
 }
 
 function sendSubscriptionEmail(email: string, firstName: string) {
+  console.log("Sending subscription email");
   const subject = "Thanks for subscribing!";
 
   const emailToken = encryptEmail(email);
@@ -131,6 +142,8 @@ function sendSubscriptionEmail(email: string, firstName: string) {
       firstName={firstName}
     />
   );
+
+  console.log("Sending email", email, firstName, subject, unsubscribeUrl);
 
   return resend.emails.send({
     from: emailSender,
