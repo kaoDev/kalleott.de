@@ -1,4 +1,4 @@
-import { Post } from "@/interfaces/post";
+import { Post, postMetaData } from "@/interfaces/post";
 import { globSync } from "glob";
 import matter from "gray-matter";
 import path from "path";
@@ -40,7 +40,9 @@ export async function getPostBySlug(slug: string) {
 
   const { data, content } = matter(fileContents);
 
-  return { ...data, slug: webSlug, content } as Post;
+  const metaData = postMetaData.parse(data);
+
+  return { content, slug: webSlug, metaData };
 }
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -52,7 +54,9 @@ export async function getAllPosts(): Promise<Post[]> {
     posts.push(await getPostBySlug(slug));
   }
 
-  posts.sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+  posts.sort((post1, post2) =>
+    post1.metaData.createdAt > post2.metaData.createdAt ? -1 : 1,
+  );
 
   return posts;
 }

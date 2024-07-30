@@ -9,6 +9,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PostBody } from "./_components/post-body";
 import { PostHeader } from "./_components/post-header";
+import { Separator } from "@/components/ui/separator";
 
 export default async function Post({ params }: Params) {
   const post = await getPostBySlug(params.slug.join("/"));
@@ -19,14 +20,16 @@ export default async function Post({ params }: Params) {
 
   return (
     <NestedPage backHref="/#blog" backTitle="Blog">
-      <article className="mb-32">
+      <article>
         <PostHeader
-          title={post.title}
-          coverImage={post.coverImage}
-          date={post.date}
+          title={post.metaData.title}
+          coverImage={post.metaData.coverImage}
+          date={post.metaData.createdAt}
         />
         <PostBody source={post.content || ""} />
       </article>
+
+      <Separator className="mx-auto my-24 max-w-3xl" />
 
       <section id="mailing-list" className="mb-32">
         <Prose>
@@ -55,13 +58,16 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     return notFound();
   }
 
-  const title = `${post.title} | Kalle's Blog.`;
+  const title = `${post.metaData.title} | Kalle's Blog.`;
 
   return {
     title,
+    description: post.metaData.excerpt,
     openGraph: {
       title,
-      images: post.ogImage?.url ? [post.ogImage?.url] : [],
+      images: post.metaData.ogImage?.url
+        ? [post.metaData.ogImage?.url]
+        : [post.metaData.coverImage],
     },
   };
 }

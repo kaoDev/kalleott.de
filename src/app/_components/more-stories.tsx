@@ -16,11 +16,11 @@ export function MoreStories({ posts, title }: Props) {
         {posts.map((post) => (
           <PostPreview
             key={post.slug}
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
+            title={post.metaData.title}
+            coverImage={post.metaData.coverImage}
+            date={post.metaData.createdAt}
             slug={post.slug}
-            excerpt={post.excerpt}
+            excerpt={post.metaData.excerpt}
           />
         ))}
       </div>

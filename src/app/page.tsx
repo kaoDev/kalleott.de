@@ -18,7 +18,10 @@ export default async function Index() {
 
   for (const post of allPosts) {
     // show posts from the last 3 years as relevant
-    const diff = differenceInMonths(currentData, new Date(post.date));
+    const diff = differenceInMonths(
+      currentData,
+      new Date(post.metaData.createdAt),
+    );
     if (diff <= 36) {
       currentPosts.push(post);
     } else {
@@ -46,11 +49,11 @@ export default async function Index() {
         </p>
         {heroPost ? (
           <HeroPost
-            title={heroPost.title}
-            coverImage={heroPost.coverImage}
-            date={heroPost.date}
+            title={heroPost.metaData.title}
+            coverImage={heroPost.metaData.coverImage}
+            date={heroPost.metaData.createdAt}
             slug={heroPost.slug}
-            excerpt={heroPost.excerpt}
+            excerpt={heroPost.metaData.excerpt}
           />
         ) : null}
         {morePosts.length > 0 && (

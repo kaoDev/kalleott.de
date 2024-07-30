@@ -1,7 +1,12 @@
 ---
 title: The Value of Complex Types
-date: "2024-07-12T17:58:03.284Z"
+createdAt: "2024-07-12T17:58:03.284Z"
 coverImage: /images/posts/the-value-of-complex-types.webp
+excerpt:
+  "Discover the value of complex types in programming, focusing on their role in
+  ensuring code safety and reducing bugs. This post explores the benefits of
+  strong type systems, particularly in TypeScript, and illustrates their
+  practical application in web development."
 ---
 
 I still remember the first time I learned about more advanced types. It was at
