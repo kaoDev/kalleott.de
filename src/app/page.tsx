@@ -56,9 +56,7 @@ export default async function Index() {
             excerpt={heroPost.metaData.excerpt}
           />
         ) : null}
-        {morePosts.length > 0 && (
-          <MoreStories posts={morePosts} title="More Stories" />
-        )}
+        {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         {writingsFromThePast.length > 0 && (
           <MoreStories
             title="Writings from the past"
