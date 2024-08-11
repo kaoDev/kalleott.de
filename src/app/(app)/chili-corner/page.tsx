@@ -1,5 +1,5 @@
 import { NestedPage } from "@/components/nested-page";
-import { SubscribeToUpdatesFormWithoutText } from "../../components/subscribe-to-updates-form";
+import { SubscribeToUpdatesFormWithoutText } from "../../../components/subscribe-to-updates-form";
 import { Sauce } from "./_components/sauce";
 import { sauces } from "./_components/sauces";
 import { Prose } from "@/components/prose";

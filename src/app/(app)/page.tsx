@@ -1,6 +1,6 @@
-import { HeroPost } from "@/app/_components/hero-post";
-import { Intro } from "@/app/_components/intro";
-import { MoreStories } from "@/app/_components/more-stories";
+import { HeroPost } from "@/app/(app)/_components/hero-post";
+import { Intro } from "@/app/(app)/_components/intro";
+import { MoreStories } from "@/app/(app)/_components/more-stories";
 import { Container } from "@/components/container";
 import { SubscribeToUpdatesForm } from "@/components/subscribe-to-updates-form";
 import { Post } from "@/interfaces/post";
