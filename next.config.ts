@@ -1,13 +1,20 @@
 import { withPayload } from "@payloadcms/next/withPayload";
 import { NextConfig } from "next";
-import { getEnvServerUrl } from "@/utilities/getEnvServerUrl.js";
 
-const NEXT_PUBLIC_SERVER_URL = getEnvServerUrl();
+const vercelBranchUrl = process.env.VERCEL_BRANCH_URL;
+const vercelProjectProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+const availableServerUrls = [
+  process.env.NEXT_PUBLIC_SERVER_URL,
+  vercelProjectProductionUrl ? `https://${vercelProjectProductionUrl}` : null,
+  vercelBranchUrl ? `https://${vercelBranchUrl}` : null,
+  "https://kalleott.de",
+].filter((url) => url != null);
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      ...[NEXT_PUBLIC_SERVER_URL, "https://kalleott.de"].map((item) => {
+      ...availableServerUrls.map((item) => {
         const url = new URL(item);
 
         return {
