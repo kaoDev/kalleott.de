@@ -1,10 +1,11 @@
+import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
 import {
   MetaDescriptionField,
   MetaImageField,
   MetaTitleField,
   OverviewField,
   PreviewField,
-} from '@payloadcms/plugin-seo/fields'
+} from "@payloadcms/plugin-seo/fields";
 import {
   BlocksFeature,
   FixedToolbarFeature,
@@ -12,25 +13,27 @@ import {
   HorizontalRuleFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-import type { CollectionConfig } from 'payload'
-import { HtmlBlock } from 'src/payload/blocks/HtmlBlock'
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Banner } from '../../blocks/Banner'
-import { Code } from '../../blocks/Code'
-import { MediaBlock } from '../../blocks/MediaBlock'
-import { slugField } from '../../fields/slug'
-import { generatePreviewPath } from '../../utilities/generatePreviewPath'
-import { populateAuthors } from './hooks/populateAuthors'
-import { revalidatePost } from './hooks/revalidatePost'
+} from "@payloadcms/richtext-lexical";
+import type { CollectionConfig } from "payload";
+import { HtmlBlock } from "src/payload/blocks/HtmlBlock";
+import { authenticated } from "../../access/authenticated";
+import { authenticatedOrPublished } from "../../access/authenticatedOrPublished";
+import { Banner } from "../../blocks/Banner";
+import { Code } from "../../blocks/Code";
+import { MediaBlock } from "../../blocks/MediaBlock";
+import { slugField } from "../../fields/slug";
+import { generatePreviewPath } from "../../utilities/generatePreviewPath";
+import { populateAuthors } from "./hooks/populateAuthors";
+import { revalidatePost } from "./hooks/revalidatePost";
 
 export const postsEditorConfig = lexicalEditor({
   features: ({ rootFeatures, defaultFeatures }) => {
     return [
       ...rootFeatures,
       ...defaultFeatures,
-      HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }),
+      HeadingFeature({
+        enabledHeadingSizes: ["h1", "h2", "h3", "h4", "h5", "h6"],
+      }),
       BlocksFeature({
         blocks: [Banner, Code, MediaBlock, HtmlBlock],
         inlineBlocks: [Code, HtmlBlock, MediaBlock],
@@ -38,12 +41,12 @@ export const postsEditorConfig = lexicalEditor({
       FixedToolbarFeature(),
       InlineToolbarFeature(),
       HorizontalRuleFeature(),
-    ]
+    ];
   },
-})
+});
 
 export const Posts: CollectionConfig = {
-  slug: 'posts',
+  slug: "posts",
   access: {
     create: authenticated,
     delete: authenticated,
@@ -51,95 +54,97 @@ export const Posts: CollectionConfig = {
     update: authenticated,
   },
   admin: {
-    defaultColumns: ['title', 'slug', 'updatedAt'],
+    defaultColumns: ["title", "slug", "updatedAt"],
     livePreview: {
       url: ({ data }) => {
         const path = generatePreviewPath({
-          path: `/posts/${typeof data?.slug === 'string' ? data.slug : ''}`,
-        })
-        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`
+          path: `/posts/${typeof data?.slug === "string" ? data.slug : ""}`,
+        });
+        return `${getEnvServerUrl()}${path}`;
       },
     },
     preview: (doc) =>
-      generatePreviewPath({ path: `/posts/${typeof doc?.slug === 'string' ? doc.slug : ''}` }),
-    useAsTitle: 'title',
+      generatePreviewPath({
+        path: `/posts/${typeof doc?.slug === "string" ? doc.slug : ""}`,
+      }),
+    useAsTitle: "title",
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
+      name: "title",
+      type: "text",
       required: true,
     },
     {
-      name: 'hero',
-      type: 'upload',
-      relationTo: 'media',
+      name: "hero",
+      type: "upload",
+      relationTo: "media",
     },
     {
-      type: 'tabs',
+      type: "tabs",
       tabs: [
         {
           fields: [
             {
-              name: 'content',
-              type: 'richText',
+              name: "content",
+              type: "richText",
               editor: async ({ config, isRoot }) => {
-                const editor = await postsEditorConfig({ config, isRoot })
+                const editor = await postsEditorConfig({ config, isRoot });
 
-                editor.CellComponent
+                editor.CellComponent;
 
-                return editor
+                return editor;
               },
               label: false,
               required: true,
             },
           ],
-          label: 'Content',
+          label: "Content",
         },
         {
           fields: [
             {
-              name: 'relatedPosts',
-              type: 'relationship',
+              name: "relatedPosts",
+              type: "relationship",
               admin: {
-                position: 'sidebar',
+                position: "sidebar",
               },
               filterOptions: ({ id }) => {
                 return {
                   id: {
                     not_in: [id],
                   },
-                }
+                };
               },
               hasMany: true,
-              relationTo: 'posts',
+              relationTo: "posts",
             },
             {
-              name: 'categories',
-              type: 'relationship',
+              name: "categories",
+              type: "relationship",
               admin: {
-                position: 'sidebar',
+                position: "sidebar",
               },
               hasMany: true,
-              relationTo: 'categories',
+              relationTo: "categories",
             },
           ],
-          label: 'Meta',
+          label: "Meta",
         },
         {
-          name: 'meta',
-          label: 'SEO',
+          name: "meta",
+          label: "SEO",
           fields: [
             OverviewField({
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
-              imagePath: 'meta.image',
+              titlePath: "meta.title",
+              descriptionPath: "meta.description",
+              imagePath: "meta.image",
             }),
             MetaTitleField({
               hasGenerateFn: true,
             }),
             MetaImageField({
-              relationTo: 'media',
+              relationTo: "media",
             }),
 
             MetaDescriptionField({}),
@@ -148,48 +153,48 @@ export const Posts: CollectionConfig = {
               hasGenerateFn: true,
 
               // field paths to match the target field for data
-              titlePath: 'meta.title',
-              descriptionPath: 'meta.description',
+              titlePath: "meta.title",
+              descriptionPath: "meta.description",
             }),
           ],
         },
       ],
     },
     {
-      name: 'publishedAt',
-      type: 'date',
+      name: "publishedAt",
+      type: "date",
       admin: {
         date: {
-          pickerAppearance: 'dayAndTime',
+          pickerAppearance: "dayAndTime",
         },
-        position: 'sidebar',
+        position: "sidebar",
       },
       hooks: {
         beforeChange: [
           ({ siblingData, value }) => {
-            if (siblingData._status === 'published' && !value) {
-              return new Date()
+            if (siblingData._status === "published" && !value) {
+              return new Date();
             }
-            return value
+            return value;
           },
         ],
       },
     },
     {
-      name: 'authors',
-      type: 'relationship',
+      name: "authors",
+      type: "relationship",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
       hasMany: true,
-      relationTo: 'users',
+      relationTo: "users",
     },
     // This field is only used to populate the user data via the `populateAuthors` hook
     // This is because the `user` collection has access control locked to protect user privacy
     // GraphQL will also not return mutated user data that differs from the underlying schema
     {
-      name: 'populatedAuthors',
-      type: 'array',
+      name: "populatedAuthors",
+      type: "array",
       access: {
         update: () => false,
       },
@@ -199,12 +204,12 @@ export const Posts: CollectionConfig = {
       },
       fields: [
         {
-          name: 'id',
-          type: 'text',
+          name: "id",
+          type: "text",
         },
         {
-          name: 'name',
-          type: 'text',
+          name: "name",
+          type: "text",
         },
       ],
     },
@@ -222,4 +227,4 @@ export const Posts: CollectionConfig = {
     },
     maxPerDoc: 50,
   },
-}
+};

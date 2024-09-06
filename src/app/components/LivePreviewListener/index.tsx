@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { z } from 'zod'
+import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
+import { RefreshRouteOnSave as PayloadLivePreview } from "@payloadcms/live-preview-react";
+import { useRouter } from "next/navigation";
+import React from "react";
 
-const serverUrl = z.string().parse(process.env.NEXT_PUBLIC_SERVER_URL)
+const serverUrl = getEnvServerUrl();
 
 export const LivePreviewListener: React.FC = () => {
-  const router = useRouter()
-  return <PayloadLivePreview refresh={router.refresh} serverURL={serverUrl} />
-}
+  const router = useRouter();
+  return <PayloadLivePreview refresh={router.refresh} serverURL={serverUrl} />;
+};

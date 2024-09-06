@@ -34,6 +34,7 @@ import { HotSauces } from './payload/collections/HotSauces'
 import { HotSauceRequestForm } from './payload/globals/HotSauceRequestForm/HotSauceRequestForm'
 import { Competencies } from './payload/collections/Competencies'
 import { Projects } from './payload/collections/Projects'
+import { getEnvServerUrl } from '@/utilities/getEnvServerUrl'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -42,7 +43,7 @@ const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
   return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
 }
 
-const serverUrl = z.string().parse(process.env.NEXT_PUBLIC_SERVER_URL)
+const serverUrl = getEnvServerUrl()
 const payloadSecret = z.string().parse(process.env.PAYLOAD_SECRET)
 const blobReadWriteToken = z.string().parse(process.env.BLOB_READ_WRITE_TOKEN)
 const payloadEmailFromAddress = z.string().parse(process.env.PAYLOAD_EMAIL_FROM_ADDRESS)
