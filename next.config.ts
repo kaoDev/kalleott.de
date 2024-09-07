@@ -6,6 +6,21 @@ const vercelBranchUrl = process.env.VERCEL_BRANCH_URL;
 const vercelProjectProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
 export function getEnvServerUrl() {
+  console.log("##############");
+  console.log("##############");
+  console.log("##############");
+  console.log("##############");
+  console.log("##############");
+  console.log("SERVER URL");
+  console.log("VERCEL ENV", vercelEnv);
+  console.log("VERCEL BRANCH URL", vercelBranchUrl);
+  console.log("VERCEL PROJECT PRODUCTION URL", vercelProjectProductionUrl);
+  console.log("##############");
+  console.log("##############");
+  console.log("##############");
+  console.log("##############");
+  console.log("##############");
+
   if (!vercelEnv) {
     return "http://localhost:3000";
   }
