@@ -2,8 +2,10 @@ import { withPayload } from "@payloadcms/next/withPayload";
 import { NextConfig } from "next";
 
 const vercelEnv = process.env.VERCEL_ENV;
-const vercelBranchUrl = process.env.VERCEL_BRANCH_URL;
+const vercelDeploymentUrl = process.env.VERCEL_URL;
 const vercelProjectProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export function getEnvServerUrl() {
   console.log("##############");
@@ -13,8 +15,9 @@ export function getEnvServerUrl() {
   console.log("##############");
   console.log("SERVER URL");
   console.log("VERCEL ENV", vercelEnv);
-  console.log("VERCEL BRANCH URL", vercelBranchUrl);
+  console.log("VERCEL BRANCH URL", vercelDeploymentUrl);
   console.log("VERCEL PROJECT PRODUCTION URL", vercelProjectProductionUrl);
+  console.log("NEXT PUBLIC SERVER URL", NEXT_PUBLIC_SERVER_URL);
   console.log("##############");
   console.log("##############");
   console.log("##############");
@@ -29,13 +32,13 @@ export function getEnvServerUrl() {
     return `https://${vercelProjectProductionUrl}`;
   }
 
-  return `https://${vercelBranchUrl}`;
+  return `https://${vercelDeploymentUrl}`;
 }
 
 const availableServerUrls = [
   process.env.NEXT_PUBLIC_SERVER_URL,
   vercelProjectProductionUrl ? `https://${vercelProjectProductionUrl}` : null,
-  vercelBranchUrl ? `https://${vercelBranchUrl}` : null,
+  vercelDeploymentUrl ? `https://${vercelDeploymentUrl}` : null,
   "https://kalleott.de",
 ].filter((url) => url != null);
 
