@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/utilities/cn";
-import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
 import { useSelectedLayoutSegments } from "next/navigation";
 import type { PayloadAdminBarProps, PayloadMeUser } from "payload-admin-bar";
 import { PayloadAdminBar } from "payload-admin-bar";
@@ -56,7 +55,7 @@ export const AdminBar: React.FC<{
             logo: "text-white",
             user: "text-white",
           }}
-          cmsURL={getEnvServerUrl()}
+          cmsURL={process.env.NEXT_PUBLIC_SERVER_URL}
           collection={collection}
           collectionLabels={{
             plural: collectionLabels[collection]?.plural || "Pages",

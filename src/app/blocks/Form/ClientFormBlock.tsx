@@ -16,7 +16,6 @@ import {
 import { Button } from "src/app/components/ui/button";
 import { buildInitialFormState } from "./buildInitialFormState";
 import { fields } from "./fields";
-import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
 
 export type Value = unknown;
 
@@ -155,16 +154,19 @@ export function ClientFormBlock(props: Props) {
         }, 1000);
 
         try {
-          const req = await fetch(`${getEnvServerUrl()}/api/form-submissions`, {
-            body: JSON.stringify({
-              form: formID,
-              submissionData: dataToSend,
-            }),
-            headers: {
-              "Content-Type": "application/json",
+          const req = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/api/form-submissions`,
+            {
+              body: JSON.stringify({
+                form: formID,
+                submissionData: dataToSend,
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+              method: "POST",
             },
-            method: "POST",
-          });
+          );
 
           const res = await req.json();
 

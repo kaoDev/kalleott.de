@@ -1,8 +1,21 @@
 import { withPayload } from "@payloadcms/next/withPayload";
 import { NextConfig } from "next";
 
+const vercelEnv = process.env.VERCEL_ENV;
 const vercelBranchUrl = process.env.VERCEL_BRANCH_URL;
 const vercelProjectProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+export function getEnvServerUrl() {
+  if (!vercelEnv) {
+    return "http://localhost:3000";
+  }
+
+  if (vercelEnv === "production") {
+    return `https://${vercelProjectProductionUrl}`;
+  }
+
+  return `https://${vercelBranchUrl}`;
+}
 
 const availableServerUrls = [
   process.env.NEXT_PUBLIC_SERVER_URL,
@@ -23,6 +36,10 @@ const nextConfig: NextConfig = {
         };
       }),
     ],
+  },
+  env: {
+    NEXT_PUBLIC_SERVER_URL: getEnvServerUrl(),
+    PAYLOAD_PUBLIC_SERVER_URL: getEnvServerUrl(),
   },
   reactStrictMode: true,
 };

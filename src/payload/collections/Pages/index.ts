@@ -19,7 +19,6 @@ import {
   OverviewField,
   PreviewField,
 } from "@payloadcms/plugin-seo/fields";
-import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
@@ -36,7 +35,7 @@ export const Pages: CollectionConfig = {
         const path = generatePreviewPath({
           path: `/${typeof data?.slug === "string" ? data.slug : ""}`,
         });
-        return `${getEnvServerUrl()}${path}`;
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
       },
     },
     preview: (doc) =>

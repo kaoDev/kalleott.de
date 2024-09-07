@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import type { Page, Post } from "../../payload-types";
-import { getEnvServerUrl } from "./getEnvServerUrl";
 import { mergeOpenGraph } from "./mergeOpenGraph";
 
 export const generateMeta = async (args: {
@@ -12,7 +11,7 @@ export const generateMeta = async (args: {
     typeof doc?.meta?.image === "object" &&
     doc.meta.image !== null &&
     "url" in doc.meta.image &&
-    `${getEnvServerUrl()}${doc.meta.image.url}`;
+    `${process.env.NEXT_PUBLIC_SERVER_URL}${doc.meta.image.url}`;
 
   const title = doc?.meta?.title
     ? doc?.meta?.title + " | Payload Website Template"

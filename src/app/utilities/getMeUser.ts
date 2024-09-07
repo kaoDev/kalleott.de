@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { User } from "../../payload-types";
-import { getEnvServerUrl } from "./getEnvServerUrl";
 
 export const getMeUser = async (args?: {
   nullUserRedirect?: string;
@@ -14,11 +13,14 @@ export const getMeUser = async (args?: {
   const cookieStore = cookies();
   const token = cookieStore.get("payload-token")?.value;
 
-  const meUserReq = await fetch(`${getEnvServerUrl()}/api/users/me`, {
-    headers: {
-      Authorization: `JWT ${token}`,
+  const meUserReq = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`,
+    {
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
     },
-  });
+  );
 
   const {
     user,

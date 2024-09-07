@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/utilities/cn";
-import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
 import React, { useEffect, useRef } from "react";
 import type { Props as MediaProps } from "../types";
 
@@ -35,7 +34,9 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         playsInline
         ref={videoRef}
       >
-        <source src={`${getEnvServerUrl()}/media/${filename}`} />
+        <source
+          src={`${process.env.NEXT_PUBLIC_SERVER_URL}/media/${filename}`}
+        />
       </video>
     );
   }

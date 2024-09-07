@@ -1,10 +1,10 @@
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { resendAdapter } from '@payloadcms/email-resend'
-import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
-import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
-import { redirectsPlugin } from '@payloadcms/plugin-redirects'
-import { seoPlugin } from '@payloadcms/plugin-seo'
-import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
+import { postgresAdapter } from "@payloadcms/db-postgres";
+import { resendAdapter } from "@payloadcms/email-resend";
+import { formBuilderPlugin } from "@payloadcms/plugin-form-builder";
+import { nestedDocsPlugin } from "@payloadcms/plugin-nested-docs";
+import { redirectsPlugin } from "@payloadcms/plugin-redirects";
+import { seoPlugin } from "@payloadcms/plugin-seo";
+import { GenerateTitle, GenerateURL } from "@payloadcms/plugin-seo/types";
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -13,47 +13,52 @@ import {
   LinkFeature,
   UnderlineFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
-import path from 'path'
-import { buildConfig } from 'payload'
-import sharp from 'sharp'
-import { Page, Post } from 'src/payload-types'
-import { fileURLToPath } from 'url'
-import { z } from 'zod'
-import { Categories } from './payload/collections/Categories'
-import { Media } from './payload/collections/Media/Media'
-import { Pages } from './payload/collections/Pages'
-import { Posts } from './payload/collections/Posts'
-import { Users } from './payload/collections/Users'
-import { generateAltText } from './payload/endpoints/generateAltText'
-import { Footer } from './payload/globals/Footer/Footer'
-import { Header } from './payload/globals/Header/Header'
-import { revalidateRedirects } from './payload/hooks/revalidateRedirects'
-import { HotSauces } from './payload/collections/HotSauces'
-import { HotSauceRequestForm } from './payload/globals/HotSauceRequestForm/HotSauceRequestForm'
-import { Competencies } from './payload/collections/Competencies'
-import { Projects } from './payload/collections/Projects'
-import { getEnvServerUrl } from '@/utilities/getEnvServerUrl'
+} from "@payloadcms/richtext-lexical";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import path from "path";
+import { buildConfig } from "payload";
+import sharp from "sharp";
+import { Page, Post } from "src/payload-types";
+import { fileURLToPath } from "url";
+import { z } from "zod";
+import { Categories } from "./payload/collections/Categories";
+import { Media } from "./payload/collections/Media/Media";
+import { Pages } from "./payload/collections/Pages";
+import { Posts } from "./payload/collections/Posts";
+import { Users } from "./payload/collections/Users";
+import { generateAltText } from "./payload/endpoints/generateAltText";
+import { Footer } from "./payload/globals/Footer/Footer";
+import { Header } from "./payload/globals/Header/Header";
+import { revalidateRedirects } from "./payload/hooks/revalidateRedirects";
+import { HotSauces } from "./payload/collections/HotSauces";
+import { HotSauceRequestForm } from "./payload/globals/HotSauceRequestForm/HotSauceRequestForm";
+import { Competencies } from "./payload/collections/Competencies";
+import { Projects } from "./payload/collections/Projects";
 
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Website Template` : 'Payload Website Template'
-}
+  return doc?.title
+    ? `${doc.title} | Payload Website Template`
+    : "Payload Website Template";
+};
 
-const serverUrl = getEnvServerUrl()
-const payloadSecret = z.string().parse(process.env.PAYLOAD_SECRET)
-const blobReadWriteToken = z.string().parse(process.env.BLOB_READ_WRITE_TOKEN)
-const payloadEmailFromAddress = z.string().parse(process.env.PAYLOAD_EMAIL_FROM_ADDRESS)
-const payloadEmailFromName = z.string().parse(process.env.PAYLOAD_EMAIL_FROM_NAME)
-const resendApiKey = z.string().parse(process.env.RESEND_API_KEY)
-const postgresUrl = z.string().parse(process.env.POSTGRES_URL)
+const serverUrl = z.string().parse(process.env.NEXT_PUBLIC_SERVER_URL);
+const payloadSecret = z.string().parse(process.env.PAYLOAD_SECRET);
+const blobReadWriteToken = z.string().parse(process.env.BLOB_READ_WRITE_TOKEN);
+const payloadEmailFromAddress = z
+  .string()
+  .parse(process.env.PAYLOAD_EMAIL_FROM_ADDRESS);
+const payloadEmailFromName = z
+  .string()
+  .parse(process.env.PAYLOAD_EMAIL_FROM_NAME);
+const resendApiKey = z.string().parse(process.env.RESEND_API_KEY);
+const postgresUrl = z.string().parse(process.env.POSTGRES_URL);
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
-  return doc?.slug ? `${serverUrl}/${doc.slug}` : serverUrl
-}
+  return doc?.slug ? `${serverUrl}/${doc.slug}` : serverUrl;
+};
 
 export default buildConfig({
   admin: {
@@ -65,20 +70,20 @@ export default buildConfig({
     livePreview: {
       breakpoints: [
         {
-          label: 'Mobile',
-          name: 'mobile',
+          label: "Mobile",
+          name: "mobile",
           width: 375,
           height: 667,
         },
         {
-          label: 'Tablet',
-          name: 'tablet',
+          label: "Tablet",
+          name: "tablet",
           width: 768,
           height: 1024,
         },
         {
-          label: 'Desktop',
-          name: 'desktop',
+          label: "Desktop",
+          name: "desktop",
           width: 1440,
           height: 900,
         },
@@ -94,28 +99,28 @@ export default buildConfig({
         BoldFeature(),
         ItalicFeature(),
         LinkFeature({
-          enabledCollections: ['pages', 'posts'],
+          enabledCollections: ["pages", "posts"],
           fields: ({ defaultFields }) => {
             const defaultFieldsWithoutUrl = defaultFields.filter((field) => {
-              if ('name' in field && field.name === 'url') return false
-              return true
-            })
+              if ("name" in field && field.name === "url") return false;
+              return true;
+            });
 
             return [
               ...defaultFieldsWithoutUrl,
               {
-                name: 'url',
-                type: 'text',
+                name: "url",
+                type: "text",
                 admin: {
-                  condition: ({ linkType }) => linkType !== 'internal',
+                  condition: ({ linkType }) => linkType !== "internal",
                 },
-                label: ({ t }) => t('fields:enterURL'),
+                label: ({ t }) => t("fields:enterURL"),
                 required: true,
               },
-            ]
+            ];
           },
         }),
-      ]
+      ];
     },
   }),
   db: postgresAdapter({
@@ -123,34 +128,44 @@ export default buildConfig({
       connectionString: postgresUrl,
     },
   }),
-  collections: [Pages, Posts, Media, Categories, Users, HotSauces, Competencies, Projects],
+  collections: [
+    Pages,
+    Posts,
+    Media,
+    Categories,
+    Users,
+    HotSauces,
+    Competencies,
+    Projects,
+  ],
   cors: [serverUrl],
   csrf: [serverUrl],
   endpoints: [
     {
       handler: generateAltText,
-      method: 'post',
-      path: '/media/generateAltText',
+      method: "post",
+      path: "/media/generateAltText",
     },
   ],
   globals: [Header, Footer, HotSauceRequestForm],
   plugins: [
     redirectsPlugin({
-      collections: ['pages', 'posts'],
+      collections: ["pages", "posts"],
       overrides: {
         // @ts-expect-error
         fields: ({ defaultFields }) => {
           return defaultFields.map((field) => {
-            if ('name' in field && field.name === 'from') {
+            if ("name" in field && field.name === "from") {
               return {
                 ...field,
                 admin: {
-                  description: 'You will need to rebuild the website when changing this field.',
+                  description:
+                    "You will need to rebuild the website when changing this field.",
                 },
-              }
+              };
             }
-            return field
-          })
+            return field;
+          });
         },
         hooks: {
           afterChange: [revalidateRedirects],
@@ -158,7 +173,7 @@ export default buildConfig({
       },
     }),
     nestedDocsPlugin({
-      collections: ['categories'],
+      collections: ["categories"],
     }),
     seoPlugin({
       generateTitle,
@@ -171,7 +186,7 @@ export default buildConfig({
       formOverrides: {
         fields: ({ defaultFields }) => {
           return defaultFields.map((field) => {
-            if ('name' in field && field.name === 'confirmationMessage') {
+            if ("name" in field && field.name === "confirmationMessage") {
               return {
                 ...field,
                 editor: lexicalEditor({
@@ -179,14 +194,16 @@ export default buildConfig({
                     return [
                       ...rootFeatures,
                       FixedToolbarFeature(),
-                      HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    ]
+                      HeadingFeature({
+                        enabledHeadingSizes: ["h1", "h2", "h3", "h4"],
+                      }),
+                    ];
                   },
                 }),
-              }
+              };
             }
-            return field
-          })
+            return field;
+          });
         },
       },
     }),
@@ -203,11 +220,11 @@ export default buildConfig({
   secret: payloadSecret,
   sharp,
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   email: resendAdapter({
     defaultFromAddress: payloadEmailFromAddress,
     defaultFromName: payloadEmailFromName,
     apiKey: resendApiKey,
   }),
-})
+});

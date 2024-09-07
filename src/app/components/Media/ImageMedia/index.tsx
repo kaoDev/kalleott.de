@@ -6,7 +6,6 @@ import NextImage from "next/image";
 import React from "react";
 import cssVariables from "../../../cssVariables";
 import type { Props as MediaProps } from "../types";
-import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
 
 const { breakpoints } = cssVariables;
 
@@ -46,7 +45,7 @@ export function ImageMedia(props: MediaProps) {
     height = fullHeight ?? undefined;
     alt = altFromResource;
 
-    src = `${getEnvServerUrl()}${url}`;
+    src = `${process.env.NEXT_PUBLIC_SERVER_URL}${url}`;
   }
 
   // NOTE: this is used by the browser to determine which image to download at different screen sizes

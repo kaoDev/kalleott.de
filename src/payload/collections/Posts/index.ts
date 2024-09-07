@@ -1,4 +1,3 @@
-import { getEnvServerUrl } from "@/utilities/getEnvServerUrl";
 import {
   MetaDescriptionField,
   MetaImageField,
@@ -60,7 +59,7 @@ export const Posts: CollectionConfig = {
         const path = generatePreviewPath({
           path: `/posts/${typeof data?.slug === "string" ? data.slug : ""}`,
         });
-        return `${getEnvServerUrl()}${path}`;
+        return `${process.env.NEXT_PUBLIC_SERVER_URL}${path}`;
       },
     },
     preview: (doc) =>
