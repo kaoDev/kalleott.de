@@ -40,11 +40,12 @@ export function ColorCheck() {
     <Card>
       <CardTitle className="p-3">Readability</CardTitle>
       <CardContent>
-        <Table>
-          <TableHeader>
+        <Table className="relative max-h-[600px] overflow-auto">
+          <TableHeader className="sticky top-0">
             <TableRow>
               <TableHead>Color</TableHead>
               <TableHead>Background</TableHead>
+              <TableHead>Sample</TableHead>
               <TableHead>Contrast</TableHead>
               <TableHead>AA</TableHead>
               <TableHead>AAA</TableHead>
@@ -55,20 +56,28 @@ export function ColorCheck() {
           <TableBody>
             {checkResult.flatMap((result) => [
               ...result.readabilityValues.map((readability, index) => {
-                const colorName =
-                  index === 0 ? result.color.name || result.color.hex : null;
+                const colorName = result.color.name || result.color.hex;
                 const backgroundName =
                   readability.background.name || readability.background.hex;
 
-                const colorStyle = {
+                const sampleBgStyle = {
                   backgroundColor: readability.background.hex,
                   color: result.color.hex,
                 };
 
                 return (
-                  <TableRow key={`${result.color.hex}-${readability.background.hex}`}>
-                    <TableCell style={colorStyle}>{colorName}</TableCell>
-                    <TableCell style={colorStyle}>{backgroundName}</TableCell>
+                  <TableRow
+                    key={`${result.color.hex}-${readability.background.hex}`}
+                  >
+                    <TableCell>{colorName}</TableCell>
+                    <TableCell>{backgroundName}</TableCell>
+                    <TableCell
+                      className="flex items-center justify-center gap-1"
+                      style={sampleBgStyle}
+                    >
+                      <span>Readable?</span>
+                      <div className="aspect-square w-5 bg-current" />
+                    </TableCell>
                     <TableCell>{readability.contrast}</TableCell>
                     <TableCell>{readability.aa ? "✅" : "❌"}</TableCell>
                     <TableCell>{readability.aaa ? "✅" : "❌"}</TableCell>
