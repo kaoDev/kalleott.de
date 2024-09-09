@@ -149,4 +149,8 @@ export const colorNamesMap = {
   yellowgreen: "#9acd32",
 } as const;
 
+export const colorValuesToNamesMap = Object.fromEntries(
+  Object.entries(colorNamesMap).map(([name, hex]) => [hex, name]),
+);
+
 export type ColorName = keyof typeof colorNamesMap;

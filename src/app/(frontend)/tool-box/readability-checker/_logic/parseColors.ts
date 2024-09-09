@@ -1,5 +1,5 @@
 import { toHex } from "color2k";
-import { colorNamesMap } from "./color-names";
+import { colorNamesMap, colorValuesToNamesMap } from "./color-names";
 import { ColorInfo } from "./types";
 
 const colorNames = Object.keys(colorNamesMap);
@@ -15,15 +15,15 @@ export function parseColors(input: string): ColorInfo[] {
   const matches = cleanInput.match(colorRegex) ?? [];
 
   const uniqueColorValues = [
-    ...new Set(matches.map((color) => color.toLowerCase())),
+    ...new Set(
+      matches.map((color) => color.toLowerCase()).map((color) => toHex(color)),
+    ),
   ];
 
-  const standardizedColorValues = uniqueColorValues.map((color) => {
-    const hex = toHex(color);
-
+  const standardizedColorValues = uniqueColorValues.map((hex) => {
     return {
       hex,
-      name: color in colorNamesMap ? color : "",
+      name: hex in colorValuesToNamesMap ? colorValuesToNamesMap[hex]! : "",
     };
   });
 

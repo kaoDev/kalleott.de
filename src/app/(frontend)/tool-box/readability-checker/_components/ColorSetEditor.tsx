@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useAtom } from "jotai/react";
 import { PrimitiveAtom } from "jotai/vanilla";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { parseColors } from "../_logic/parseColors";
 import { ColorInfo } from "../_logic/types";
 import { ColorSquare } from "./ColorSquare";
@@ -21,9 +21,17 @@ I also like Blue and YELLOW.
 The walls are painted #f0f and hsl(120, 100%, 50%).`;
 
 export function ColorSetEditor({ colorSetName, stateAtom }: Props) {
-  const [input, setInput] = useState("");
-
   const [colorSet, setColorSet] = useAtom(stateAtom);
+
+  const initialInput = useMemo(() => {
+    return colorSet
+      .map((color) =>
+        [color.name, color.hex].filter((item) => !!item).join(" "),
+      )
+      .join("\n");
+  }, [colorSet]);
+
+  const [input, setInput] = useState(initialInput);
 
   const [error, setError] = useState<string | null>(null);
 
