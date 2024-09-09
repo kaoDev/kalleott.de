@@ -9,10 +9,12 @@ export const foregroundAtom = atomWithStorage<ColorInfo[]>(
   `${prefix}foreground`,
   [],
   storage,
+  { getOnInit: true },
 );
 
 export const backgroundAtom = atomWithStorage<ColorInfo[]>(
   `${prefix}background`,
   [],
   storage,
+  { getOnInit: true },
 );
