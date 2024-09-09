@@ -4,12 +4,15 @@ import { Container } from "./_components/container";
 import { HeroPost } from "./_components/hero-post";
 import { Intro } from "./_components/intro";
 import Link from "next/link";
+import { ToolBox } from "./_components/ToolBox";
+import { Prose } from "@/components/Prose/Prose";
 
 export default async function Index() {
   return (
     <Container>
       <Intro />
       <RecentPost />
+      <ToolBox />
     </Container>
   );
 }
@@ -41,20 +44,19 @@ async function RecentPost() {
 
   return (
     <section className="mx-auto max-w-5xl">
-      <div className="prose pb-6">
+      <Prose className="pb-6">
         <h2>Latest post</h2>
+        <HeroPost
+          title={heroPost.title}
+          coverImage={heroPost.hero}
+          date={heroPost.createdAt}
+          slug={heroPost.slug}
+          excerpt={heroPost.meta?.description}
+        />
         <p>
           Read more in my <Link href="/posts">Blog</Link>
         </p>
-      </div>
-
-      <HeroPost
-        title={heroPost.title}
-        coverImage={heroPost.hero}
-        date={heroPost.createdAt}
-        slug={heroPost.slug}
-        excerpt={heroPost.meta?.description}
-      />
+      </Prose>
     </section>
   );
 }
