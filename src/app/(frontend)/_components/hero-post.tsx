@@ -1,21 +1,23 @@
-import { Media } from 'src/payload-types'
-import { CoverImage } from './cover-image'
-import { DateFormatter } from './date-formatter'
-import Link from 'next/link'
+import { Media } from "src/payload-types";
+import { CoverImage } from "./cover-image";
+import { DateFormatter } from "./date-formatter";
+import Link from "next/link";
 
 type Props = {
-  title: string
-  coverImage: number | Media | null | undefined
-  date: string
-  excerpt: string | null | undefined
-  slug: string
-}
+  title: string;
+  coverImage: number | Media | null | undefined;
+  date: string;
+  excerpt: string | null | undefined;
+  slug: string;
+};
 
 export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
   return (
     <section>
       <div className="mb-8 md:mb-16">
-        {coverImage ? <CoverImage title={title} src={coverImage} slug={slug} /> : null}
+        {coverImage ? (
+          <CoverImage title={title} src={coverImage} slug={slug} />
+        ) : null}
       </div>
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
@@ -33,5 +35,5 @@ export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
         </div>
       </div>
     </section>
-  )
+  );
 }

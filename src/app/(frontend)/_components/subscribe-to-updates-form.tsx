@@ -1,6 +1,6 @@
-import { subscribeToUpdates } from '@/lib/subscribeToUpdates'
-import { Prose } from './prose'
-import { SubscribeToUpdatesFormClient } from './subscribe-to-updates-form-client'
+import { subscribeToUpdates } from "@/lib/subscribeToUpdates";
+import { SubscribeToUpdatesFormClient } from "./subscribe-to-updates-form-client";
+import { Prose } from "@/components/Prose/Prose";
 
 export function SubscribeToUpdatesForm() {
   return (
@@ -10,15 +10,17 @@ export function SubscribeToUpdatesForm() {
           Mailing List
         </h3>
         <p>
-          If you want to receive updates on new posts or when I cook another batch of hot sauce,
-          leave your email below.
+          If you want to receive updates on new posts or when I cook another
+          batch of hot sauce, leave your email below.
         </p>
         <SubscribeToUpdatesFormClient subscribeToUpdates={subscribeToUpdates} />
       </Prose>
     </section>
-  )
+  );
 }
 
 export function SubscribeToUpdatesFormWithoutText() {
-  return <SubscribeToUpdatesFormClient subscribeToUpdates={subscribeToUpdates} />
+  return (
+    <SubscribeToUpdatesFormClient subscribeToUpdates={subscribeToUpdates} />
+  );
 }

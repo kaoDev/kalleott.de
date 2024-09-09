@@ -5,21 +5,6 @@ const vercelEnv = process.env.VERCEL_ENV;
 const vercelDeploymentUrl = process.env.VERCEL_URL;
 const vercelProjectProductionUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL;
 
-console.log("##############");
-console.log("##############");
-console.log("##############");
-console.log("##############");
-console.log("##############");
-console.log("SERVER URL");
-console.log("VERCEL ENV", vercelEnv);
-console.log("VERCEL BRANCH URL", vercelDeploymentUrl);
-console.log("VERCEL PROJECT PRODUCTION URL", vercelProjectProductionUrl);
-console.log("##############");
-console.log("##############");
-console.log("##############");
-console.log("##############");
-console.log("##############");
-
 export function getEnvServerUrl() {
   if (!vercelEnv) {
     return "http://localhost:3000";
@@ -35,7 +20,7 @@ export function getEnvServerUrl() {
 const availableServerUrls = [
   vercelProjectProductionUrl ? `https://${vercelProjectProductionUrl}` : null,
   vercelDeploymentUrl ? `https://${vercelDeploymentUrl}` : null,
-  "https://kalleott.de",
+  "http://localhost:3000",
 ].filter((url) => url != null);
 
 const nextConfig: NextConfig = {

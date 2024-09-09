@@ -1,8 +1,12 @@
-import { unsubscribeFromUpdates } from '@/lib/unsubscribeFromUpdates'
-import { Prose } from './prose'
-import { UnsubscribeFromUpdatesFormClient } from './unsubscribe-from-updates-form-client'
+import { unsubscribeFromUpdates } from "@/lib/unsubscribeFromUpdates";
+import { UnsubscribeFromUpdatesFormClient } from "./unsubscribe-from-updates-form-client";
+import { Prose } from "@/components/Prose/Prose";
 
-export function UnSubscribeFromUpdatesForm({ prefilledEmail }: { prefilledEmail?: string }) {
+export function UnSubscribeFromUpdatesForm({
+  prefilledEmail,
+}: {
+  prefilledEmail?: string;
+}) {
   return (
     <section className="mb-32">
       <Prose>
@@ -16,5 +20,5 @@ export function UnSubscribeFromUpdatesForm({ prefilledEmail }: { prefilledEmail?
         />
       </Prose>
     </section>
-  )
+  );
 }
