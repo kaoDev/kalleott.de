@@ -16,7 +16,7 @@ export default function ReadabilityChecker() {
         </p>
         <p>
           The readability result is based on the WCAG 2.0 guidelines, which are
-          implemented in the
+          implemented in the{" "}
           <a href="https://color2k.com/#has-bad-contrast">color2k</a> library.
         </p>
       </Prose>
