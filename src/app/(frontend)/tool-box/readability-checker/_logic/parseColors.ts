@@ -9,7 +9,35 @@ const colorRegex = new RegExp(
   "gi",
 );
 
+// default format restored from local storage is "colorName colorHexValue"
+// e.g. "red #FF0000"
+const standardFormatRegex = new RegExp(
+  `((\\w|\\d)+)\\s+(#[0-9A-Fa-f]{6})`,
+  "gi",
+);
+
 export function parseColors(input: string): ColorInfo[] {
+  const lines = input.split("\n");
+
+  const cleanLines = lines.map((line) => line.trim());
+
+  const standardColors = cleanLines.flatMap((line) => {
+    const matches = line.match(standardFormatRegex);
+
+    if (matches) {
+      return matches.map((match) => {
+        const [name, hex] = match.split(" ").filter((item) => !!item);
+        return { name: name!, hex: hex! };
+      });
+    }
+
+    return [];
+  });
+
+  const parsedColorsWithNamesMap = new Map<string, string>(
+    standardColors.map(({ name, hex }) => [hex, name]),
+  );
+
   const cleanInput = input.replace(/<[^>]*>/g, "");
 
   const matches = cleanInput.match(colorRegex) ?? [];
@@ -21,9 +49,15 @@ export function parseColors(input: string): ColorInfo[] {
   ];
 
   const standardizedColorValues = uniqueColorValues.map((hex) => {
+    let name = parsedColorsWithNamesMap.get(hex);
+
+    if (!name) {
+      name = colorValuesToNamesMap[hex] ?? "";
+    }
+
     return {
       hex,
-      name: hex in colorValuesToNamesMap ? colorValuesToNamesMap[hex]! : "",
+      name,
     };
   });
 
