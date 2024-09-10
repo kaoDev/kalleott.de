@@ -1,13 +1,13 @@
-import React from 'react'
-import { RichText } from 'src/app/components/RichText'
-import type { Page } from '../../../payload-types'
-import { CMSLink } from '../../components/Link'
+import React from "react";
+import { RichText } from "src/app/components/RichText";
+import type { Page } from "../../../payload-types";
+import { CMSLink } from "../../components/Link";
 
-type Props = Extract<Page['layout'][0], { blockType: 'cta' }>
+type Props = Extract<Page["layout"][0], { blockType: "cta" }>;
 
 export const CallToActionBlock: React.FC<
   Props & {
-    id?: string
+    id?: string;
   }
 > = ({ links, richText }) => {
   return (
@@ -18,10 +18,10 @@ export const CallToActionBlock: React.FC<
         </div>
         <div className="flex flex-col gap-8">
           {(links || []).map(({ link }, i) => {
-            return <CMSLink key={i} size="lg" {...link} />
+            return <CMSLink key={i} size="lg" {...link} />;
           })}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

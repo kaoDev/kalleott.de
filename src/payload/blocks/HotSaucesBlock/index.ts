@@ -1,83 +1,83 @@
-import type { Block } from 'payload'
+import type { Block } from "payload";
 
 import {
   FixedToolbarFeature,
   HeadingFeature,
   InlineToolbarFeature,
   lexicalEditor,
-} from '@payloadcms/richtext-lexical'
+} from "@payloadcms/richtext-lexical";
 
 export const HotSauces: Block = {
-  slug: 'hotSauces',
+  slug: "hotSauces",
   fields: [
     {
-      name: 'introContent',
-      type: 'richText',
+      name: "introContent",
+      type: "richText",
       editor: lexicalEditor({
         features: ({ rootFeatures }) => {
           return [
             ...rootFeatures,
-            HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+            HeadingFeature({ enabledHeadingSizes: ["h1", "h2", "h3", "h4"] }),
             FixedToolbarFeature(),
             InlineToolbarFeature(),
-          ]
+          ];
         },
       }),
-      label: 'Intro Content',
+      label: "Intro Content",
     },
     {
-      name: 'populateBy',
-      type: 'select',
-      defaultValue: 'collection',
+      name: "populateBy",
+      type: "select",
+      defaultValue: "collection",
       options: [
         {
-          label: 'Collection',
-          value: 'collection',
+          label: "Collection",
+          value: "collection",
         },
         {
-          label: 'Individual Selection',
-          value: 'selection',
+          label: "Individual Selection",
+          value: "selection",
         },
       ],
     },
     {
-      name: 'relationTo',
-      type: 'select',
+      name: "relationTo",
+      type: "select",
       admin: {
-        condition: (_, siblingData) => siblingData.populateBy === 'collection',
+        condition: (_, siblingData) => siblingData.populateBy === "collection",
       },
-      defaultValue: 'hot-sauces',
-      label: 'Collections To Show',
+      defaultValue: "hot-sauces",
+      label: "Collections To Show",
       options: [
         {
-          label: 'Hot Sauces',
-          value: 'hot-sauces',
+          label: "Hot Sauces",
+          value: "hot-sauces",
         },
       ],
     },
     {
-      name: 'limit',
-      type: 'number',
+      name: "limit",
+      type: "number",
       admin: {
-        condition: (_, siblingData) => siblingData.populateBy === 'collection',
+        condition: (_, siblingData) => siblingData.populateBy === "collection",
         step: 1,
       },
       defaultValue: 20,
-      label: 'Limit',
+      label: "Limit",
     },
     {
-      name: 'selectedDocs',
-      type: 'relationship',
+      name: "selectedDocs",
+      type: "relationship",
       admin: {
-        condition: (_, siblingData) => siblingData.populateBy === 'selection',
+        condition: (_, siblingData) => siblingData.populateBy === "selection",
       },
       hasMany: true,
-      label: 'Selection',
-      relationTo: ['hot-sauces'],
+      label: "Selection",
+      relationTo: ["hot-sauces"],
     },
   ],
   labels: {
-    plural: 'Hot Sauces',
-    singular: 'Hot Sauce',
+    plural: "Hot Sauces",
+    singular: "Hot Sauce",
   },
-}
+};

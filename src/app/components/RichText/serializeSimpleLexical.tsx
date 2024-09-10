@@ -1,24 +1,24 @@
-import { DefaultNodeTypes } from '@payloadcms/richtext-lexical'
-import { Fragment, JSX } from 'react'
-import { serializeDefaultNodes } from './serializeDefaultNodes'
-import { serializeTextNodes } from './serializeTextNodes'
+import { DefaultNodeTypes } from "@payloadcms/richtext-lexical";
+import { Fragment, JSX } from "react";
+import { serializeDefaultNodes } from "./serializeDefaultNodes";
+import { serializeTextNodes } from "./serializeTextNodes";
 
-export type NodeTypes = DefaultNodeTypes
+export type NodeTypes = DefaultNodeTypes;
 
 type Props = {
-  nodes: NodeTypes[]
-}
+  nodes: NodeTypes[];
+};
 
 export function serializeSimpleLexical({ nodes }: Props): JSX.Element {
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
         if (node == null) {
-          return null
+          return null;
         }
 
-        if (node.type === 'text') {
-          return serializeTextNodes(node, index)
+        if (node.type === "text") {
+          return serializeTextNodes(node, index);
         }
 
         // NOTE: Hacky fix for
@@ -26,25 +26,28 @@ export function serializeSimpleLexical({ nodes }: Props): JSX.Element {
         // which does not return checked: false (only true - i.e. there is no prop for false)
         const serializedChildrenFn = (node: NodeTypes): JSX.Element | null => {
           if (node.children == null) {
-            return null
+            return null;
           } else {
-            if (node?.type === 'list' && node?.listType === 'check') {
+            if (node?.type === "list" && node?.listType === "check") {
               for (const item of node.children) {
-                if ('checked' in item) {
+                if ("checked" in item) {
                   if (!item?.checked) {
-                    item.checked = false
+                    item.checked = false;
                   }
                 }
               }
             }
-            return serializeSimpleLexical({ nodes: node.children as NodeTypes[] })
+            return serializeSimpleLexical({
+              nodes: node.children as NodeTypes[],
+            });
           }
-        }
+        };
 
-        const serializedChildren = 'children' in node ? serializedChildrenFn(node) : null
+        const serializedChildren =
+          "children" in node ? serializedChildrenFn(node) : null;
 
-        return serializeDefaultNodes(node, serializedChildren, index)
+        return serializeDefaultNodes(node, serializedChildren, index);
       })}
     </Fragment>
-  )
+  );
 }

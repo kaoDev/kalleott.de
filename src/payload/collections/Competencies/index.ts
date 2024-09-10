@@ -1,13 +1,13 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload";
 
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from 'src/payload/access/authenticatedOrPublished'
+import { authenticated } from "../../access/authenticated";
+import { authenticatedOrPublished } from "src/payload/access/authenticatedOrPublished";
 
 export const Competencies: CollectionConfig = {
-  slug: 'competencies',
+  slug: "competencies",
   admin: {
-    useAsTitle: 'title',
-    defaultColumns: ['title'],
+    useAsTitle: "title",
+    defaultColumns: ["title"],
   },
   access: {
     create: authenticated,
@@ -17,17 +17,17 @@ export const Competencies: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
+      name: "title",
+      type: "text",
       required: true,
     },
     {
-      name: 'categories',
-      type: 'relationship',
+      name: "categories",
+      type: "relationship",
       hasMany: true,
       required: true,
-      relationTo: 'categories',
+      relationTo: "categories",
     },
   ],
   timestamps: true,
-}
+};

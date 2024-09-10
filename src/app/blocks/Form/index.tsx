@@ -1,28 +1,28 @@
-import type { Form as FormType } from '@payloadcms/plugin-form-builder/types'
-import { RichText } from 'src/app/components/RichText'
-import { ClientFormBlock } from './ClientFormBlock'
+import type { Form as FormType } from "@payloadcms/plugin-form-builder/types";
+import { RichText } from "src/app/components/RichText";
+import { ClientFormBlock } from "./ClientFormBlock";
 
-export type Value = unknown
+export type Value = unknown;
 
 export interface Property {
-  [key: string]: Value
+  [key: string]: Value;
 }
 
 export interface Data {
-  [key: string]: Property | Property[]
+  [key: string]: Property | Property[];
 }
 
 export type FormBlockType = {
-  blockName?: string | null
-  blockType?: 'formBlock'
-  enableIntro: boolean
-  form: FormType
-  introContent?: FormType['confirmationMessage']
-}
+  blockName?: string | null;
+  blockType?: "formBlock";
+  enableIntro: boolean;
+  form: FormType;
+  introContent?: FormType["confirmationMessage"];
+};
 
 export const FormBlock: React.FC<
   {
-    id?: string
+    id?: string;
   } & FormBlockType
 > = (props) => {
   const {
@@ -30,14 +30,14 @@ export const FormBlock: React.FC<
     form: formFromProps,
     form: { confirmationMessage } = {},
     introContent,
-  } = props
+  } = props;
 
   const introText =
     enableIntro && introContent ? (
       <RichText className="mb-8" content={introContent} enableGutter={false} />
-    ) : null
+    ) : null;
 
-  const confirmationText = <RichText content={confirmationMessage} />
+  const confirmationText = <RichText content={confirmationMessage} />;
 
   return (
     <ClientFormBlock
@@ -45,5 +45,5 @@ export const FormBlock: React.FC<
       confirmationText={confirmationText}
       form={formFromProps}
     />
-  )
-}
+  );
+};

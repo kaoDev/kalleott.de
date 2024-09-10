@@ -1,10 +1,10 @@
-import { Post } from 'src/payload-types'
-import { PostPreview } from './post-preview'
+import { Post } from "src/payload-types";
+import { PostPreview } from "./post-preview";
 
 type Props = {
-  posts: Post[]
-  title?: string
-}
+  posts: Post[];
+  title?: string;
+};
 
 export function MoreStories({ posts, title }: Props) {
   const postsList = (
@@ -20,7 +20,7 @@ export function MoreStories({ posts, title }: Props) {
         />
       ))}
     </div>
-  )
+  );
 
   if (title) {
     return (
@@ -30,8 +30,8 @@ export function MoreStories({ posts, title }: Props) {
         </h2>
         {postsList}
       </section>
-    )
+    );
   }
 
-  return postsList
+  return postsList;
 }

@@ -1,14 +1,14 @@
-import Link from 'next/link'
-import { HotSauce } from 'src/payload-types'
-import { ImageMedia } from '@/components/Media/ImageMedia'
-import { cn } from '@/utilities'
+import Link from "next/link";
+import { HotSauce } from "src/payload-types";
+import { ImageMedia } from "@/components/Media/ImageMedia";
+import { cn } from "@/utilities";
 
 type Props = {
-  title: string
-  image: HotSauce['heroImage']
-  tagLine: string | null | undefined
-  slug: string
-}
+  title: string;
+  image: HotSauce["heroImage"];
+  tagLine: string | null | undefined;
+  slug: string;
+};
 
 export function SaucePreview({ title, image, tagLine, slug }: Props) {
   return (
@@ -18,15 +18,15 @@ export function SaucePreview({ title, image, tagLine, slug }: Props) {
           <ImageMedia
             fill
             resource={image}
-            className={cn('rounded-xl shadow-sm', {
-              'transition-shadow duration-200 hover:shadow-lg': slug,
+            className={cn("rounded-xl shadow-sm", {
+              "transition-shadow duration-200 hover:shadow-lg": slug,
             })}
-            size={'(max-width: 768px) 100vw, (max-width: 1368px) 50vw, 616px'}
+            size={"(max-width: 768px) 100vw, (max-width: 1368px) 50vw, 616px"}
           />
         </div>
       </div>
       <h3 className="blog-title mb-3 text-3xl leading-snug">{title}</h3>
       <p className="mb-4 text-lg leading-relaxed">{tagLine}</p>
     </Link>
-  )
+  );
 }

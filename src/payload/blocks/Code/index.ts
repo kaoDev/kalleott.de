@@ -1,56 +1,56 @@
-import type { Block } from 'payload'
+import type { Block } from "payload";
 
 export const Code: Block = {
-  slug: 'code',
+  slug: "code",
   fields: [
     {
-      name: 'language',
-      type: 'select',
-      defaultValue: 'typescript',
+      name: "language",
+      type: "select",
+      defaultValue: "typescript",
       options: [
         {
-          label: 'Typescript',
-          value: 'typescript',
+          label: "Typescript",
+          value: "typescript",
         },
         {
-          label: 'Javascript',
-          value: 'javascript',
+          label: "Javascript",
+          value: "javascript",
         },
         {
-          label: 'CSS',
-          value: 'css',
+          label: "CSS",
+          value: "css",
         },
         {
-          label: 'HTML',
-          value: 'html',
+          label: "HTML",
+          value: "html",
         },
         {
-          label: 'JSON',
-          value: 'json',
+          label: "JSON",
+          value: "json",
         },
         {
-          label: 'Gitignore',
-          value: 'gitignore',
+          label: "Gitignore",
+          value: "gitignore",
         },
         {
-          label: 'Shell',
-          value: 'shell',
+          label: "Shell",
+          value: "shell",
         },
         {
-          label: 'Config',
-          value: 'conf',
+          label: "Config",
+          value: "conf",
         },
         {
-          label: 'YAML',
-          value: 'yaml',
+          label: "YAML",
+          value: "yaml",
         },
       ],
     },
     {
-      name: 'code',
-      type: 'code',
+      name: "code",
+      type: "code",
       label: false,
       required: true,
     },
   ],
-}
+};

@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const postMetaData = z.object({
   title: z.string(),
@@ -14,10 +14,10 @@ export const postMetaData = z.object({
   draft: z.boolean().default(false),
   excerpt: z.string(),
   tags: z.string().optional(),
-})
+});
 
 export interface Post {
-  slug: string
-  content: string
-  metaData: z.infer<typeof postMetaData>
+  slug: string;
+  content: string;
+  metaData: z.infer<typeof postMetaData>;
 }

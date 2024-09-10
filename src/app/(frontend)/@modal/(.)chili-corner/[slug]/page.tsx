@@ -1,18 +1,20 @@
-import HotSauceDetails from '@/(frontend)/chili-corner/[slug]/page'
+import HotSauceDetails from "@/(frontend)/chili-corner/[slug]/page";
 import {
   DialogCloseBack,
   DialogContent,
   DialogNavBackOnClose,
   DialogOverlay,
-} from '@/components/ui/dialog'
+} from "@/components/ui/dialog";
 
 interface Props {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
-export default async function HotSauceDetailsModal({ params: { slug } }: Props) {
+export default async function HotSauceDetailsModal({
+  params: { slug },
+}: Props) {
   return (
     <DialogNavBackOnClose open>
       <DialogOverlay />
@@ -21,5 +23,5 @@ export default async function HotSauceDetailsModal({ params: { slug } }: Props) 
         <HotSauceDetails asDialog params={{ slug }} />
       </DialogContent>
     </DialogNavBackOnClose>
-  )
+  );
 }

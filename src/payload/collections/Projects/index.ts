@@ -1,13 +1,13 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload";
 
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from 'src/payload/access/authenticatedOrPublished'
+import { authenticated } from "../../access/authenticated";
+import { authenticatedOrPublished } from "src/payload/access/authenticatedOrPublished";
 
 export const Projects: CollectionConfig = {
-  slug: 'projects',
+  slug: "projects",
   admin: {
-    useAsTitle: 'title',
-    defaultColumns: ['title', 'startedAt', 'completedAt'],
+    useAsTitle: "title",
+    defaultColumns: ["title", "startedAt", "completedAt"],
   },
   access: {
     create: authenticated,
@@ -17,46 +17,46 @@ export const Projects: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
+      name: "title",
+      type: "text",
       required: true,
     },
     {
-      name: 'client',
-      type: 'text',
+      name: "client",
+      type: "text",
     },
     {
-      name: 'location',
-      type: 'text',
+      name: "location",
+      type: "text",
     },
     {
-      name: 'startedAt',
-      type: 'date',
+      name: "startedAt",
+      type: "date",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
     },
     {
-      name: 'completedAt',
-      type: 'date',
+      name: "completedAt",
+      type: "date",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
     },
     {
-      name: 'description',
-      type: 'richText',
+      name: "description",
+      type: "richText",
     },
-    { name: 'link', type: 'text' },
+    { name: "link", type: "text" },
     {
-      name: 'tags',
-      type: 'relationship',
+      name: "tags",
+      type: "relationship",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
       hasMany: true,
-      relationTo: 'competencies',
+      relationTo: "competencies",
     },
   ],
   timestamps: true,
-}
+};

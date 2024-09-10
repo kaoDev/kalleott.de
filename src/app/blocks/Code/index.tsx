@@ -1,20 +1,20 @@
-import React from 'react'
-import { Code } from 'bright'
+import React from "react";
+import { Code } from "bright";
 
 export type CodeBlockProps = {
-  code: string
-  language?: string
-  blockType: 'code'
-}
+  code: string;
+  language?: string;
+  blockType: "code";
+};
 
 type Props = CodeBlockProps & {
-  className?: string
-}
+  className?: string;
+};
 
 export const CodeBlock: React.FC<Props> = ({ className, code, language }) => {
   return (
-    <div className={[className, 'not-prose'].filter(Boolean).join(' ')}>
+    <div className={[className, "not-prose"].filter(Boolean).join(" ")}>
       <Code code={code} lang={language} className="text-sm" lineNumbers />
     </div>
-  )
-}
+  );
+};
