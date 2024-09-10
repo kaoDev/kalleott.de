@@ -49,7 +49,7 @@ export function ColorCheck() {
               <TableHead>Contrast</TableHead>
               <TableHead>AA</TableHead>
               <TableHead>AAA</TableHead>
-              <TableHead>Readable</TableHead>
+              <TableHead>Large text</TableHead>
               <TableHead>Decorative</TableHead>
             </TableRow>
           </TableHeader>
@@ -75,13 +75,14 @@ export function ColorCheck() {
                       className="flex items-center justify-center gap-1"
                       style={sampleBgStyle}
                     >
-                      <span>Readable?</span>
+                      <span className="text-sm">small</span>
+                      <span className="text-lg">large</span>
                       <div className="aspect-square w-5 bg-current" />
                     </TableCell>
                     <TableCell>{readability.contrast}</TableCell>
                     <TableCell>{readability.aa ? "✅" : "❌"}</TableCell>
                     <TableCell>{readability.aaa ? "✅" : "❌"}</TableCell>
-                    <TableCell>{readability.readable ? "✅" : "❌"}</TableCell>
+                    <TableCell>{readability.largeText ? "✅" : "❌"}</TableCell>
                     <TableCell>
                       {readability.decorative ? "✅" : "❌"}
                     </TableCell>

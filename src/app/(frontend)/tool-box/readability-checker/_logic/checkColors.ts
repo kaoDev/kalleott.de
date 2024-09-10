@@ -24,7 +24,7 @@ export function checkContrastRatios(
         contrast,
         aa: !badAA,
         aaa: !badAAA,
-        readable: !badReadability,
+        largeText: !badReadability,
         decorative: !badAsDecorative,
       };
     });

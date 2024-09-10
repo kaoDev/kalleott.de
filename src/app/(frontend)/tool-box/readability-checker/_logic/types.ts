@@ -10,7 +10,7 @@ export interface ReadabilityCheck {
     contrast: string;
     aa: boolean;
     aaa: boolean;
-    readable: boolean;
+    largeText: boolean;
     decorative: boolean;
   }[];
 }

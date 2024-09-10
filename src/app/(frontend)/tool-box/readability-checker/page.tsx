@@ -22,9 +22,18 @@ export default function ReadabilityChecker() {
           different sets of colors to ensure they meet accessibility standards.
         </p>
         <p>
-          The readability result is based on the WCAG 2.0 guidelines, which are
-          implemented in the{" "}
-          <a href="https://color2k.com/#has-bad-contrast">color2k</a> library.
+          The readability result is based on the{" "}
+          <a
+            href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
+            target="_blank"
+          >
+            WCAG 2.0 guidelines
+          </a>
+          , which are implemented in the{" "}
+          <a href="https://color2k.com/#has-bad-contrast" target="_blank">
+            color2k
+          </a>{" "}
+          library.
         </p>
       </Prose>
       <ReadabilityCheckerClient />
