@@ -1,11 +1,10 @@
+import configPromise from "@payload-config";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 import jwt from "jsonwebtoken";
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
-import { z } from "zod";
 
 const payloadToken = "payload-token";
-
-const payloadSecret = z.string().parse(process.env.PAYLOAD_SECRET);
 
 export async function GET(
   req: Request & {
@@ -28,7 +27,9 @@ export async function GET(
     new Response("You are not allowed to preview this page", { status: 403 });
   }
 
-  const user = jwt.verify(token, payloadSecret);
+  const payload = await getPayloadHMR({ config: configPromise });
+
+  const user = jwt.verify(token, payload.secret);
 
   if (!user) {
     draftMode().disable();

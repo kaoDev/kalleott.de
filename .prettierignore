@@ -1,2 +1,2 @@
 pnpm-lock.yaml
-importMap.js
+src/app/(payload)/admin/importMap.js
