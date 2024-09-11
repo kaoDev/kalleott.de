@@ -3,7 +3,6 @@ import { getPayloadHMR } from "@payloadcms/next/utilities";
 import { Container } from "./_components/container";
 import { HeroPost } from "./_components/hero-post";
 import { Intro } from "./_components/intro";
-import Link from "next/link";
 import { ToolBox } from "./_components/ToolBox";
 import { Prose } from "@/components/Prose/Prose";
 
