@@ -45,7 +45,7 @@ export async function CoverImage({ title, src, slug, small }: Props) {
       size={
         small
           ? "(max-width: 768px) 100vw, (max-width: 1368px) 50vw, 616px"
-          : "(max-width: 1368px) 100vw, 1368px"
+          : "(max-width: 672px) 100vw, 672px"
       }
     />
   );
