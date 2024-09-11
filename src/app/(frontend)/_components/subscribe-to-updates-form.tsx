@@ -10,8 +10,7 @@ export function SubscribeToUpdatesForm() {
           Mailing List
         </h3>
         <p>
-          If you want to receive updates on new posts or when I cook another
-          batch of hot sauce, leave your email below.
+          If you want to receive updates on new posts, leave your email below.
         </p>
         <SubscribeToUpdatesFormClient subscribeToUpdates={subscribeToUpdates} />
       </Prose>

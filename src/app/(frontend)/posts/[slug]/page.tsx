@@ -11,6 +11,7 @@ import { RichText } from "src/app/components/RichText";
 import { PostHero } from "../../../heros/PostHero";
 import { generateMeta } from "../../../utilities/generateMeta";
 import PageClient from "./page.client";
+import { SubscribeToUpdatesForm } from "@/(frontend)/_components/subscribe-to-updates-form";
 
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({ config: configPromise });
@@ -61,6 +62,9 @@ export default async function Post({ params: { slug } }: Props) {
           className="mt-12"
           docs={post.relatedPosts?.filter((post) => typeof post === "object")}
         />
+        <div className="mt-12">
+          <SubscribeToUpdatesForm />
+        </div>
       </div>
     </article>
   );
