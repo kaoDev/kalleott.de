@@ -87,8 +87,12 @@ export const Posts: CollectionConfig = {
             {
               name: "content",
               type: "richText",
-              editor: async ({ config, isRoot }) => {
-                const editor = await postsEditorConfig({ config, isRoot });
+              editor: async ({ config, isRoot, parentIsLocalized }) => {
+                const editor = await postsEditorConfig({
+                  config,
+                  isRoot,
+                  parentIsLocalized,
+                });
 
                 editor.CellComponent;
 

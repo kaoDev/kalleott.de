@@ -1,5 +1,4 @@
 import { withPayload } from "@payloadcms/next/withPayload";
-import { NextConfig } from "next";
 
 const vercelEnv = process.env.VERCEL_ENV;
 const vercelDeploymentUrl = process.env.VERCEL_URL;
@@ -23,7 +22,10 @@ const availableServerUrls = [
   "http://localhost:3000",
 ].filter((url) => url != null);
 
-const nextConfig: NextConfig = {
+/**
+ * @type {import("next").NextConfig}
+ */
+const nextConfig = {
   images: {
     remotePatterns: [
       ...availableServerUrls.map((item) => {
@@ -31,7 +33,7 @@ const nextConfig: NextConfig = {
 
         return {
           hostname: url.hostname,
-          protocol: url.protocol.replace(":", "") as "http" | "https",
+          protocol: url.protocol.replace(":", ""),
         };
       }),
     ],
@@ -41,6 +43,10 @@ const nextConfig: NextConfig = {
     PAYLOAD_PUBLIC_SERVER_URL: getEnvServerUrl(),
   },
   reactStrictMode: true,
+  experimental: {
+    ppr: true,
+    reactCompiler: true,
+  },
 };
 
 export default withPayload(nextConfig);
