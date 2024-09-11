@@ -13,6 +13,9 @@ import { generateMeta } from "../../../utilities/generateMeta";
 import PageClient from "./page.client";
 import { SubscribeToUpdatesForm } from "@/(frontend)/_components/subscribe-to-updates-form";
 
+export const revalidate = 600;
+export const dynamic = "force-static";
+
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({ config: configPromise });
   const posts = await payload.find({
