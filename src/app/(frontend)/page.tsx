@@ -7,6 +7,9 @@ import Link from "next/link";
 import { ToolBox } from "./_components/ToolBox";
 import { Prose } from "@/components/Prose/Prose";
 
+export const dynamic = "force-static";
+export const revalidate = 600;
+
 export default async function Index() {
   return (
     <Container>

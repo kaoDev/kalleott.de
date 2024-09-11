@@ -51,8 +51,11 @@ export default async function Page({ params: { pageNumber = 2 } }) {
 }
 
 export function generateMetadata({ params: { pageNumber = 2 } }): Metadata {
+  const title =
+    pageNumber > 1 ? `Kalle's Blog Page ${pageNumber}` : "Kalle's Blog";
+
   return {
-    title: `Payload Website Template Posts Page ${pageNumber}`,
+    title,
   };
 }
 

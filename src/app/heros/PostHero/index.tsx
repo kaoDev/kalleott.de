@@ -8,13 +8,7 @@ import { Media } from "../../components/Media";
 export const PostHero: React.FC<{
   post: Post;
 }> = ({ post }) => {
-  const {
-    categories,
-    meta: { image: metaImage } = {},
-    populatedAuthors,
-    publishedAt,
-    title,
-  } = post;
+  const { categories, populatedAuthors, publishedAt, title, hero } = post;
 
   return (
     <div className="relative -mt-[11.5rem] flex items-end">
@@ -86,11 +80,11 @@ export const PostHero: React.FC<{
         </div>
       </div>
       <div className="min-h-[80vh] select-none">
-        {metaImage && typeof metaImage !== "string" && (
+        {hero && typeof hero !== "string" && (
           <Media
             fill
             imgClassName="-z-10 object-cover hero-media-content"
-            resource={metaImage}
+            resource={hero}
           />
         )}
         <div className="pointer-events-none absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-black to-transparent" />

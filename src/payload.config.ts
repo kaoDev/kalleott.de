@@ -39,9 +39,7 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  return doc?.title
-    ? `${doc.title} | Payload Website Template`
-    : "Payload Website Template";
+  return doc?.title ? `${doc.title}` : "";
 };
 
 const serverUrl = z.string().parse(process.env.NEXT_PUBLIC_SERVER_URL);
