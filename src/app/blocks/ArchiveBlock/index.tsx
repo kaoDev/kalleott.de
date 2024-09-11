@@ -35,9 +35,18 @@ export const ArchiveBlock: React.FC<
               categories: {
                 in: flattenedCategories,
               },
+              _status: {
+                equals: "published",
+              },
             },
           }
-        : {}),
+        : {
+            where: {
+              _status: {
+                equals: "published",
+              },
+            },
+          }),
     });
 
     posts = fetchedPosts.docs;

@@ -34,6 +34,7 @@ async function RecentPost() {
     where: {
       publishedAt: {
         greater_than_equal: minRecentDate,
+        equals: "published",
       },
     },
   });

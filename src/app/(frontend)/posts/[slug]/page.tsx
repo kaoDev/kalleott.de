@@ -24,6 +24,11 @@ export async function generateStaticParams() {
     limit: 1000,
     overrideAccess: false,
     sort: "-publishedAt",
+    where: {
+      _status: {
+        equals: "published",
+      },
+    },
   });
 
   return posts.docs?.map(({ slug }) => slug);

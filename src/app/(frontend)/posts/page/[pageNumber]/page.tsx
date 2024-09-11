@@ -20,6 +20,11 @@ export default async function Page({ params: { pageNumber = 2 } }) {
     limit: 12,
     sort: "-publishedAt",
     page: pageNumber,
+    where: {
+      _status: {
+        equals: "published",
+      },
+    },
   });
 
   return (
@@ -66,6 +71,11 @@ export async function generateStaticParams() {
     depth: 0,
     limit: 10,
     sort: "-publishedAt",
+    where: {
+      _status: {
+        equals: "published",
+      },
+    },
   });
 
   const pages = [];
