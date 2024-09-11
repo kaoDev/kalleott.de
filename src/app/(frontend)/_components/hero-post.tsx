@@ -9,19 +9,27 @@ type Props = {
   date: string;
   excerpt: string | null | undefined;
   slug: string;
+  className?: string;
 };
 
-export function HeroPost({ title, coverImage, date, excerpt, slug }: Props) {
+export function HeroPost({
+  title,
+  coverImage,
+  date,
+  excerpt,
+  slug,
+  className,
+}: Props) {
   return (
-    <section>
+    <section className={className}>
       <div className="mb-8 md:mb-16">
         {coverImage ? (
           <CoverImage title={title} src={coverImage} slug={slug} />
         ) : null}
       </div>
-      <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
+      <div className="mb-10 md:mb-16 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
-          <h2 className="blog-title mb-4 text-4xl leading-tight lg:text-5xl">
+          <h2 className="blog-title mb-4 mt-0 text-4xl leading-tight lg:text-5xl">
             <Link href={`/posts/${slug}`} className="hover:underline">
               {title}
             </Link>

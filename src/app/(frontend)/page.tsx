@@ -49,17 +49,15 @@ async function RecentPost() {
     <section className="mx-auto max-w-5xl">
       <Prose className="pb-6">
         <h2>Latest post</h2>
-        <HeroPost
-          title={heroPost.title}
-          coverImage={heroPost.hero}
-          date={heroPost.createdAt}
-          slug={heroPost.slug}
-          excerpt={heroPost.meta?.description}
-        />
-        <p>
-          Read more in my <Link href="/posts">Blog</Link>
-        </p>
       </Prose>
+      <HeroPost
+        className="mx-auto max-w-2xl"
+        title={heroPost.title}
+        coverImage={heroPost.hero}
+        date={heroPost.createdAt}
+        slug={heroPost.slug}
+        excerpt={heroPost.meta?.description}
+      />
     </section>
   );
 }
