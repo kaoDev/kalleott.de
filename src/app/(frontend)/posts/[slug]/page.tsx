@@ -65,7 +65,7 @@ export default async function Post({ params: { slug } }: Props) {
           className="mt-12"
           docs={post.relatedPosts?.filter((post) => typeof post === "object")}
         />
-        <div className="mt-12">
+        <div className="container mt-12">
           <SubscribeToUpdatesForm />
         </div>
       </div>
