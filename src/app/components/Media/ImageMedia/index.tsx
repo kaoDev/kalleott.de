@@ -70,7 +70,7 @@ export function ImageMedia(props: MediaProps) {
         }
       }}
       priority={priority}
-      quality={90}
+      quality={70}
       sizes={sizes}
       src={src}
       width={!fill ? width : undefined}
