@@ -85,6 +85,7 @@ export const PostHero: React.FC<{
             fill
             imgClassName="-z-10 object-cover hero-media-content"
             resource={hero}
+            priority
           />
         )}
         <div className="pointer-events-none absolute bottom-0 left-0 h-1/2 w-full bg-gradient-to-t from-black to-transparent" />
