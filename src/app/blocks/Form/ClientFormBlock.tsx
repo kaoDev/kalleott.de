@@ -1,5 +1,6 @@
 "use client";
 
+import type { SimpleRichTextContent } from "@/components/RichText/SimpleRichText";
 import type {
 	FormFieldBlock,
 	Form as FormType,
@@ -70,7 +71,9 @@ function renderFormField<T extends FieldValues>(
 				/>
 			);
 		case "message":
-			return <fields.message {...field} {...formMethods} />;
+			return (
+				<fields.message message={field.message as SimpleRichTextContent} />
+			);
 		case "select":
 			return (
 				<fields.select
