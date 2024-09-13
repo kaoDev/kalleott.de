@@ -4,23 +4,23 @@ import type { LinkAppearances } from "./link";
 import { link } from "./link";
 
 type LinkGroupType = (options?: {
-  appearances?: LinkAppearances[] | false;
-  overrides?: Partial<ArrayField>;
+	appearances?: LinkAppearances[] | false;
+	overrides?: Partial<ArrayField>;
 }) => Field;
 
 export const linkGroup: LinkGroupType = ({
-  appearances,
-  overrides = {},
+	appearances,
+	overrides = {},
 } = {}) => {
-  const generatedLinkGroup: Field = {
-    name: "links",
-    type: "array",
-    fields: [
-      link({
-        appearances,
-      }),
-    ],
-  };
+	const generatedLinkGroup: Field = {
+		name: "links",
+		type: "array",
+		fields: [
+			link({
+				appearances,
+			}),
+		],
+	};
 
-  return deepMerge(generatedLinkGroup, overrides);
+	return deepMerge(generatedLinkGroup, overrides);
 };

@@ -1,9 +1,9 @@
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
 } from "@/(frontend)/_components/ui/carousel";
 import { FormBlock } from "@/blocks/Form";
 import { ImageMedia } from "@/components/Media/ImageMedia";
@@ -15,102 +15,107 @@ import configPromise from "@payload-config";
 import { getPayloadHMR } from "@payloadcms/next/utilities";
 import type { Form as FormType } from "@payloadcms/plugin-form-builder/types";
 import { notFound } from "next/navigation";
-import { HotSauceOrderForm } from "src/payload-types";
+import type { HotSauceOrderForm } from "src/payload-types";
 
-interface Props {
-  params: {
-    slug: string;
-  };
-  asDialog?: boolean;
+interface PageProps {
+	params: {
+		slug: string;
+	};
 }
 
-export default async function HotSauceDetails({
-  params: { slug },
-  asDialog,
-}: Props) {
-  const payload = await getPayloadHMR({ config: configPromise });
+export default function HotSauceDetailsPage({ params: { slug } }: PageProps) {
+	return <HotSauceDetails params={{ slug }} />;
+}
 
-  const sauceResult = await payload.find({
-    collection: "hot-sauces",
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-    depth: 1,
-  });
+interface Props extends PageProps {
+	asDialog?: boolean;
+}
 
-  const sauce = sauceResult.docs[0];
+export async function HotSauceDetails({ params: { slug }, asDialog }: Props) {
+	const payload = await getPayloadHMR({ config: configPromise });
 
-  if (!sauce) {
-    notFound();
-  }
+	const sauceResult = await payload.find({
+		collection: "hot-sauces",
+		where: {
+			slug: {
+				equals: slug,
+			},
+		},
+		depth: 1,
+	});
 
-  const requestFormConfig: HotSauceOrderForm = await getCachedGlobal(
-    "hot-sauce-order-form",
-    1,
-  )();
+	const sauce = sauceResult.docs[0];
 
-  const requestHotSauceForm = requestFormConfig.form?.[0];
+	if (!sauce) {
+		notFound();
+	}
 
-  const sauceNameElement = asDialog ? (
-    <DialogTitle asChild>
-      <h1>{sauce.name}</h1>
-    </DialogTitle>
-  ) : (
-    <h1>sauce.name</h1>
-  );
+	const requestFormConfig: HotSauceOrderForm = await getCachedGlobal(
+		"hot-sauce-order-form",
+		1,
+	)();
 
-  const sauceDescriptionElement = asDialog ? (
-    <DialogDescription asChild>
-      <p>{sauce.tagLine}</p>
-    </DialogDescription>
-  ) : (
-    <p>{sauce.tagLine}</p>
-  );
+	const requestHotSauceForm = requestFormConfig.form?.[0];
 
-  return (
-    <>
-      <Prose>
-        {sauceNameElement}
-        {sauceDescriptionElement}
-        {sauce.gallery && sauce.gallery.length > 0 ? (
-          <Carousel>
-            <CarouselContent>
-              {sauce.gallery.map((image, index) => (
-                <CarouselItem
-                  key={index}
-                  className="relative flex items-center"
-                >
-                  <ImageMedia
-                    resource={image["gallery-image"]}
-                    size="(max-width: 42rem) 100vw, 42rem"
-                    className=""
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
-        ) : (
-          <ImageMedia resource={sauce.heroImage} />
-        )}
-        <RichText content={sauce.description} />
-        <h2>Ingredients</h2>
-        <ul>
-          {sauce.ingredients?.map((ingredient, index) => (
-            <li key={index}>{ingredient}</li>
-          ))}
-        </ul>
-        {requestHotSauceForm ? (
-          <FormBlock
-            form={requestHotSauceForm.form as unknown as FormType}
-            enableIntro
-          />
-        ) : null}
-      </Prose>
-      <div className="p-20" />
-    </>
-  );
+	const sauceNameElement = asDialog ? (
+		<DialogTitle asChild>
+			<h1>{sauce.name}</h1>
+		</DialogTitle>
+	) : (
+		<h1>sauce.name</h1>
+	);
+
+	const sauceDescriptionElement = asDialog ? (
+		<DialogDescription asChild>
+			<p>{sauce.tagLine}</p>
+		</DialogDescription>
+	) : (
+		<p>{sauce.tagLine}</p>
+	);
+
+	return (
+		<>
+			<Prose>
+				{sauceNameElement}
+				{sauceDescriptionElement}
+				{sauce.gallery && sauce.gallery.length > 0 ? (
+					<Carousel>
+						<CarouselContent>
+							{sauce.gallery.map((image, index) => (
+								<CarouselItem
+									key={`${image.id}-${index}`}
+									className="relative flex items-center"
+								>
+									<ImageMedia
+										resource={image["gallery-image"]}
+										size="(max-width: 42rem) 100vw, 42rem"
+										className=""
+									/>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+						<CarouselPrevious />
+						<CarouselNext />
+					</Carousel>
+				) : (
+					<ImageMedia resource={sauce.heroImage} />
+				)}
+				<RichText content={sauce.description} />
+				<h2>Ingredients</h2>
+				<ul>
+					{sauce.ingredients?.map((ingredient, index) => (
+						// biome-ignore lint: the position is static so index as key is fine
+						<li key={index}>{ingredient}</li>
+					))}
+				</ul>
+				{requestHotSauceForm ? (
+					<FormBlock
+						form={requestHotSauceForm.form as unknown as FormType}
+						enableIntro
+					/>
+				) : null}
+			</Prose>
+			<div className="p-20" />
+		</>
+	);
 }

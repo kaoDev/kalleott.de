@@ -5,45 +5,45 @@ import { ClientFormBlock } from "./ClientFormBlock";
 export type Value = unknown;
 
 export interface Property {
-  [key: string]: Value;
+	[key: string]: Value;
 }
 
 export interface Data {
-  [key: string]: Property | Property[];
+	[key: string]: Property | Property[];
 }
 
 export type FormBlockType = {
-  blockName?: string | null;
-  blockType?: "formBlock";
-  enableIntro: boolean;
-  form: FormType;
-  introContent?: FormType["confirmationMessage"];
+	blockName?: string | null;
+	blockType?: "formBlock";
+	enableIntro: boolean;
+	form: FormType;
+	introContent?: FormType["confirmationMessage"];
 };
 
 export const FormBlock: React.FC<
-  {
-    id?: string;
-  } & FormBlockType
+	{
+		id?: string;
+	} & FormBlockType
 > = (props) => {
-  const {
-    enableIntro,
-    form: formFromProps,
-    form: { confirmationMessage } = {},
-    introContent,
-  } = props;
+	const {
+		enableIntro,
+		form: formFromProps,
+		form: { confirmationMessage } = {},
+		introContent,
+	} = props;
 
-  const introText =
-    enableIntro && introContent ? (
-      <RichText className="mb-8" content={introContent} enableGutter={false} />
-    ) : null;
+	const introText =
+		enableIntro && introContent ? (
+			<RichText className="mb-8" content={introContent} enableGutter={false} />
+		) : null;
 
-  const confirmationText = <RichText content={confirmationMessage} />;
+	const confirmationText = <RichText content={confirmationMessage} />;
 
-  return (
-    <ClientFormBlock
-      introText={introText}
-      confirmationText={confirmationText}
-      form={formFromProps}
-    />
-  );
+	return (
+		<ClientFormBlock
+			introText={introText}
+			confirmationText={confirmationText}
+			form={formFromProps}
+		/>
+	);
 };

@@ -1,47 +1,52 @@
 import { cn } from "@/utilities/cn";
-import React from "react";
-
-import { serializeSimpleLexical } from "./serializeSimpleLexical";
 import { Prose } from "../Prose/Prose";
+import {
+	type NodeTypes,
+	serializeSimpleLexical,
+} from "./serializeSimpleLexical";
+
+export interface SimpleRichTextContent {
+	root: { children: NodeTypes[] };
+}
 
 type Props = {
-  className?: string;
-  content: Record<string, any>;
-  enableGutter?: boolean;
-  enableProse?: boolean;
+	className?: string;
+	content: SimpleRichTextContent;
+	enableGutter?: boolean;
+	enableProse?: boolean;
 };
 
 export function SimpleRichText({
-  className,
-  content,
-  enableGutter = true,
-  enableProse = true,
+	className,
+	content,
+	enableGutter = true,
+	enableProse = true,
 }: Props) {
-  if (!content) {
-    return null;
-  }
+	if (!content) {
+		return null;
+	}
 
-  const classNames = cn(
-    {
-      "container ": enableGutter,
-      "max-w-none": !enableGutter,
-    },
-    className,
-  );
+	const classNames = cn(
+		{
+			"container ": enableGutter,
+			"max-w-none": !enableGutter,
+		},
+		className,
+	);
 
-  const text = (
-    <>
-      {content &&
-        !Array.isArray(content) &&
-        typeof content === "object" &&
-        "root" in content &&
-        serializeSimpleLexical({ nodes: content?.root?.children })}
-    </>
-  );
+	const text = (
+		<>
+			{content &&
+				!Array.isArray(content) &&
+				typeof content === "object" &&
+				"root" in content &&
+				serializeSimpleLexical({ nodes: content?.root?.children })}
+		</>
+	);
 
-  return enableProse ? (
-    <Prose className={classNames}>{text}</Prose>
-  ) : (
-    <div className={classNames}>{text}</div>
-  );
+	return enableProse ? (
+		<Prose className={classNames}>{text}</Prose>
+	) : (
+		<div className={classNames}>{text}</div>
+	);
 }

@@ -3,8 +3,8 @@
 
 import type { ElementFormatType, TextFormatType } from "lexical";
 import type {
-  TextDetailType,
-  TextModeType,
+	TextDetailType,
+	TextModeType,
 } from "lexical/nodes/LexicalTextNode";
 
 /**
@@ -41,14 +41,14 @@ export const IS_SUPERSCRIPT = 1 << 6;
 export const IS_HIGHLIGHT = 1 << 7;
 
 export const IS_ALL_FORMATTING =
-  IS_BOLD |
-  IS_ITALIC |
-  IS_STRIKETHROUGH |
-  IS_UNDERLINE |
-  IS_CODE |
-  IS_SUBSCRIPT |
-  IS_SUPERSCRIPT |
-  IS_HIGHLIGHT;
+	IS_BOLD |
+	IS_ITALIC |
+	IS_STRIKETHROUGH |
+	IS_UNDERLINE |
+	IS_CODE |
+	IS_SUBSCRIPT |
+	IS_SUPERSCRIPT |
+	IS_HIGHLIGHT;
 
 // Text node details
 export const IS_DIRECTIONLESS = 1;
@@ -73,59 +73,59 @@ export const DOUBLE_LINE_BREAK = "\n\n";
 
 const RTL = "\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC";
 const LTR =
-  "A-Za-z\u00C0-\u00D6\u00D8-\u00F6" +
-  "\u00F8-\u02B8\u0300-\u0590\u0800-\u1FFF\u200E\u2C00-\uFB1C" +
-  "\uFE00-\uFE6F\uFEFD-\uFFFF";
+	"A-Za-z\u00C0-\u00D6\u00D8-\u00F6" +
+	"\u00F8-\u02B8\u0300-\u0590\u0800-\u1FFF\u200E\u2C00-\uFB1C" +
+	"\uFE00-\uFE6F\uFEFD-\uFFFF";
 
-export const RTL_REGEX = new RegExp("^[^" + LTR + "]*[" + RTL + "]");
+export const RTL_REGEX = new RegExp(`^[^${LTR}]*[${RTL}]`);
 
-export const LTR_REGEX = new RegExp("^[^" + RTL + "]*[" + LTR + "]");
+export const LTR_REGEX = new RegExp(`^[^${RTL}]*[${LTR}]`);
 
 export const TEXT_TYPE_TO_FORMAT: Record<TextFormatType | string, number> = {
-  bold: IS_BOLD,
-  code: IS_CODE,
-  highlight: IS_HIGHLIGHT,
-  italic: IS_ITALIC,
-  strikethrough: IS_STRIKETHROUGH,
-  subscript: IS_SUBSCRIPT,
-  superscript: IS_SUPERSCRIPT,
-  underline: IS_UNDERLINE,
+	bold: IS_BOLD,
+	code: IS_CODE,
+	highlight: IS_HIGHLIGHT,
+	italic: IS_ITALIC,
+	strikethrough: IS_STRIKETHROUGH,
+	subscript: IS_SUBSCRIPT,
+	superscript: IS_SUPERSCRIPT,
+	underline: IS_UNDERLINE,
 };
 
 export const DETAIL_TYPE_TO_DETAIL: Record<TextDetailType | string, number> = {
-  directionless: IS_DIRECTIONLESS,
-  unmergeable: IS_UNMERGEABLE,
+	directionless: IS_DIRECTIONLESS,
+	unmergeable: IS_UNMERGEABLE,
 };
 
 export const ELEMENT_TYPE_TO_FORMAT: Record<
-  Exclude<ElementFormatType, "">,
-  number
+	Exclude<ElementFormatType, "">,
+	number
 > = {
-  center: IS_ALIGN_CENTER,
-  end: IS_ALIGN_END,
-  justify: IS_ALIGN_JUSTIFY,
-  left: IS_ALIGN_LEFT,
-  right: IS_ALIGN_RIGHT,
-  start: IS_ALIGN_START,
+	center: IS_ALIGN_CENTER,
+	end: IS_ALIGN_END,
+	justify: IS_ALIGN_JUSTIFY,
+	left: IS_ALIGN_LEFT,
+	right: IS_ALIGN_RIGHT,
+	start: IS_ALIGN_START,
 };
 
 export const ELEMENT_FORMAT_TO_TYPE: Record<number, ElementFormatType> = {
-  [IS_ALIGN_CENTER]: "center",
-  [IS_ALIGN_END]: "end",
-  [IS_ALIGN_JUSTIFY]: "justify",
-  [IS_ALIGN_LEFT]: "left",
-  [IS_ALIGN_RIGHT]: "right",
-  [IS_ALIGN_START]: "start",
+	[IS_ALIGN_CENTER]: "center",
+	[IS_ALIGN_END]: "end",
+	[IS_ALIGN_JUSTIFY]: "justify",
+	[IS_ALIGN_LEFT]: "left",
+	[IS_ALIGN_RIGHT]: "right",
+	[IS_ALIGN_START]: "start",
 };
 
 export const TEXT_MODE_TO_TYPE: Record<TextModeType, 0 | 1 | 2> = {
-  normal: IS_NORMAL,
-  segmented: IS_SEGMENTED,
-  token: IS_TOKEN,
+	normal: IS_NORMAL,
+	segmented: IS_SEGMENTED,
+	token: IS_TOKEN,
 };
 
 export const TEXT_TYPE_TO_MODE: Record<number, TextModeType> = {
-  [IS_NORMAL]: "normal",
-  [IS_SEGMENTED]: "segmented",
-  [IS_TOKEN]: "token",
+	[IS_NORMAL]: "normal",
+	[IS_SEGMENTED]: "segmented",
+	[IS_TOKEN]: "token",
 };
