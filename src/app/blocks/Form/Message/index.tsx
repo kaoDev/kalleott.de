@@ -1,11 +1,17 @@
-import { SimpleRichText } from "@/components/RichText/SimpleRichText";
-import type { MessageField } from "@payloadcms/plugin-form-builder/types";
+import {
+	SimpleRichText,
+	type SimpleRichTextContent,
+} from "@/components/RichText/SimpleRichText";
 import { Width } from "../Width";
 
-export const Message: React.FC<MessageField> = ({ message }) => {
+export interface Props {
+	message: SimpleRichTextContent;
+}
+
+export function Message({ message }: Props) {
 	return (
 		<Width className="my-12" width="100">
 			<SimpleRichText content={message} />
 		</Width>
 	);
-};
+}
