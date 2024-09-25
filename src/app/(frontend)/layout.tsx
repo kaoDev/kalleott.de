@@ -28,6 +28,18 @@ export default async function RootLayout({
 			suppressHydrationWarning
 		>
 			<head>
+				<link
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="/apple-touch-icon.png"
+				/>
+				<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+				<link rel="icon" type="image/x-icon" href="favicon.ico" />
+				<link rel="manifest" href="/site.webmanifest" />
+				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#18181b" />
+				<meta name="msapplication-TileColor" content="#18181b" />
+				<meta name="theme-color" content="#ffffff" />
+
 				{["light", "dark"].map((theme) => (
 					<Fragment key={theme}>
 						<link
@@ -37,10 +49,18 @@ export default async function RootLayout({
 							type="image/svg+xml"
 						/>
 						<link
-							rel="apple-touch-icon"
-							href={`/images/favicon/${theme}/apple-touch-icon.png`}
+							rel="icon"
+							type="image/png"
+							sizes="32x32"
+							href={`/images/favicon/${theme}/favicon-32x32.png`}
 							media={`(prefers-color-scheme: ${theme})`}
-							type="image/svg+xml"
+						/>
+						<link
+							rel="icon"
+							type="image/png"
+							sizes="16x16"
+							href={`/images/favicon/${theme}/favicon-16x16.png`}
+							media={`(prefers-color-scheme: ${theme})`}
 						/>
 					</Fragment>
 				))}
