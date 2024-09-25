@@ -25,7 +25,7 @@ export async function PageFooter() {
 			className="border-t border-border bg-black text-white dark:bg-card"
 			data-theme="dark"
 		>
-			<div className="container flex flex-col gap-8 py-8 md:flex-row md:justify-between">
+			<div className="container flex flex-col gap-8 py-8 min-[870px]:flex-row min-[870px]:justify-between">
 				<div className="flex items-center gap-4">
 					<Logo />
 					{pageOwner ? (
@@ -36,9 +36,9 @@ export async function PageFooter() {
 					) : null}
 				</div>
 
-				<div className="flex flex-col-reverse items-start gap-4 md:flex-row md:items-center">
+				<div className="flex flex-col-reverse items-start gap-4 min-[870px]:flex-row min-[870px]:items-center">
 					<ThemeSelector />
-					<nav className="flex flex-col gap-4 md:flex-row">
+					<nav className="flex flex-col gap-4 min-[870px]:flex-row">
 						{navItems.map(({ link }, index) => {
 							return (
 								<CMSLink
