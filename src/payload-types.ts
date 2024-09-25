@@ -19,6 +19,7 @@ export interface Config {
 		"hot-sauces": HotSauce;
 		competencies: Competency;
 		projects: Project;
+		books: Book;
 		redirects: Redirect;
 		forms: Form;
 		"form-submissions": FormSubmission;
@@ -96,7 +97,7 @@ export interface Page {
 					id?: string | null;
 			  }[]
 			| null;
-		media?: number | Media | null;
+		media?: (number | null) | Media;
 	};
 	layout: (
 		| {
@@ -299,7 +300,7 @@ export interface Page {
 	)[];
 	meta?: {
 		title?: string | null;
-		image?: number | Media | null;
+		image?: (number | null) | Media;
 		description?: string | null;
 	};
 	publishedAt?: string | null;
@@ -418,7 +419,7 @@ export interface Category {
 export interface Post {
 	id: number;
 	title: string;
-	hero?: number | Media | null;
+	hero?: (number | null) | Media;
 	content: {
 		root: {
 			type: string;
@@ -438,7 +439,7 @@ export interface Post {
 	categories?: (number | Category)[] | null;
 	meta?: {
 		title?: string | null;
-		image?: number | Media | null;
+		image?: (number | null) | Media;
 		description?: string | null;
 	};
 	publishedAt?: string | null;
@@ -463,7 +464,7 @@ export interface User {
 	name?: string | null;
 	firstName?: string | null;
 	surName?: string | null;
-	picture?: number | Media | null;
+	picture?: (number | null) | Media;
 	owner?: boolean | null;
 	updatedAt: string;
 	createdAt: string;
@@ -730,6 +731,37 @@ export interface Project {
 	} | null;
 	link?: string | null;
 	tags?: (number | Competency)[] | null;
+	updatedAt: string;
+	createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "books".
+ */
+export interface Book {
+	id: number;
+	title: string;
+	image: number | Media;
+	link: string;
+	author: string;
+	summary: {
+		root: {
+			type: string;
+			children: {
+				type: string;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ("ltr" | "rtl") | null;
+			format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	};
+	category: number | Category;
+	readingDate: string;
+	priority: number;
 	updatedAt: string;
 	createdAt: string;
 }

@@ -58,7 +58,7 @@ export default async function Post({ params: { slug } }: Props) {
 			<div className="flex flex-col gap-4 pt-8">
 				<div className="container grid-rows-[1fr] lg:grid lg:grid-cols-[1fr_48rem_1fr]">
 					<RichText
-						className="col-span-3 col-start-1 grid-rows-[1fr] lg:grid lg:grid-cols-subgrid"
+						className="col-span-3 col-start-1 grid-rows-[1fr] lg:mx-0 lg:grid lg:grid-cols-subgrid"
 						content={post.content}
 						enableGutter={false}
 					/>

@@ -21,6 +21,7 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 import type { Page, Post } from "src/payload-types";
 import { z } from "zod";
+import { Books } from "./payload/collections/Books";
 import { Categories } from "./payload/collections/Categories";
 import { Competencies } from "./payload/collections/Competencies";
 import { HotSauces } from "./payload/collections/HotSauces";
@@ -135,6 +136,7 @@ export default buildConfig({
 		HotSauces,
 		Competencies,
 		Projects,
+		Books,
 	],
 	cors: [serverUrl],
 	csrf: [serverUrl],

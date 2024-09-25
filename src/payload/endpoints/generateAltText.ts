@@ -40,7 +40,7 @@ export const generateAltText: PayloadHandler = async (
 					content: [
 						{
 							type: "text",
-							text: `Describe the image in detail. Use up to 280 characters${aiGenerated ? ". The image is AI generated" : ""}`,
+							text: `Generate alt text for the image. Use up to 280 characters${aiGenerated ? ". The image is AI generated" : ""}`,
 						},
 						{
 							type: "image",
