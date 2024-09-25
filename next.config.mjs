@@ -52,6 +52,20 @@ const nextConfig = {
 	eslint: {
 		ignoreDuringBuilds: true,
 	},
+	redirects: async () => {
+		return [
+			{
+				source: "/posts/project-webapp/:slug",
+				destination: "/posts/project-webapp-:slug",
+				permanent: true,
+			},
+			{
+				source: "/posts/iot/:slug",
+				destination: "/posts/iot-:slug",
+				permanent: true,
+			},
+		];
+	},
 };
 
 export default withPayload(nextConfig);
