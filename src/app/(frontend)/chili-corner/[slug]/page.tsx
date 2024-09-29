@@ -62,7 +62,7 @@ export async function HotSauceDetails({ params: { slug }, asDialog }: Props) {
 			<h1>{sauce.name}</h1>
 		</DialogTitle>
 	) : (
-		<h1>sauce.name</h1>
+		<h1>{sauce.name}</h1>
 	);
 
 	const sauceDescriptionElement = asDialog ? (
