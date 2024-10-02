@@ -1,7 +1,7 @@
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/utilities/cn";
 import Link from "next/link";
-import type { JsonValue } from "payload";
+import type { DefaultDocumentIDType, JsonValue } from "payload";
 import type React from "react";
 import type { Page, Post } from "../../../payload-types";
 
@@ -20,6 +20,11 @@ type CMSLinkType = {
 					[key: string]: JsonValue;
 					id: string;
 			  }
+			| {
+					[key: string]: JsonValue;
+					id: DefaultDocumentIDType;
+			  }
+			| DefaultDocumentIDType
 			| string
 			| number;
 	} | null;

@@ -1,5 +1,4 @@
-import type { Config } from "tailwindcss";
-
+/** @type {import("tailwindcss").Config} */
 const config = {
 	content: [
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -82,6 +81,6 @@ const config = {
 		require("tailwindcss-animate"),
 		//...
 	],
-} satisfies Config;
+};
 
 export default config;

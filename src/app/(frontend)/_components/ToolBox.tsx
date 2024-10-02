@@ -1,4 +1,5 @@
 import { Prose } from "@/components/Prose/Prose";
+import Link from "next/link";
 
 export function ToolBox() {
 	return (
@@ -7,7 +8,10 @@ export function ToolBox() {
 			<p>Here are some tools that I’ve built to help with various tasks.</p>
 			<ul>
 				<li>
-					<a href="/tool-box/readability-checker">Readability Checker</a>
+					<Link href="/tool-box/readability-checker">Readability Checker</Link>
+				</li>
+				<li>
+					<Link href="/tool-box/qr-code-generator">QR Code generator</Link>
 				</li>
 			</ul>
 		</Prose>
