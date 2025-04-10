@@ -44,6 +44,7 @@ export const FormBlock: React.FC<
 			introText={introText}
 			confirmationText={confirmationText}
 			form={formFromProps}
+			id={props.id}
 		/>
 	);
 };

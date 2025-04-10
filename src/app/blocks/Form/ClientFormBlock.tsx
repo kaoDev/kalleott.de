@@ -33,6 +33,7 @@ interface Props {
 	introText: ReactNode;
 	confirmationText: ReactNode;
 	form: FormType;
+	id?: string;
 }
 
 function renderFormField<T extends FieldValues>(
@@ -126,8 +127,8 @@ export function ClientFormBlock(props: Props) {
 
 	const formMethods = useForm({
 		defaultValues: buildInitialFormState(formFromProps.fields),
-		mode: "onBlur",
-		reValidateMode: "onBlur",
+		mode: "onChange",
+		reValidateMode: "onChange",
 	});
 	const {
 		control,
@@ -212,6 +213,8 @@ export function ClientFormBlock(props: Props) {
 		[router, formID, redirect, confirmationType],
 	);
 
+	const formElementId = props.id || formID;
+
 	return (
 		<div className="container max-w-[48rem] pb-20">
 			{introText && !hasSubmitted ? introText : null}
@@ -221,7 +224,7 @@ export function ClientFormBlock(props: Props) {
 			{isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
 			{error && <div>{`${error.status || "500"}: ${error.message || ""}`}</div>}
 			{!hasSubmitted && (
-				<form id={formID} onSubmit={handleSubmit(onSubmit)}>
+				<form id={formElementId} onSubmit={handleSubmit(onSubmit)}>
 					<div className="mb-4 last:mb-0">
 						{formFromProps?.fields?.map((field, index) => {
 							return (
@@ -241,7 +244,7 @@ export function ClientFormBlock(props: Props) {
 						}) ?? null}
 					</div>
 
-					<Button form={formID} type="submit" variant="default">
+					<Button form={formElementId} type="submit" variant="default">
 						{submitButtonLabel}
 					</Button>
 				</form>

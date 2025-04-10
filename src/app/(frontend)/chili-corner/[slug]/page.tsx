@@ -78,7 +78,6 @@ export async function HotSauceDetails({ params, asDialog }: Props) {
 	return (
 		<>
 			<Prose>
-				""
 				{sauceNameElement}
 				{sauceDescriptionElement}
 				{sauce.gallery && sauce.gallery.length > 0 ? (
@@ -114,6 +113,7 @@ export async function HotSauceDetails({ params, asDialog }: Props) {
 				{requestHotSauceForm ? (
 					<FormBlock
 						form={requestHotSauceForm.form as unknown as FormType}
+						id={"hot-sauce-order-form"}
 						enableIntro
 					/>
 				) : null}
