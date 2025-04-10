@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox as CheckboxUi } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import type { CheckboxField } from "@payloadcms/plugin-form-builder/types";

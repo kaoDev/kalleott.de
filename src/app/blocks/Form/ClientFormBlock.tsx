@@ -126,6 +126,8 @@ export function ClientFormBlock(props: Props) {
 
 	const formMethods = useForm({
 		defaultValues: buildInitialFormState(formFromProps.fields),
+		mode: "onBlur",
+		reValidateMode: "onBlur",
 	});
 	const {
 		control,

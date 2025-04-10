@@ -1,3 +1,5 @@
+"use client";
+
 import { Label } from "@/components/ui/label";
 import { Textarea as TextAreaComponent } from "@/components/ui/textarea";
 import type { TextField } from "@payloadcms/plugin-form-builder/types";
