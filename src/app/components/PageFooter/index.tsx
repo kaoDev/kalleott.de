@@ -1,13 +1,13 @@
 import { getCachedGlobal } from "@/utilities/getGlobals";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import type { Footer } from "../../../payload-types";
 import { ThemeSelector } from "../../providers/Theme/ThemeSelector";
 import { CMSLink } from "../Link";
 import { Logo } from "../Logo/Logo";
 
 export async function PageFooter() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 	const pageOwnerEntry = await payload.find({
 		collection: "users",
 		where: {
@@ -22,7 +22,7 @@ export async function PageFooter() {
 
 	return (
 		<footer
-			className="border-t border-border bg-black text-white dark:bg-card"
+			className="border-border border-t bg-black text-white"
 			data-theme="dark"
 		>
 			<div className="container flex flex-col gap-8 py-8 min-[870px]:flex-row min-[870px]:justify-between">

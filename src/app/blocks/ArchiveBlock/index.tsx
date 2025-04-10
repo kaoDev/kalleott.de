@@ -1,5 +1,5 @@
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import type React from "react";
 import { RichText } from "src/app/components/RichText";
 import type { Post } from "src/payload-types";
@@ -17,7 +17,7 @@ export const ArchiveBlock: React.FC<
 	let posts: Post[] = [];
 
 	if (populateBy === "collection") {
-		const payload = await getPayloadHMR({ config: configPromise });
+		const payload = await getPayload({ config: configPromise });
 
 		const flattenedCategories = categories?.map((category) => {
 			if (typeof category === "object") return category.id;

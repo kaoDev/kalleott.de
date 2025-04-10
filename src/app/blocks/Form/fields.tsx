@@ -14,6 +14,8 @@ type AvailableBlockTypes =
 	| Exclude<FormFieldBlock["blockType"], "payment">
 	| "number";
 
+const NullComponent = () => null;
+
 export const fields = {
 	checkbox: Checkbox,
 	country: Country,
@@ -24,5 +26,6 @@ export const fields = {
 	state: State,
 	text: Text,
 	textarea: Textarea,
+	radio: NullComponent,
 	// biome-ignore lint: `any` is used to ensure all possible component types are allowed
 } satisfies { [key in AvailableBlockTypes]: ComponentType<any> };

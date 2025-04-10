@@ -7,20 +7,18 @@ import {
 } from "@/components/ui/dialog";
 
 interface Props {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
-export default async function HotSauceDetailsModal({
-	params: { slug },
-}: Props) {
+export default async function HotSauceDetailsModal({ params }: Props) {
 	return (
 		<DialogNavBackOnClose open>
 			<DialogOverlay />
 			<DialogContent className="h-fit max-h-full max-w-4xl overflow-auto md:max-h-[90dvh]">
 				<DialogCloseBack />
-				<HotSauceDetails asDialog params={{ slug }} />
+				<HotSauceDetails asDialog params={params} />
 			</DialogContent>
 		</DialogNavBackOnClose>
 	);

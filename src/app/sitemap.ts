@@ -1,9 +1,9 @@
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import type { MetadataRoute } from "next";
+import { getPayload } from "payload";
 
 async function getAllPosts() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 
 	const { docs } = await payload.find({
 		collection: "posts",
@@ -21,7 +21,7 @@ async function getAllPosts() {
 }
 
 async function getAllPages() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 
 	const { docs } = await payload.find({
 		collection: "pages",

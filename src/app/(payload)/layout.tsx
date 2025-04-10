@@ -1,18 +1,34 @@
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
-import configPromise from "@payload-config";
-import "@payloadcms/next/css";
-import { RootLayout } from "@payloadcms/next/layouts";
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
-import type React from "react";
+import type { ServerFunctionClient } from "payload";
+
+import config from "@payload-config";
+import "@payloadcms/next/css";
+import { RootLayout, handleServerFunctions } from "@payloadcms/next/layouts";
+
+import type { ReactNode } from "react";
+import { importMap } from "./admin/importMap.js";
 import "./custom.scss";
-import { importMap } from "./admin/importMap";
 
 type Args = {
-	children: React.ReactNode;
+	children: ReactNode;
+};
+
+const serverFunction: ServerFunctionClient = async (args) => {
+	"use server";
+	return handleServerFunctions({
+		...args,
+		config,
+		importMap,
+	});
 };
 
 const Layout = ({ children }: Args) => (
-	<RootLayout importMap={importMap} config={configPromise}>
+	<RootLayout
+		config={config}
+		importMap={importMap}
+		serverFunction={serverFunction}
+	>
 		{children}
 	</RootLayout>
 );

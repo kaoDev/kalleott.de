@@ -53,7 +53,10 @@ const shapeTypes: ShapeType[] = ["square", "circle"];
 function StyleSettings({
 	qrCode,
 	onUpdate,
-}: { qrCode: RefObject<QRCodeStyling | null>; onUpdate: () => void }) {
+}: {
+	qrCode: RefObject<QRCodeStyling | null>;
+	onUpdate: () => void;
+}) {
 	const [dotType, setDotType] = useState<DotType>("square");
 	const [cornerDotType, setCornerDotType] = useState<CornerDotType>("square");
 	const [cornerSquaredotType, setCornerSquareDotType] =
@@ -188,10 +191,10 @@ export function QRCodeGenerator() {
 	const qrCode = useRef<QRCodeStyling | null>(null);
 
 	const onUpdate = useCallback(() => {
-		if (qrCode.current?._canvas) {
-			qrCode.current._canvas.style.aspectRatio = "1/1";
-			qrCode.current._canvas.style.width = "100%";
-			qrCode.current._canvas.style.maxWidth = "100%";
+		if (qrCode.current?._domCanvas) {
+			qrCode.current._domCanvas.style.aspectRatio = "1/1";
+			qrCode.current._domCanvas.style.width = "100%";
+			qrCode.current._domCanvas.style.maxWidth = "100%";
 		}
 	}, []);
 
@@ -284,7 +287,7 @@ export function QRCodeGenerator() {
 	};
 
 	return (
-		<div className="max-w-md mx-auto p-6 space-y-6">
+		<div className="mx-auto max-w-md space-y-6 p-6">
 			<div className="space-y-2">
 				<Label htmlFor="url">Enter URL</Label>
 				<Input
@@ -356,7 +359,7 @@ export function QRCodeGenerator() {
 									value={[backgroundAlpha]}
 									onValueChange={handleBackgroundAlphaChange}
 								/>
-								<div className="text-sm text-muted-foreground">
+								<div className="text-muted-foreground text-sm">
 									{backgroundAlpha}%
 								</div>
 							</div>
@@ -365,7 +368,7 @@ export function QRCodeGenerator() {
 				</AccordionItem>
 			</Accordion>
 
-			<div ref={qrRef} className="flex space-y-2 justify-center" />
+			<div ref={qrRef} className="flex justify-center space-y-2" />
 
 			<div className="space-y-2">
 				<Label htmlFor="size">QR Code Size</Label>

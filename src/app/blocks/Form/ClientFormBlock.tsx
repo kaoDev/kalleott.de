@@ -151,7 +151,6 @@ export function ClientFormBlock(props: Props) {
 					field: name,
 					value,
 				}));
-
 				// delay loading indicator by 1s
 				loadingTimerID = setTimeout(() => {
 					setIsLoading(true);

@@ -1,9 +1,9 @@
 import { PayloadRedirects } from "@/components/PayloadRedirects";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { getPayload } from "payload";
 import { cache } from "react";
 import { Blocks } from "../../components/Blocks";
 import { Hero } from "../../components/Hero";
@@ -11,7 +11,7 @@ import { generateMeta } from "../../utilities/generateMeta";
 import PageClient from "../posts/[slug]/page.client";
 
 export async function generateStaticParams() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 	const pages = await payload.find({
 		collection: "pages",
 		draft: false,
@@ -23,10 +23,17 @@ export async function generateStaticParams() {
 		?.filter((doc) => {
 			return doc.slug !== "home";
 		})
-		.map(({ slug }) => slug);
+		.map(({ slug }) => {
+			return { slug };
+		});
 }
 
-export default async function Page({ params: { slug = "home" } }) {
+export default async function Page({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}) {
+	const { slug = "home" } = await params;
 	const url = `/${slug}`;
 
 	const page = await queryPageBySlug({
@@ -40,7 +47,7 @@ export default async function Page({ params: { slug = "home" } }) {
 	const { hero, layout } = page;
 
 	return (
-		<article className="pb-24 pt-16">
+		<article className="pt-16 pb-24">
 			{/* Allows redirects for valid pages too */}
 			<PayloadRedirects disableNotFound url={url} />
 
@@ -53,8 +60,14 @@ export default async function Page({ params: { slug = "home" } }) {
 }
 
 export async function generateMetadata({
-	params: { slug = "home" },
+	params,
+}: {
+	params: Promise<{
+		slug: string;
+	}>;
 }): Promise<Metadata> {
+	const { slug = "home" } = await params;
+
 	const page = await queryPageBySlug({
 		slug,
 	});
@@ -67,9 +80,9 @@ export async function generateMetadata({
 }
 
 const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
-	const { isEnabled: draft } = draftMode();
+	const { isEnabled: draft } = await draftMode();
 
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 
 	const result = await payload.find({
 		collection: "pages",

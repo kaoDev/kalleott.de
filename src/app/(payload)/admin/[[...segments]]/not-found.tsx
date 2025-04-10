@@ -6,12 +6,12 @@ import type { Metadata } from "next";
 import { importMap } from "../importMap";
 
 type Args = {
-	params: {
+	params: Promise<{
 		segments: string[];
-	};
-	searchParams: {
+	}>;
+	searchParams: Promise<{
 		[key: string]: string | string[];
-	};
+	}>;
 };
 
 export const generateMetadata = ({

@@ -3,10 +3,10 @@ import { RelatedPosts } from "@/blocks/RelatedPosts";
 import { PayloadRedirects } from "@/components/PayloadRedirects";
 import { Separator } from "@/components/ui/separator";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
+import { getPayload } from "payload";
 import { cache } from "react";
 import { RichText } from "src/app/components/RichText";
 import { PostHero } from "../../../heros/PostHero";
@@ -17,7 +17,7 @@ export const revalidate = 600;
 export const dynamic = "force-static";
 
 export async function generateStaticParams() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 	const posts = await payload.find({
 		collection: "posts",
 		draft: false,
@@ -31,23 +31,22 @@ export async function generateStaticParams() {
 		},
 	});
 
-	return posts.docs?.map(({ slug }) => slug);
+	return posts.docs?.map(({ slug }) => ({ slug }));
 }
 
 interface Props {
-	params: {
-		slug: string;
-	};
+	params: Promise<{ slug: string }>;
 }
 
-export default async function Post({ params: { slug } }: Props) {
+export default async function Post({ params }: Props) {
+	const { slug } = await params;
 	const url = `/posts/${slug}`;
 	const post = await queryPostBySlug({ slug });
 
 	if (!post) return <PayloadRedirects url={url} />;
 
 	return (
-		<article className="pb-16 pt-16">
+		<article className="pt-16 pb-16">
 			<PageClient heroSection="highImpact" />
 
 			{/* Allows redirects for valid pages too */}
@@ -78,9 +77,8 @@ export default async function Post({ params: { slug } }: Props) {
 	);
 }
 
-export async function generateMetadata({
-	params: { slug },
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { slug } = await params;
 	const post = await queryPostBySlug({ slug });
 
 	if (!post) {
@@ -91,9 +89,9 @@ export async function generateMetadata({
 }
 
 const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
-	const { isEnabled: draft } = draftMode();
+	const { isEnabled: draft } = await draftMode();
 
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 
 	const result = await payload.find({
 		collection: "posts",

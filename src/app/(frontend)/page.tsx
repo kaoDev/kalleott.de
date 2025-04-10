@@ -1,6 +1,6 @@
 import { Prose } from "@/components/Prose/Prose";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import { ToolBox } from "./_components/ToolBox";
 import { Container } from "./_components/container";
 import { HeroPost } from "./_components/hero-post";
@@ -20,11 +20,11 @@ export default async function Index() {
 }
 
 async function RecentPost() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 
 	// recent post from the last 6 months
 	const minRecentDate = new Date();
-	minRecentDate.setDate(minRecentDate.getDate() - 180);
+	minRecentDate.setDate(minRecentDate.getDate() - 720);
 
 	const allPosts = await payload.find({
 		collection: "posts",

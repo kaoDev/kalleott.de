@@ -3,22 +3,26 @@ import { PageRange } from "@/components/PageRange";
 import { Pagination } from "@/components/Pagination";
 import { Prose } from "@/components/Prose/Prose";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import type { Metadata } from "next/types";
-import React from "react";
+import { getPayload } from "payload";
 
 export const dynamic = "force-static";
 export const revalidate = 600;
 
-export default async function Page({ params: { pageNumber = 2 } }) {
-	const payload = await getPayloadHMR({ config: configPromise });
+export default async function Page({
+	params,
+}: {
+	params: Promise<{ pageNumber: string }>;
+}) {
+	const { pageNumber = "2" } = await params;
+	const payload = await getPayload({ config: configPromise });
 
 	const posts = await payload.find({
 		collection: "posts",
 		depth: 1,
 		limit: 12,
 		sort: "-publishedAt",
-		page: pageNumber,
+		page: Number(pageNumber),
 		where: {
 			_status: {
 				equals: "published",
@@ -27,7 +31,7 @@ export default async function Page({ params: { pageNumber = 2 } }) {
 	});
 
 	return (
-		<div className="pb-24 pt-24">
+		<div className="pt-24 pb-24">
 			<div className="container mb-16">
 				<Prose>
 					<h1>Posts</h1>
@@ -54,9 +58,16 @@ export default async function Page({ params: { pageNumber = 2 } }) {
 	);
 }
 
-export function generateMetadata({ params: { pageNumber = 2 } }): Metadata {
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ pageNumber: string }>;
+}): Promise<Metadata> {
+	const { pageNumber = "2" } = await params;
+	const numericPageNumber = Number(pageNumber);
+
 	const title =
-		pageNumber > 1 ? `Kalle's Blog Page ${pageNumber}` : "Kalle's Blog";
+		numericPageNumber > 1 ? `Kalle's Blog Page ${pageNumber}` : "Kalle's Blog";
 
 	return {
 		title,
@@ -64,7 +75,7 @@ export function generateMetadata({ params: { pageNumber = 2 } }): Metadata {
 }
 
 export async function generateStaticParams() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 	const posts = await payload.find({
 		collection: "posts",
 		depth: 0,
@@ -77,10 +88,10 @@ export async function generateStaticParams() {
 		},
 	});
 
-	const pages = [];
+	const pages: Array<{ pageNumber: string }> = [];
 
 	for (let i = 1; i <= posts.totalPages; i++) {
-		pages.push(i);
+		pages.push({ pageNumber: String(i) });
 	}
 
 	return pages;

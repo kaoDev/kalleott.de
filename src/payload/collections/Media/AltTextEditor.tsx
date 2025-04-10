@@ -40,7 +40,7 @@ async function triggerAltTextGeneration(
 export function AltTextEditor() {
 	const doc = useDocumentInfo();
 
-	const { setValue } = useField({});
+	const { setValue } = useField({ path: "altText" });
 
 	const [aiGenerated, setAIGenerated] = useState(false);
 

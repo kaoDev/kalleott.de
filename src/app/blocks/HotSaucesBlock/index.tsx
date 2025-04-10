@@ -1,6 +1,6 @@
 import { SaucePreview } from "@/(frontend)/_components/sauce-preview";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import type React from "react";
 import { RichText } from "src/app/components/RichText";
 import type { HotSauce } from "src/payload-types";
@@ -16,7 +16,7 @@ export const HotSaucesBlock: React.FC<
 	let sauces: HotSauce[] = [];
 
 	if (populateBy === "collection") {
-		const payload = await getPayloadHMR({ config: configPromise });
+		const payload = await getPayload({ config: configPromise });
 
 		const fetchedSauces = await payload.find({
 			collection: "hot-sauces",

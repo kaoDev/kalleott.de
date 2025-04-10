@@ -1,8 +1,8 @@
 import { ImageMedia } from "@/components/Media/ImageMedia";
 import { cn } from "@/utilities";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import Link from "next/link";
+import { getPayload } from "payload";
 import type { Media } from "src/payload-types";
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 
 async function ensureMedia(src: number | Media) {
 	if (typeof src === "number") {
-		const payload = await getPayloadHMR({ config: configPromise });
+		const payload = await getPayload({ config: configPromise });
 
 		const media = await payload.findByID({
 			collection: "media",

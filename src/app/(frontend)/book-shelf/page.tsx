@@ -1,12 +1,12 @@
 import { Prose } from "@/components/Prose/Prose";
 import type { SimpleRichTextContent } from "@/components/RichText/SimpleRichText";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
+import { getPayload } from "payload";
 import React from "react";
 import { BookCard } from "./_components/BookCard";
 
 async function getRecommendedBooks() {
-	const payload = await getPayloadHMR({ config: configPromise });
+	const payload = await getPayload({ config: configPromise });
 
 	const { docs } = await payload.find({
 		collection: "books",

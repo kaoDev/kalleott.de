@@ -1,73 +1,73 @@
-@import 'tailwindcss/theme' layer(theme);
-@import 'tailwindcss/preflight' layer(base);
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/preflight" layer(base);
 
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
 
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+	--color-border: hsl(var(--border));
+	--color-input: hsl(var(--input));
+	--color-ring: hsl(var(--ring));
+	--color-background: hsl(var(--background));
+	--color-foreground: hsl(var(--foreground));
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+	--color-primary: hsl(var(--primary));
+	--color-primary-foreground: hsl(var(--primary-foreground));
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
+	--color-secondary: hsl(var(--secondary));
+	--color-secondary-foreground: hsl(var(--secondary-foreground));
 
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
+	--color-destructive: hsl(var(--destructive));
+	--color-destructive-foreground: hsl(var(--destructive-foreground));
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
+	--color-muted: hsl(var(--muted));
+	--color-muted-foreground: hsl(var(--muted-foreground));
 
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
+	--color-accent: hsl(var(--accent));
+	--color-accent-foreground: hsl(var(--accent-foreground));
 
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
+	--color-popover: hsl(var(--popover));
+	--color-popover-foreground: hsl(var(--popover-foreground));
 
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+	--color-card: hsl(var(--card));
+	--color-card-foreground: hsl(var(--card-foreground));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+	--radius-lg: var(--radius);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-sm: calc(var(--radius) - 4px);
 
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
+	--animate-accordion-down: accordion-down 0.2s ease-out;
+	--animate-accordion-up: accordion-up 0.2s ease-out;
 
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--radix-accordion-content-height);
+		}
+	}
+	@keyframes accordion-up {
+		from {
+			height: var(--radix-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
 }
 
 @utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
-  }
+	margin-inline: auto;
+	padding-inline: 2rem;
+	@media (width >= --theme(--breakpoint-sm)) {
+		max-width: none;
+	}
+	@media (width >= 1400px) {
+		max-width: 1400px;
+	}
 }
 
 /*
@@ -79,86 +79,85 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
 }
 
 @utility ko-logo {
-  width: 80px;
-  height: 80px;
+	width: 80px;
+	height: 80px;
 
-  --o-gradient: linear-gradient(to bottom, #42047e, #07f49e);
-  --k-gradient: linear-gradient(to bottom, #ffcf67, #d3321d);
+	--o-gradient: linear-gradient(to bottom, #42047e, #07f49e);
+	--k-gradient: linear-gradient(to bottom, #ffcf67, #d3321d);
 
-  & .k-shape {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="m314.852 718.602 12.48-183.741c65.638 0 122.262-13.636 169.873-40.908 48.073-27.272 87.594-64.02 118.565-110.244 31.432-46.224 54.544-98.226 69.335-156.006 15.254-58.242 22.881-118.333 22.881-180.273h185.821c0 87.363-12.943 171.259-38.828 251.689-25.886 80.43-63.79 152.308-113.711 215.635-49.46 62.864-110.013 112.555-181.661 149.072-71.647 36.517-153.232 54.776-244.755 54.776ZM215.701 1032V47.43h183.047V1032H215.701Zm499.219 0L517.312 595.877l170.567-70.723L940.955 1032H714.92Z"></path></svg>')
-      center / contain no-repeat;
-    mask-type: luminance;
-  }
-  & .o-shape {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M539.5 1045.87c-250.072 0-375.107-166.409-375.107-499.222 0-342.057 125.035-513.086 375.107-513.086 250.072 0 375.107 171.029 375.107 513.086 0 332.813-125.035 499.222-375.107 499.222Zm0-174.729c122.031 0 183.047-108.164 183.047-324.493 0-225.572-61.016-338.359-183.047-338.359S356.453 321.076 356.453 546.648c0 216.329 61.016 324.493 183.047 324.493Z"></path></svg>')
-      center / contain no-repeat;
-    mask-type: luminance;
-  }
-  & .o-shape-fg-mask {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M584 561h377v505H584z"></path></svg>')
-      center / contain no-repeat;
-    mask-type: luminance;
-  }
+	& .k-shape {
+		mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="m314.852 718.602 12.48-183.741c65.638 0 122.262-13.636 169.873-40.908 48.073-27.272 87.594-64.02 118.565-110.244 31.432-46.224 54.544-98.226 69.335-156.006 15.254-58.242 22.881-118.333 22.881-180.273h185.821c0 87.363-12.943 171.259-38.828 251.689-25.886 80.43-63.79 152.308-113.711 215.635-49.46 62.864-110.013 112.555-181.661 149.072-71.647 36.517-153.232 54.776-244.755 54.776ZM215.701 1032V47.43h183.047V1032H215.701Zm499.219 0L517.312 595.877l170.567-70.723L940.955 1032H714.92Z"></path></svg>')
+			center / contain no-repeat;
+		mask-type: luminance;
+	}
+	& .o-shape {
+		mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M539.5 1045.87c-250.072 0-375.107-166.409-375.107-499.222 0-342.057 125.035-513.086 375.107-513.086 250.072 0 375.107 171.029 375.107 513.086 0 332.813-125.035 499.222-375.107 499.222Zm0-174.729c122.031 0 183.047-108.164 183.047-324.493 0-225.572-61.016-338.359-183.047-338.359S356.453 321.076 356.453 546.648c0 216.329 61.016 324.493 183.047 324.493Z"></path></svg>')
+			center / contain no-repeat;
+		mask-type: luminance;
+	}
+	& .o-shape-fg-mask {
+		mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M584 561h377v505H584z"></path></svg>')
+			center / contain no-repeat;
+		mask-type: luminance;
+	}
 }
 
 @utility gradient-fill {
-  width: 120%;
-  height: 120%;
-  position: absolute;
-  margin: -10%;
+	width: 120%;
+	height: 120%;
+	position: absolute;
+	margin: -10%;
 }
 
 @utility k-gradient-fill {
-  background: var(--k-gradient);
-  animation: gradient-fill-animation linear 37s infinite;
-  animation-direction: reverse;
+	background: var(--k-gradient);
+	animation: gradient-fill-animation linear 37s infinite;
+	animation-direction: reverse;
 }
 
 @utility o-gradient-fill {
-  background: var(--o-gradient);
-  animation: gradient-fill-animation linear 31s infinite;
+	background: var(--o-gradient);
+	animation: gradient-fill-animation linear 31s infinite;
 }
 
 @utility k-shape {
-  .ko-logo & {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="m314.852 718.602 12.48-183.741c65.638 0 122.262-13.636 169.873-40.908 48.073-27.272 87.594-64.02 118.565-110.244 31.432-46.224 54.544-98.226 69.335-156.006 15.254-58.242 22.881-118.333 22.881-180.273h185.821c0 87.363-12.943 171.259-38.828 251.689-25.886 80.43-63.79 152.308-113.711 215.635-49.46 62.864-110.013 112.555-181.661 149.072-71.647 36.517-153.232 54.776-244.755 54.776ZM215.701 1032V47.43h183.047V1032H215.701Zm499.219 0L517.312 595.877l170.567-70.723L940.955 1032H714.92Z"></path></svg>')
-      center / contain no-repeat;
-    mask-type: luminance;
-  }
+	.ko-logo & {
+		mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="m314.852 718.602 12.48-183.741c65.638 0 122.262-13.636 169.873-40.908 48.073-27.272 87.594-64.02 118.565-110.244 31.432-46.224 54.544-98.226 69.335-156.006 15.254-58.242 22.881-118.333 22.881-180.273h185.821c0 87.363-12.943 171.259-38.828 251.689-25.886 80.43-63.79 152.308-113.711 215.635-49.46 62.864-110.013 112.555-181.661 149.072-71.647 36.517-153.232 54.776-244.755 54.776ZM215.701 1032V47.43h183.047V1032H215.701Zm499.219 0L517.312 595.877l170.567-70.723L940.955 1032H714.92Z"></path></svg>')
+			center / contain no-repeat;
+		mask-type: luminance;
+	}
 }
 
 @utility o-shape {
-  .ko-logo & {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M539.5 1045.87c-250.072 0-375.107-166.409-375.107-499.222 0-342.057 125.035-513.086 375.107-513.086 250.072 0 375.107 171.029 375.107 513.086 0 332.813-125.035 499.222-375.107 499.222Zm0-174.729c122.031 0 183.047-108.164 183.047-324.493 0-225.572-61.016-338.359-183.047-338.359S356.453 321.076 356.453 546.648c0 216.329 61.016 324.493 183.047 324.493Z"></path></svg>')
-      center / contain no-repeat;
-    mask-type: luminance;
-  }
+	.ko-logo & {
+		mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M539.5 1045.87c-250.072 0-375.107-166.409-375.107-499.222 0-342.057 125.035-513.086 375.107-513.086 250.072 0 375.107 171.029 375.107 513.086 0 332.813-125.035 499.222-375.107 499.222Zm0-174.729c122.031 0 183.047-108.164 183.047-324.493 0-225.572-61.016-338.359-183.047-338.359S356.453 321.076 356.453 546.648c0 216.329 61.016 324.493 183.047 324.493Z"></path></svg>')
+			center / contain no-repeat;
+		mask-type: luminance;
+	}
 }
 
 @utility o-shape-fg-mask {
-  .ko-logo & {
-    mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M584 561h377v505H584z"></path></svg>')
-      center / contain no-repeat;
-    mask-type: luminance;
-  }
+	.ko-logo & {
+		mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1080 1080"><path d="M584 561h377v505H584z"></path></svg>')
+			center / contain no-repeat;
+		mask-type: luminance;
+	}
 }
 
 @layer components {
-
-  @keyframes gradient-fill-animation {
-    to {
-      transform: rotate(360deg);
-    }
-  }
+	@keyframes gradient-fill-animation {
+		to {
+			transform: rotate(360deg);
+		}
+	}
 }

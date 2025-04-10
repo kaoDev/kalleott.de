@@ -57,7 +57,6 @@ async function updateExistingContact(
 	email: string,
 	firstName: string,
 ): Promise<State> {
-	console.log("Updating existing contact");
 	const updateResult = await resend.contacts.update({
 		audienceId,
 		id,

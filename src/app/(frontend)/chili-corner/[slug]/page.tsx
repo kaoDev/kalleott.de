@@ -12,27 +12,29 @@ import { RichText } from "@/components/RichText";
 import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { getCachedGlobal } from "@/utilities/getGlobals";
 import configPromise from "@payload-config";
-import { getPayloadHMR } from "@payloadcms/next/utilities";
 import type { Form as FormType } from "@payloadcms/plugin-form-builder/types";
 import { notFound } from "next/navigation";
+import { getPayload } from "payload";
 import type { HotSauceOrderForm } from "src/payload-types";
 
 interface PageProps {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
-export default function HotSauceDetailsPage({ params: { slug } }: PageProps) {
-	return <HotSauceDetails params={{ slug }} />;
+export default function HotSauceDetailsPage({ params }: PageProps) {
+	return <HotSauceDetails params={params} />;
 }
 
 interface Props extends PageProps {
 	asDialog?: boolean;
 }
 
-export async function HotSauceDetails({ params: { slug }, asDialog }: Props) {
-	const payload = await getPayloadHMR({ config: configPromise });
+export async function HotSauceDetails({ params, asDialog }: Props) {
+	const payload = await getPayload({ config: configPromise });
+
+	const { slug } = await params;
 
 	const sauceResult = await payload.find({
 		collection: "hot-sauces",
@@ -76,6 +78,7 @@ export async function HotSauceDetails({ params: { slug }, asDialog }: Props) {
 	return (
 		<>
 			<Prose>
+				""
 				{sauceNameElement}
 				{sauceDescriptionElement}
 				{sauce.gallery && sauce.gallery.length > 0 ? (
