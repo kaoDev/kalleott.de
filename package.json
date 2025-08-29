@@ -29,7 +29,7 @@
 		"@payloadcms/email-nodemailer": "^3.33.0",
 		"@payloadcms/email-resend": "^3.33.0",
 		"@payloadcms/live-preview-react": "^3.33.0",
-		"@payloadcms/next": "^3.33.0",
+		"@payloadcms/next": "^3.44.0",
 		"@payloadcms/plugin-form-builder": "^3.33.0",
 		"@payloadcms/plugin-nested-docs": "^3.33.0",
 		"@payloadcms/plugin-redirects": "^3.33.0",
