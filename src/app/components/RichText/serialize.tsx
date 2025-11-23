@@ -33,7 +33,6 @@ export type SerializedInlineBlockNode<
 export type NodeTypes =
 	| DefaultNodeTypes
 	| SerializedBlockNode<
-			// @ts-expect-error // TODO: Fix this
 			| Extract<Page["layout"][0], { blockType: "cta" }>
 			| Extract<Page["layout"][0], { blockType: "mediaBlock" }>
 			| BannerBlockProps

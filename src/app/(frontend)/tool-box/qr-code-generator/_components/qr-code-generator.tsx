@@ -50,6 +50,14 @@ const cornerSquareTypes: CornerSquareType[] = [
 ];
 const shapeTypes: ShapeType[] = ["square", "circle"];
 
+function applyAlphaToColor(color: string, alpha: number): string {
+	const hex = color.replace("#", "");
+	const r = Number.parseInt(hex.substring(0, 2), 16);
+	const g = Number.parseInt(hex.substring(2, 4), 16);
+	const b = Number.parseInt(hex.substring(4, 6), 16);
+	return `rgba(${r}, ${g}, ${b}, ${alpha / 100})`;
+}
+
 function StyleSettings({
 	qrCode,
 	onUpdate,
@@ -217,14 +225,6 @@ export function QRCodeGenerator() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const applyAlphaToColor = (color: string, alpha: number): string => {
-		const hex = color.replace("#", "");
-		const r = Number.parseInt(hex.substring(0, 2), 16);
-		const g = Number.parseInt(hex.substring(2, 4), 16);
-		const b = Number.parseInt(hex.substring(4, 6), 16);
-		return `rgba(${r}, ${g}, ${b}, ${alpha / 100})`;
-	};
-
 	useEffect(() => {
 		if (qrCode.current) {
 			qrCode.current.update({
@@ -255,7 +255,6 @@ export function QRCodeGenerator() {
 		backgroundColor,
 		backgroundAlpha,
 		onUpdate,
-		applyAlphaToColor,
 	]);
 
 	const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
