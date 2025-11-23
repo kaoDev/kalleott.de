@@ -43,9 +43,9 @@ const nextConfig = {
 		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
 		// Allow local IP addresses for development (Next.js 16 security feature)
 		// Only enable in development - this allows localhost images to be optimized
-		...(process.env.NODE_ENV === "development" && {
-			dangerouslyAllowLocalIP: true,
-		}),
+		...(process.env.NODE_ENV === "development"
+			? { dangerouslyAllowLocalIP: true }
+			: undefined),
 	},
 	env: {
 		NEXT_PUBLIC_SERVER_URL: getEnvServerUrl(),
