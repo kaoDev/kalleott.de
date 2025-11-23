@@ -45,7 +45,7 @@ const nextConfig = {
 		// Only enable in development - this allows localhost images to be optimized
 		...(process.env.NODE_ENV === "development"
 			? { dangerouslyAllowLocalIP: true }
-			: undefined),
+			: {}),
 	},
 	env: {
 		NEXT_PUBLIC_SERVER_URL: getEnvServerUrl(),
