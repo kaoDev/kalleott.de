@@ -10,13 +10,12 @@ export async function PageHeader() {
 
 	return (
 		<HeaderClient>
-			<div className="container relative flex justify-between py-8">
+			<div className="container relative flex justify-between py-4">
 				<Link href="/">
 					<Logo />
 				</Link>
 				<HeaderNav header={header} />
 			</div>
-			<div className="absolute inset-0 -z-10 hidden bg-black/20 bg-blend-darken dark:block" />
 		</HeaderClient>
 	);
 }

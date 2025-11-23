@@ -76,7 +76,7 @@ export async function HotSauceDetails({ params, asDialog }: Props) {
 	);
 
 	return (
-		<>
+		<div className="container py-16">
 			<Prose>
 				{sauceNameElement}
 				{sauceDescriptionElement}
@@ -119,6 +119,6 @@ export async function HotSauceDetails({ params, asDialog }: Props) {
 				) : null}
 			</Prose>
 			<div className="p-20" />
-		</>
+		</div>
 	);
 }
