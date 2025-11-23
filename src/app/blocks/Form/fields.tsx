@@ -19,6 +19,7 @@ const NullComponent = () => null;
 export const fields = {
 	checkbox: Checkbox,
 	country: Country,
+	date: NullComponent,
 	email: Email,
 	message: Message,
 	number: NumberField,

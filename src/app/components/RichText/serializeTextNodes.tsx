@@ -1,5 +1,5 @@
 import type { SerializedTextNode } from "lexical";
-import React, { type JSX } from "react";
+import { Fragment, type JSX } from "react";
 import {
 	IS_BOLD,
 	IS_CODE,
@@ -14,7 +14,7 @@ export function serializeTextNodes(
 	node: SerializedTextNode,
 	index: number,
 ): JSX.Element {
-	let text = <React.Fragment key={index}>{node.text}</React.Fragment>;
+	let text = <Fragment key={index}>{node.text}</Fragment>;
 	if (node.format & IS_BOLD) {
 		text = <strong key={index}>{text}</strong>;
 	}

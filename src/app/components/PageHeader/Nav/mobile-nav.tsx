@@ -20,7 +20,7 @@ export function MobileNav({ header }: { header: HeaderType }) {
 			<SheetTrigger asChild>
 				<Button
 					variant="ghost"
-					className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 min-[440px]:hidden"
+					className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 dark:text-white min-[440px]:hidden"
 				>
 					<svg
 						strokeWidth="1.5"

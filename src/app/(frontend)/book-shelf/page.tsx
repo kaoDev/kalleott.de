@@ -2,7 +2,6 @@ import { Prose } from "@/components/Prose/Prose";
 import type { SimpleRichTextContent } from "@/components/RichText/SimpleRichText";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
-import React from "react";
 import { BookCard } from "./_components/BookCard";
 
 async function getRecommendedBooks() {
