@@ -1,10 +1,10 @@
 "use client";
 
-import { cn } from "@/utilities";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { cn } from "@/utilities";
 
 const Dialog = DialogPrimitive.Root;
 

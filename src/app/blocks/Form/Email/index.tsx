@@ -1,7 +1,5 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import type { EmailField } from "@payloadcms/plugin-form-builder/types";
 import type {
 	FieldErrorsImpl,
@@ -9,6 +7,8 @@ import type {
 	Path,
 	UseFormRegister,
 } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { FieldError } from "../FieldError";
 import { Width } from "../Width";
 

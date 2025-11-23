@@ -1,6 +1,6 @@
+import type React from "react";
 import { PostPreview } from "@/(frontend)/_components/post-preview";
 import { cn } from "@/utilities/cn";
-import type React from "react";
 import type { Post } from "../../../payload-types";
 
 export type Props = {

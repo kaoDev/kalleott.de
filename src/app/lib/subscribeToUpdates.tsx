@@ -1,7 +1,7 @@
-import { WelcomeEmailTemplate } from "@/email/templates/welcome";
 import { render } from "@react-email/render";
 import { Resend } from "resend";
 import z from "zod";
+import { WelcomeEmailTemplate } from "@/email/templates/welcome";
 import { encryptEmail } from "./emailToken";
 
 const resend = new Resend(process.env.RESEND_API_KEY);

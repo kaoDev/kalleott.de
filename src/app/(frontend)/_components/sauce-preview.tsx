@@ -1,7 +1,7 @@
-import { ImageMedia } from "@/components/Media/ImageMedia";
-import { cn } from "@/utilities";
 import Link from "next/link";
 import type { HotSauce } from "src/payload-types";
+import { ImageMedia } from "@/components/Media/ImageMedia";
+import { cn } from "@/utilities";
 
 type Props = {
 	title: string;

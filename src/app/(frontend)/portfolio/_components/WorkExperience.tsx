@@ -1,6 +1,6 @@
+import type { Project } from "src/payload-types";
 import { Prose } from "@/components/Prose/Prose";
 import { RichText } from "@/components/RichText";
-import type { Project } from "src/payload-types";
 
 interface Props {
 	project: Project;

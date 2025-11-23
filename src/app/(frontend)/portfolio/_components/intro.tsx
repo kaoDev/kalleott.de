@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { Avatar } from "@/(frontend)/_components/avatar";
 import { Prose } from "@/components/Prose/Prose";
-import Link from "next/link";
 
 export function Intro() {
 	return (
@@ -30,6 +30,7 @@ export function Intro() {
 						className="underline"
 						target="_blank"
 						href="https://linkedin.com/in/kalle-ott"
+						rel="noopener"
 					>
 						LinkedIn
 					</a>{" "}

@@ -1,5 +1,5 @@
-import { formatDateTime } from "@/utilities/formatDateTime";
 import { Fragment } from "react";
+import { formatDateTime } from "@/utilities/formatDateTime";
 import type { Post } from "../../../payload-types";
 import { Media } from "../../components/Media";
 

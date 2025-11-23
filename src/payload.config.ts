@@ -13,8 +13,8 @@ import {
 	HeadingFeature,
 	ItalicFeature,
 	LinkFeature,
-	UnderlineFeature,
 	lexicalEditor,
+	UnderlineFeature,
 } from "@payloadcms/richtext-lexical";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { buildConfig } from "payload";

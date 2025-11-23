@@ -5,6 +5,9 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
+			"!!**/node_modules",
+			"!!**/.pnpm-store",
+			"!!**/*.css",
 			"!!**/src/app/(payload)/admin/importMap.js",
 			"!!**/src/payload-types.ts"
 		]
@@ -18,6 +21,7 @@
 				"noAriaUnsupportedElements": "warn",
 				"useAltText": "warn",
 				"useAriaPropsForRole": "warn",
+				"useSemanticElements": "warn",
 				"useValidAriaProps": "warn",
 				"useValidAriaValues": "warn"
 			},

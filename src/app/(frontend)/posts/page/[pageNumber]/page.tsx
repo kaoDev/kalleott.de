@@ -1,10 +1,10 @@
+import configPromise from "@payload-config";
+import type { Metadata } from "next/types";
+import { getPayload } from "payload";
 import { CollectionArchive } from "@/components/CollectionArchive";
 import { PageRange } from "@/components/PageRange";
 import { Pagination } from "@/components/Pagination";
 import { Prose } from "@/components/Prose/Prose";
-import configPromise from "@payload-config";
-import type { Metadata } from "next/types";
-import { getPayload } from "payload";
 
 export const dynamic = "force-static";
 export const revalidate = 600;

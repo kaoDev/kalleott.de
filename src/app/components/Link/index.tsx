@@ -1,8 +1,8 @@
-import { Button, type ButtonProps } from "@/components/ui/button";
-import { cn } from "@/utilities/cn";
 import Link from "next/link";
 import type { DefaultDocumentIDType, JsonValue } from "payload";
 import type React from "react";
+import { Button, type ButtonProps } from "@/components/ui/button";
+import { cn } from "@/utilities/cn";
 import type { Page, Post } from "../../../payload-types";
 
 type CMSLinkType = {

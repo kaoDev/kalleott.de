@@ -1,7 +1,5 @@
 "use client";
 
-import { Checkbox as CheckboxUi } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
 import type { CheckboxField } from "@payloadcms/plugin-form-builder/types";
 import type {
 	FieldErrorsImpl,
@@ -9,6 +7,8 @@ import type {
 	Path,
 	UseFormRegister,
 } from "react-hook-form";
+import { Checkbox as CheckboxUi } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import { FieldError } from "../FieldError";
 import { Width } from "../Width";
 

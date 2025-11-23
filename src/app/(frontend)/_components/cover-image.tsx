@@ -1,9 +1,9 @@
-import { ImageMedia } from "@/components/Media/ImageMedia";
-import { cn } from "@/utilities";
 import configPromise from "@payload-config";
 import Link from "next/link";
 import { getPayload } from "payload";
 import type { Media } from "src/payload-types";
+import { ImageMedia } from "@/components/Media/ImageMedia";
+import { cn } from "@/utilities";
 
 type Props = {
 	title: string;

@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/utilities/cn";
 import type { StaticImageData } from "next/image";
 import NextImage from "next/image";
+import { cn } from "@/utilities/cn";
 import cssVariables from "../../../cssVariables";
 import type { Props as MediaProps } from "../types";
 

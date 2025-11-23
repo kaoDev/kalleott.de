@@ -1,6 +1,6 @@
-import { cn } from "@/utilities/cn";
 import type React from "react";
 import { RichText } from "src/app/components/RichText";
+import { cn } from "@/utilities/cn";
 import type { Page } from "../../../payload-types";
 import { CMSLink } from "../../components/Link";
 
@@ -25,7 +25,7 @@ export const ContentBlock: React.FC<
 			<div className="grid grid-cols-4 gap-x-16 gap-y-8 lg:grid-cols-12">
 				{columns &&
 					columns.length > 0 &&
-					columns.map((col, index) => {
+					columns.map((col, _index) => {
 						const { enableLink, link, richText, size } = col;
 
 						return (

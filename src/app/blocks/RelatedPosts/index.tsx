@@ -1,7 +1,7 @@
-import { PostPreview } from "@/(frontend)/_components/post-preview";
-import { cn } from "@/utilities";
 import type React from "react";
 import { RichText } from "src/app/components/RichText";
+import { PostPreview } from "@/(frontend)/_components/post-preview";
+import { cn } from "@/utilities";
 import type { Page, Post } from "../../../payload-types";
 
 export type RelatedPostsProps = {

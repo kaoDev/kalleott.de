@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { HeaderClient } from "@/components/PageHeader/index.client";
 import { getCachedGlobal } from "@/utilities/getGlobals";
-import Link from "next/link";
 import type { Header } from "../../../payload-types";
 import { Logo } from "../Logo/Logo";
 import { HeaderNav } from "./Nav";

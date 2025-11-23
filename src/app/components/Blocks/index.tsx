@@ -1,7 +1,7 @@
-import { HotSaucesBlock } from "@/blocks/HotSaucesBlock";
 import type { Form as FormType } from "@payloadcms/plugin-form-builder/types";
 import type React from "react";
 import { Fragment } from "react";
+import { HotSaucesBlock } from "@/blocks/HotSaucesBlock";
 import type { Page } from "../../../payload-types";
 import { ArchiveBlock } from "../../blocks/ArchiveBlock";
 import { CallToActionBlock } from "../../blocks/CallToAction";

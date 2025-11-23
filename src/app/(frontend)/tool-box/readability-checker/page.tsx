@@ -1,7 +1,7 @@
 "use client";
 
-import { Prose } from "@/components/Prose/Prose";
 import dynamic from "next/dynamic";
+import { Prose } from "@/components/Prose/Prose";
 
 const ReadabilityCheckerClient = dynamic(
 	() =>
@@ -26,11 +26,16 @@ export default function ReadabilityChecker() {
 					<a
 						href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
 						target="_blank"
+						rel="noopener"
 					>
 						WCAG 2.0 guidelines
 					</a>
 					, which are implemented in the{" "}
-					<a href="https://color2k.com/#has-bad-contrast" target="_blank">
+					<a
+						href="https://color2k.com/#has-bad-contrast"
+						target="_blank"
+						rel="noopener"
+					>
 						color2k
 					</a>{" "}
 					library.

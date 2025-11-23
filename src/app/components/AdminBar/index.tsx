@@ -1,11 +1,11 @@
 "use client";
 
-import { cn } from "@/utilities/cn";
 import { useSelectedLayoutSegments } from "next/navigation";
 import type { PayloadAdminBarProps, PayloadMeUser } from "payload-admin-bar";
 import { PayloadAdminBar } from "payload-admin-bar";
 import type React from "react";
 import { useCallback, useState } from "react";
+import { cn } from "@/utilities/cn";
 
 const collectionLabels = {
 	pages: {

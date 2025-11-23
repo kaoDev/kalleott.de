@@ -1,4 +1,3 @@
-import { cn } from "@/utilities/cn";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GeistMono } from "geist/font/mono";
@@ -6,6 +5,7 @@ import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
 import type React from "react";
 import { Fragment } from "react";
+import { cn } from "@/utilities/cn";
 import { AdminBar } from "../components/AdminBar";
 import { LivePreviewListener } from "../components/LivePreviewListener";
 import { PageFooter } from "../components/PageFooter";

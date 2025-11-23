@@ -1,9 +1,9 @@
 "use client";
 
-import { useHeaderTheme } from "@/providers/HeaderTheme";
-import type { Theme } from "@/providers/Theme/types";
 import type React from "react";
 import { type ReactNode, useEffect, useRef, useState } from "react";
+import { useHeaderTheme } from "@/providers/HeaderTheme";
+import type { Theme } from "@/providers/Theme/types";
 
 interface HeaderClientProps {
 	children: ReactNode;

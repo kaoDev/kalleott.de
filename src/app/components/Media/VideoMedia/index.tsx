@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/utilities/cn";
 import type React from "react";
 import { useEffect, useRef } from "react";
+import { cn } from "@/utilities/cn";
 import type { Props as MediaProps } from "../types";
 
 export const VideoMedia: React.FC<MediaProps> = (props) => {

@@ -1,7 +1,3 @@
-import { SubscribeToUpdatesForm } from "@/(frontend)/_components/subscribe-to-updates-form";
-import { RelatedPosts } from "@/blocks/RelatedPosts";
-import { PayloadRedirects } from "@/components/PayloadRedirects";
-import { Separator } from "@/components/ui/separator";
 import configPromise from "@payload-config";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
@@ -9,6 +5,10 @@ import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import { cache } from "react";
 import { RichText } from "src/app/components/RichText";
+import { SubscribeToUpdatesForm } from "@/(frontend)/_components/subscribe-to-updates-form";
+import { RelatedPosts } from "@/blocks/RelatedPosts";
+import { PayloadRedirects } from "@/components/PayloadRedirects";
+import { Separator } from "@/components/ui/separator";
 import { PostHero } from "../../../heros/PostHero";
 import { generateMeta } from "../../../utilities/generateMeta";
 import PageClient from "./page.client";

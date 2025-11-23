@@ -1,6 +1,6 @@
 import config from "@payload-config";
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
-import { RootPage, generatePageMetadata } from "@payloadcms/next/views";
+import { generatePageMetadata, RootPage } from "@payloadcms/next/views";
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
 import type { Metadata } from "next";
 import { importMap } from "../importMap";

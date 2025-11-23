@@ -1,8 +1,3 @@
-import { BannerBlock } from "@/blocks/Banner";
-import { CallToActionBlock } from "@/blocks/CallToAction";
-import { CodeBlock, type CodeBlockProps } from "@/blocks/Code";
-import { HtmlBlock, type HtmlBlockProps } from "@/blocks/HtmlBlock";
-import { MediaBlock } from "@/blocks/MediaBlock";
 import type {
 	DefaultNodeTypes,
 	SerializedBlockNode,
@@ -11,6 +6,11 @@ import type { SerializedLexicalNode, Spread } from "lexical";
 import type { JsonObject } from "payload";
 import { Fragment, type JSX } from "react";
 import type { BannerBlock as BannerBlockProps } from "src/payload-types";
+import { BannerBlock } from "@/blocks/Banner";
+import { CallToActionBlock } from "@/blocks/CallToAction";
+import { CodeBlock, type CodeBlockProps } from "@/blocks/Code";
+import { HtmlBlock, type HtmlBlockProps } from "@/blocks/HtmlBlock";
+import { MediaBlock } from "@/blocks/MediaBlock";
 import type { Page } from "../../../payload-types";
 import { serializeDefaultNodes } from "./serializeDefaultNodes";
 import { serializeTextNodes } from "./serializeTextNodes";
@@ -33,7 +33,7 @@ export type SerializedInlineBlockNode<
 export type NodeTypes =
 	| DefaultNodeTypes
 	| SerializedBlockNode<
-			// @ts-ignore // TODO: Fix this
+			// @ts-expect-error // TODO: Fix this
 			| Extract<Page["layout"][0], { blockType: "cta" }>
 			| Extract<Page["layout"][0], { blockType: "mediaBlock" }>
 			| BannerBlockProps
