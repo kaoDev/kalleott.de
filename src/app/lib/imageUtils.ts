@@ -1,6 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import getImageSize from "image-size";
+import { imageSizeFromFile } from "image-size/fromFile";
 import sharp from "sharp";
 
 export function getLocalImagePath(publicPath: string) {
@@ -8,9 +8,9 @@ export function getLocalImagePath(publicPath: string) {
 	return path.join(process.cwd(), "public", publicPath);
 }
 
-export function getImageDimensions(publicPath: string) {
+export async function getImageDimensions(publicPath: string) {
 	const imagePath = getLocalImagePath(publicPath);
-	const dimensions = getImageSize(imagePath);
+	const dimensions = await imageSizeFromFile(imagePath);
 
 	return dimensions;
 }
