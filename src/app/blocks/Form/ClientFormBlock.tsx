@@ -1,6 +1,5 @@
 "use client";
 
-import type { SimpleRichTextContent } from "@/components/RichText/SimpleRichText";
 import type {
 	FormFieldBlock,
 	Form as FormType,
@@ -16,6 +15,7 @@ import {
 	useForm,
 } from "react-hook-form";
 import { Button } from "src/app/components/ui/button";
+import type { SimpleRichTextContent } from "@/components/RichText/SimpleRichText";
 import { buildInitialFormState } from "./buildInitialFormState";
 import { fields } from "./fields";
 

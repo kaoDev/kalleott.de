@@ -56,6 +56,7 @@ export const ArchiveBlock: React.FC<
 			selectedDocs
 				?.map((post) => {
 					if (typeof post.value === "object") return post.value;
+					return null;
 				})
 				.filter((post) => post != null) ?? [];
 	}

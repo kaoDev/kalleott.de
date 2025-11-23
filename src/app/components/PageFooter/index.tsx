@@ -1,6 +1,6 @@
-import { getCachedGlobal } from "@/utilities/getGlobals";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
+import { getCachedGlobal } from "@/utilities/getGlobals";
 import type { Footer } from "../../../payload-types";
 import { ThemeSelector } from "../../providers/Theme/ThemeSelector";
 import { CMSLink } from "../Link";

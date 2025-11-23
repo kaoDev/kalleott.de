@@ -34,23 +34,37 @@ const nextConfig = {
 				return {
 					hostname: url.hostname,
 					protocol: url.protocol.replace(":", ""),
+					port: url.port || undefined,
+					pathname: "/**",
 				};
 			}),
 		],
 		deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
 		imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+		// Allow local IP addresses for development (Next.js 16 security feature)
+		// Only enable in development - this allows localhost images to be optimized
+		...(process.env.NODE_ENV === "development"
+			? { dangerouslyAllowLocalIP: true }
+			: {}),
 	},
 	env: {
 		NEXT_PUBLIC_SERVER_URL: getEnvServerUrl(),
 		PAYLOAD_PUBLIC_SERVER_URL: getEnvServerUrl(),
 	},
 	reactStrictMode: true,
-	experimental: {
-		ppr: true,
-		reactCompiler: true,
-	},
-	eslint: {
-		ignoreDuringBuilds: true,
+	reactCompiler: true,
+	// PPR (Partial Prerendering) is now stable in Next.js 16 and enabled by default
+	// No need to configure it in experimental
+	// eslint config removed - use next lint command directly
+	serverExternalPackages: ["thread-stream"],
+	webpack: (config, { isServer }) => {
+		if (isServer) {
+			// Exclude test files from server-side webpack processing
+			config.resolve = config.resolve || {};
+			config.resolve.alias = config.resolve.alias || {};
+			config.resolve.alias["thread-stream/test"] = false;
+		}
+		return config;
 	},
 	redirects: async () => {
 		return [

@@ -1,10 +1,10 @@
-import { PayloadRedirects } from "@/components/PayloadRedirects";
 import configPromise from "@payload-config";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
 import { getPayload } from "payload";
 import { cache } from "react";
+import { PayloadRedirects } from "@/components/PayloadRedirects";
 import { Blocks } from "../../components/Blocks";
 import { Hero } from "../../components/Hero";
 import { generateMeta } from "../../utilities/generateMeta";

@@ -1,5 +1,9 @@
 "use client";
 
+import type { SelectField } from "@payloadcms/plugin-form-builder/types";
+import type React from "react";
+import type { Control, FieldErrorsImpl, FieldValues } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import {
 	Select as SelectComponent,
@@ -8,10 +12,6 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import type { SelectField } from "@payloadcms/plugin-form-builder/types";
-import type React from "react";
-import type { Control, FieldErrorsImpl, FieldValues } from "react-hook-form";
-import { Controller } from "react-hook-form";
 import { FieldError } from "../FieldError";
 import { Width } from "../Width";
 

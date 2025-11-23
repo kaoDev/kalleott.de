@@ -1,3 +1,4 @@
+import type { Category, Media as MediaType } from "src/payload-types";
 import { Media } from "@/components/Media";
 import {
 	SimpleRichText,
@@ -5,7 +6,6 @@ import {
 } from "@/components/RichText/SimpleRichText";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import type { Category, Media as MediaType } from "src/payload-types";
 
 namespace BookCard {
 	export interface Props {

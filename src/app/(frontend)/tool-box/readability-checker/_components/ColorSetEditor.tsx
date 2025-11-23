@@ -1,11 +1,11 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { useAtom } from "jotai/react";
 import type { PrimitiveAtom } from "jotai/vanilla";
 import { useEffect, useMemo, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { parseColors } from "../_logic/parseColors";
 import type { ColorInfo } from "../_logic/types";
 import { ColorSquare } from "./ColorSquare";
@@ -40,7 +40,7 @@ export function ColorSetEditor({ colorSetName, stateAtom }: Props) {
 			const parsedColors = parseColors(input);
 			setColorSet(parsedColors);
 			setError(null);
-		} catch (err) {
+		} catch (_err) {
 			setError("Error parsing colors. Please check your input.");
 		}
 	}, [input, setColorSet]);

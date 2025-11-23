@@ -1,5 +1,5 @@
+import { Fragment } from "react";
 import { formatDateTime } from "@/utilities/formatDateTime";
-import React from "react";
 import type { Post } from "../../../payload-types";
 import { Media } from "../../components/Media";
 
@@ -22,10 +22,10 @@ export const PostHero: React.FC<{
 								const isLast = index === categories.length - 1;
 
 								return (
-									<React.Fragment key={category.id}>
+									<Fragment key={category.id}>
 										{titleToUse}
 										{!isLast && ",\u00A0"}
-									</React.Fragment>
+									</Fragment>
 								);
 							}
 							return null;
@@ -48,12 +48,12 @@ export const PostHero: React.FC<{
 										const secondToLast = index === populatedAuthors.length - 2;
 
 										return (
-											<React.Fragment key={author.id}>
+											<Fragment key={author.id}>
 												{name}
 												{secondToLast && populatedAuthors.length > 2 && ", "}
 												{secondToLast && populatedAuthors.length === 2 && " "}
 												{!isLast && populatedAuthors.length > 1 && "and "}
-											</React.Fragment>
+											</Fragment>
 										);
 									})}
 								</div>

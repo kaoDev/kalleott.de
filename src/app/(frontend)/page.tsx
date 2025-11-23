@@ -1,10 +1,10 @@
-import { Prose } from "@/components/Prose/Prose";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
-import { ToolBox } from "./_components/ToolBox";
+import { Prose } from "@/components/Prose/Prose";
 import { Container } from "./_components/container";
 import { HeroPost } from "./_components/hero-post";
 import { Intro } from "./_components/intro";
+import { ToolBox } from "./_components/ToolBox";
 
 export const dynamic = "force-static";
 export const revalidate = 600;

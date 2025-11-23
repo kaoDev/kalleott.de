@@ -1,6 +1,5 @@
-import { cn } from "@/utilities/cn";
-import React from "react";
 import type { Page, Post } from "src/payload-types";
+import { cn } from "@/utilities/cn";
 import { Prose } from "../Prose/Prose";
 import { type NodeTypes, serializeLexical } from "./serialize";
 

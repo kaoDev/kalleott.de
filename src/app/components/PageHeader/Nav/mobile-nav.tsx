@@ -1,10 +1,10 @@
 "use client";
 
-import { Logo } from "@/components/Logo/Logo";
-import { cn } from "@/utilities";
 import Link, { type LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import * as React from "react";
+import { Logo } from "@/components/Logo/Logo";
+import { cn } from "@/utilities";
 import type { Header as HeaderType } from "../../../../payload-types";
 import { Button } from "../../ui/button";
 import { ScrollArea } from "../../ui/scroll-area";
@@ -20,7 +20,7 @@ export function MobileNav({ header }: { header: HeaderType }) {
 			<SheetTrigger asChild>
 				<Button
 					variant="ghost"
-					className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 min-[440px]:hidden"
+					className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 dark:text-white min-[440px]:hidden"
 				>
 					<svg
 						strokeWidth="1.5"

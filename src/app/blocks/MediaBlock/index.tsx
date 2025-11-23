@@ -1,8 +1,8 @@
-import { Media } from "@/components/Media";
-import { cn } from "@/utilities/cn";
 import type { StaticImageData } from "next/image";
 import type React from "react";
 import { RichText } from "src/app/components/RichText";
+import { Media } from "@/components/Media";
+import { cn } from "@/utilities/cn";
 import type { Media as MediaType, Page } from "../../../payload-types";
 
 type Props = Extract<Page["layout"][0], { blockType: "mediaBlock" }> & {

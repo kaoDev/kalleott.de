@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import LogoDarkMode from "../../../../public/images/favicon/dark/icon.svg";
 import LogoLightMode from "../../../../public/images/favicon/light/icon.svg";
 

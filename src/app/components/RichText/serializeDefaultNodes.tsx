@@ -1,6 +1,6 @@
-import { cn } from "@/utilities";
 import type { DefaultNodeTypes } from "@payloadcms/richtext-lexical";
 import type { JSX } from "react";
+import { cn } from "@/utilities";
 import { CMSLink } from "../Link";
 
 export function serializeDefaultNodes(
@@ -79,8 +79,8 @@ export function serializeDefaultNodes(
 						)}
 						key={index}
 						// eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-						// biome-ignore lint: it's intended to keep the list item as semantic tags
-						role="checkbox"
+						// biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: checkbox list items require interactive role
+						role="checkbox" // biome-ignore lint/a11y/useSemanticElements: it's intended to keep the list item as semantic tags
 						tabIndex={-1}
 						value={node?.value}
 						data-indent={node.indent}

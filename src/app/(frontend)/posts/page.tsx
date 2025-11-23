@@ -1,11 +1,11 @@
 import type { Metadata } from "next/types";
 import PaginatedPosts, {
-	dynamic,
 	generateMetadata as paginatedGenerateMetadata,
-	revalidate,
 } from "./page/[pageNumber]/page";
 
-export { dynamic, revalidate };
+// Next.js 16: dynamic and revalidate must be defined directly, not re-exported
+export const dynamic = "force-static";
+export const revalidate = 600;
 
 const defaultParamsPromise = Promise.resolve({
 	pageNumber: "1",

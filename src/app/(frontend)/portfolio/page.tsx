@@ -1,8 +1,8 @@
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
 import { Container } from "../_components/container";
-import { WorkExperience } from "./_components/WorkExperience";
 import { Intro } from "./_components/intro";
+import { WorkExperience } from "./_components/WorkExperience";
 
 export default async function Portfolio() {
 	const payload = await getPayload({ config: configPromise });

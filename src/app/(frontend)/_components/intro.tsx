@@ -1,5 +1,5 @@
-import { Prose } from "@/components/Prose/Prose";
 import Link from "next/link";
+import { Prose } from "@/components/Prose/Prose";
 import { Avatar } from "./avatar";
 
 export function Intro() {
@@ -29,6 +29,7 @@ export function Intro() {
 						className="underline"
 						target="_blank"
 						href="https://www.instagram.com/kalle_ott/"
+						rel="noopener"
 					>
 						Instagram
 					</a>

@@ -1,3 +1,4 @@
+import type React from "react";
 import { MobileNav } from "@/components/PageHeader/Nav/mobile-nav";
 import {
 	NavigationMenu,
@@ -6,7 +7,6 @@ import {
 	NavigationMenuList,
 	navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import type React from "react";
 import type { Header as HeaderType } from "../../../../payload-types";
 import { CMSLink } from "../../Link";
 

@@ -7,7 +7,7 @@ export const revalidateFooter: GlobalAfterChangeHook = ({
 }) => {
 	payload.logger.info("Revalidating footer");
 
-	revalidateTag("global_footer");
+	revalidateTag("global_footer", "max");
 
 	return doc;
 };

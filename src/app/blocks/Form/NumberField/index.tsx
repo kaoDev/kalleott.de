@@ -1,7 +1,5 @@
 "use client";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import type { TextField } from "@payloadcms/plugin-form-builder/types";
 import type React from "react";
 import type {
@@ -9,6 +7,8 @@ import type {
 	FieldValues,
 	UseFormRegister,
 } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { FieldError } from "../FieldError";
 import { Width } from "../Width";
 

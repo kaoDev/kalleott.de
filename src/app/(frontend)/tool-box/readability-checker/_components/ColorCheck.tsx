@@ -1,3 +1,5 @@
+import { useAtom } from "jotai/react";
+import { useMemo } from "react";
 import { Prose } from "@/components/Prose/Prose";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import {
@@ -8,8 +10,6 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-import { useAtom } from "jotai/react";
-import { useMemo } from "react";
 import { checkContrastRatios } from "../_logic/checkColors";
 import { backgroundAtom, foregroundAtom } from "../_logic/state";
 
@@ -55,7 +55,7 @@ export function ColorCheck() {
 					</TableHeader>
 					<TableBody>
 						{checkResult.flatMap((result) => [
-							...result.readabilityValues.map((readability, index) => {
+							...result.readabilityValues.map((readability, _index) => {
 								const colorName = result.color.name || result.color.hex;
 								const backgroundName =
 									readability.background.name || readability.background.hex;

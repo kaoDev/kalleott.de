@@ -1,21 +1,27 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
 	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["src/app/(payload)/admin/importMap.js", "src/payload-types.ts"]
+		"includes": [
+			"**",
+			"!!**/node_modules",
+			"!!**/.pnpm-store",
+			"!!**/*.css",
+			"!**/src/app/(payload)/admin/importMap.js",
+			"!**/src/payload-types.ts"
+		]
 	},
 	"formatter": { "enabled": true, "indentStyle": "tab" },
-	"organizeImports": { "enabled": true },
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true,
 			"a11y": {
 				"noAriaUnsupportedElements": "warn",
-				"noBlankTarget": "off",
 				"useAltText": "warn",
 				"useAriaPropsForRole": "warn",
+				"useSemanticElements": "warn",
 				"useValidAriaProps": "warn",
 				"useValidAriaValues": "warn"
 			},
@@ -29,6 +35,8 @@
 			"suspicious": { "noCommentText": "error", "noDuplicateJsxProps": "error" }
 		}
 	},
-	"javascript": { "formatter": { "quoteStyle": "double" } },
-	"overrides": [{ "include": ["**/*.ts?(x)"] }]
+	"javascript": {
+		"formatter": { "quoteStyle": "double" }
+	},
+	"overrides": [{ "includes": ["**/*.ts", "**/*.tsx"] }]
 }

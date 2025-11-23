@@ -1,8 +1,8 @@
 "use client";
 
+import { useFormState } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useFormState } from "react-dom";
 
 interface FormState {
 	error: null | string;

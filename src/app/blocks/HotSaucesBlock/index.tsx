@@ -1,9 +1,9 @@
-import { SaucePreview } from "@/(frontend)/_components/sauce-preview";
 import configPromise from "@payload-config";
 import { getPayload } from "payload";
 import type React from "react";
 import { RichText } from "src/app/components/RichText";
 import type { HotSauce } from "src/payload-types";
+import { SaucePreview } from "@/(frontend)/_components/sauce-preview";
 import type { HotSaucesBlockProps } from "./types";
 
 export const HotSaucesBlock: React.FC<
@@ -31,6 +31,7 @@ export const HotSaucesBlock: React.FC<
 			selectedDocs
 				?.map((sauce) => {
 					if (typeof sauce.value === "object") return sauce.value;
+					return null;
 				})
 				.filter((sauce) => sauce != null) ?? [];
 	}

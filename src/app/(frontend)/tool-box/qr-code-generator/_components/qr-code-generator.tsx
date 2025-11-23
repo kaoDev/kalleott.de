@@ -1,5 +1,18 @@
 "use client";
 
+import QRCodeStyling, {
+	type CornerDotType,
+	type CornerSquareType,
+	type DotType,
+	type ShapeType,
+} from "qr-code-styling";
+import {
+	type RefObject,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import {
 	Accordion,
 	AccordionContent,
@@ -17,19 +30,6 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import QRCodeStyling, {
-	type CornerDotType,
-	type CornerSquareType,
-	type DotType,
-	type ShapeType,
-} from "qr-code-styling";
-import {
-	type RefObject,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
 
 const QR_CODE_SIZE = 300; // Base size of the QR code in pixels
 const QR_SIZE_OPTIONS = [QR_CODE_SIZE, 600, 1200]; // Available download sizes
@@ -49,6 +49,14 @@ const cornerSquareTypes: CornerSquareType[] = [
 	"extra-rounded",
 ];
 const shapeTypes: ShapeType[] = ["square", "circle"];
+
+function applyAlphaToColor(color: string, alpha: number): string {
+	const hex = color.replace("#", "");
+	const r = Number.parseInt(hex.substring(0, 2), 16);
+	const g = Number.parseInt(hex.substring(2, 4), 16);
+	const b = Number.parseInt(hex.substring(4, 6), 16);
+	return `rgba(${r}, ${g}, ${b}, ${alpha / 100})`;
+}
 
 function StyleSettings({
 	qrCode,
@@ -278,14 +286,6 @@ export function QRCodeGenerator() {
 		}
 	};
 
-	const applyAlphaToColor = (color: string, alpha: number): string => {
-		const hex = color.replace("#", "");
-		const r = Number.parseInt(hex.substring(0, 2), 16);
-		const g = Number.parseInt(hex.substring(2, 4), 16);
-		const b = Number.parseInt(hex.substring(4, 6), 16);
-		return `rgba(${r}, ${g}, ${b}, ${alpha / 100})`;
-	};
-
 	return (
 		<div className="mx-auto max-w-md space-y-6 p-6">
 			<div className="space-y-2">
@@ -374,7 +374,7 @@ export function QRCodeGenerator() {
 				<Label htmlFor="size">QR Code Size</Label>
 				<Select
 					value={size.toString()}
-					onValueChange={(value) => setSize(Number.parseInt(value))}
+					onValueChange={(value) => setSize(Number.parseInt(value, 10))}
 				>
 					<SelectTrigger id="size">
 						<SelectValue placeholder="Select QR Code size" />

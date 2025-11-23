@@ -1,3 +1,8 @@
+import configPromise from "@payload-config";
+import type { Form as FormType } from "@payloadcms/plugin-form-builder/types";
+import { notFound } from "next/navigation";
+import { getPayload } from "payload";
+import type { HotSauceOrderForm } from "src/payload-types";
 import {
 	Carousel,
 	CarouselContent,
@@ -11,11 +16,6 @@ import { Prose } from "@/components/Prose/Prose";
 import { RichText } from "@/components/RichText";
 import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { getCachedGlobal } from "@/utilities/getGlobals";
-import configPromise from "@payload-config";
-import type { Form as FormType } from "@payloadcms/plugin-form-builder/types";
-import { notFound } from "next/navigation";
-import { getPayload } from "payload";
-import type { HotSauceOrderForm } from "src/payload-types";
 
 interface PageProps {
 	params: Promise<{
@@ -76,7 +76,7 @@ export async function HotSauceDetails({ params, asDialog }: Props) {
 	);
 
 	return (
-		<>
+		<div className="container py-16">
 			<Prose>
 				{sauceNameElement}
 				{sauceDescriptionElement}
@@ -119,6 +119,6 @@ export async function HotSauceDetails({ params, asDialog }: Props) {
 				) : null}
 			</Prose>
 			<div className="p-20" />
-		</>
+		</div>
 	);
 }
