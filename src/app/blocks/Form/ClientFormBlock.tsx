@@ -160,19 +160,16 @@ export function ClientFormBlock(props: Props) {
 				}, 1000);
 
 				try {
-					const req = await fetch(
-						`${process.env.NEXT_PUBLIC_SERVER_URL}/api/form-submissions`,
-						{
-							body: JSON.stringify({
-								form: formID,
-								submissionData: dataToSend,
-							}),
-							headers: {
-								"Content-Type": "application/json",
-							},
-							method: "POST",
+					const req = await fetch("/api/forms/submit", {
+						body: JSON.stringify({
+							form: formID,
+							submissionData: dataToSend,
+						}),
+						headers: {
+							"Content-Type": "application/json",
 						},
-					);
+						method: "POST",
+					});
 
 					const res = await req.json();
 
@@ -243,7 +240,6 @@ export function ClientFormBlock(props: Props) {
 							);
 						}) ?? null}
 					</div>
-
 					<Button form={formElementId} type="submit" variant="default">
 						{submitButtonLabel}
 					</Button>

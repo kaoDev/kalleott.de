@@ -54,6 +54,7 @@
 		"@vercel/speed-insights": "^1.0.12",
 		"ai": "^5.0.100",
 		"babel-plugin-react-compiler": "1.0.0",
+		"botid": "^1.5.11",
 		"bright": "^1.0.0",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",

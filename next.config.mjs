@@ -1,4 +1,5 @@
 import { withPayload } from "@payloadcms/next/withPayload";
+import { withBotId } from "botid/next/config";
 
 const vercelEnv = process.env.VERCEL_ENV;
 const vercelDeploymentUrl = process.env.VERCEL_URL;
@@ -82,4 +83,4 @@ const nextConfig = {
 	},
 };
 
-export default withPayload(nextConfig);
+export default withBotId(withPayload(nextConfig));

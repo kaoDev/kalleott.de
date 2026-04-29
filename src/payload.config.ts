@@ -54,6 +54,37 @@ const payloadEmailFromName = z
 	.parse(process.env.PAYLOAD_EMAIL_FROM_NAME);
 const resendApiKey = z.string().parse(process.env.RESEND_API_KEY);
 const postgresUrl = z.string().parse(process.env.POSTGRES_URL);
+const formSubmissionsAccessToken = z
+	.string()
+	.parse(process.env.FORM_SUBMISSIONS_ACCESS_TOKEN);
+const formSubmissionsAccessHeader = "x-form-submissions-token";
+
+function getHeaderValue(
+	headers: unknown,
+	headerName: string,
+): string | undefined {
+	if (headers instanceof Headers) {
+		return headers.get(headerName) ?? undefined;
+	}
+
+	if (!headers || typeof headers !== "object") {
+		return undefined;
+	}
+
+	const normalizedHeaders = headers as Record<
+		string,
+		string | string[] | undefined
+	>;
+	const headerValue =
+		normalizedHeaders[headerName] ??
+		normalizedHeaders[headerName.toLowerCase()];
+
+	if (Array.isArray(headerValue)) {
+		return headerValue[0];
+	}
+
+	return headerValue;
+}
 
 const generateURL: GenerateURL<Post | Page> = ({ doc }) => {
 	return doc?.slug ? `${serverUrl}/${doc.slug}` : serverUrl;
@@ -204,6 +235,18 @@ export default buildConfig({
 						}
 						return field;
 					});
+				},
+			},
+			formSubmissionOverrides: {
+				access: {
+					create: ({ req }) => {
+						const providedToken = getHeaderValue(
+							req.headers,
+							formSubmissionsAccessHeader,
+						);
+						
+						return !!providedToken && providedToken === formSubmissionsAccessToken;
+					},
 				},
 			},
 		}),
