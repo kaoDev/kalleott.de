@@ -127,13 +127,13 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 export {
 	Dialog,
-	DialogNavBackOnClose,
 	DialogClose,
 	DialogCloseBack,
 	DialogContent,
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
+	DialogNavBackOnClose,
 	DialogOverlay,
 	DialogPortal,
 	DialogTitle,

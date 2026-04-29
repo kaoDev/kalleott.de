@@ -56,7 +56,7 @@ export function BookCard({
 					<div>
 						{link ? (
 							<Button asChild className="mt-4 w-full">
-								<a href={link} target="_blank">
+								<a href={link} target="_blank" rel="noopener">
 									More information
 								</a>
 							</Button>

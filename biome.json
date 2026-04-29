@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.4.13/schema.json",
 	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": false },
 	"files": {
 		"ignoreUnknown": false,
@@ -38,7 +38,11 @@
 				"useJsxKeyInIterable": "error"
 			},
 			"security": { "noDangerouslySetInnerHtmlWithChildren": "error" },
-			"suspicious": { "noCommentText": "error", "noDuplicateJsxProps": "error" }
+			"suspicious": {
+				"noArrayIndexKey": "off",
+				"noCommentText": "error",
+				"noDuplicateJsxProps": "error"
+			}
 		}
 	},
 	"javascript": {

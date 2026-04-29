@@ -28,5 +28,6 @@ export const fields = {
 	text: Text,
 	textarea: Textarea,
 	radio: NullComponent,
+	upload: NullComponent,
 	// biome-ignore lint: `any` is used to ensure all possible component types are allowed
 } satisfies { [key in AvailableBlockTypes]: ComponentType<any> };
