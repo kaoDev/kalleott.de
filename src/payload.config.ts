@@ -53,7 +53,9 @@ const payloadEmailFromName = z
 	.string()
 	.parse(process.env.PAYLOAD_EMAIL_FROM_NAME);
 const resendApiKey = z.string().parse(process.env.RESEND_API_KEY);
-const postgresUrl = z.string().parse(process.env.POSTGRES_URL);
+const postgresUrl = z
+	.string()
+	.parse(process.env.POSTGRES_URL ?? process.env.PG_POSTGRES_URL);
 const formSubmissionsAccessToken = z
 	.string()
 	.parse(process.env.FORM_SUBMISSIONS_ACCESS_TOKEN);
