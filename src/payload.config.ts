@@ -244,8 +244,10 @@ export default buildConfig({
 							req.headers,
 							formSubmissionsAccessHeader,
 						);
-						
-						return !!providedToken && providedToken === formSubmissionsAccessToken;
+
+						return (
+							!!providedToken && providedToken === formSubmissionsAccessToken
+						);
 					},
 				},
 			},
